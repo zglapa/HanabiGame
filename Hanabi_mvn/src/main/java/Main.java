@@ -1,11 +1,4 @@
 
-<<<<<<< HEAD
-public class Main{
-    public static void main(String [] args){
-        Rameczka a = new Rameczka();
-        a.f();
-        System.out.println("HelloWorld");
-=======
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -31,7 +24,6 @@ public class Main extends Application {
         Scene scene = new Scene(layout,500,500);
         primaryStage.setScene(scene);
         primaryStage.show();
->>>>>>> 7792bc3a272cdea9927e693723b460b5722fed8c
     }
 
 }
