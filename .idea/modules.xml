@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Hanabi.iml" filepath="$PROJECT_DIR$/.idea/Hanabi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hanabi_mvn/Hanabi_mvn.iml" filepath="$PROJECT_DIR$/Hanabi_mvn/Hanabi_mvn.iml" />
+    </modules>
+  </component>
+</project>
