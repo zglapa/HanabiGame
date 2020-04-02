@@ -11,4 +11,10 @@ public class Card {
 
     Color getColor() { return color; }
     int getValue() { return value; }
+    @Override
+    public String toString(){
+        String str = "";
+        str+= color.name() + " " + value;
+        return str;
+    }
 }
