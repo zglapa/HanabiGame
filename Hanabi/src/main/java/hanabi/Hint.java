@@ -3,19 +3,18 @@ package hanabi;
 public final class Hint {
     private Color cardColor;
     private Integer cardValue;
-    private Integer playerId;
+    private Player hinted;
 
 
-    Hint(int playerId, Color cardColor) {
-        this.cardValue = null;
+    Hint(Player hinted, Color cardColor) {
+        this.hinted = hinted;
         this.cardColor = cardColor;
-        this.playerId = playerId;
     }
 
-    Hint(int playerId, Integer cardValue) {
+    Hint(Player hinted, Integer cardValue) {
+        this.hinted = hinted;
         this.cardValue = cardValue;
         this.cardColor = null;
-        this.playerId = playerId;
     }
 
     public Color getCardColor() throws WrongHintTypeException {
@@ -30,12 +29,29 @@ public final class Hint {
         return cardValue;
     }
 
+    public Player getHinted() {
+        return hinted;
+    }
+
     public boolean isHintTypeValue() {
         return cardValue != null;
     }
 
     public boolean isHintTypeColor() {
         return cardColor != null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder ans = new StringBuilder("Hint ");
+        if (isHintTypeColor())
+            ans.append(cardColor.name());
+        else
+            ans.append(cardValue);
+        ans.append(" to ");
+        ans.append(hinted);
+
+        return new String(ans);
     }
 }
 
