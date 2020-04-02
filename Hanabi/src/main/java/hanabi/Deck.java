@@ -5,14 +5,11 @@ import java.util.Collections;
 
 public final class Deck {
     private ArrayList <Card> cards;
-    private void addAllColors(int x){ //ladnie by bylo miec pentle
-        cards.add(new Card(Color.YELLOW,x));
-        cards.add(new Card(Color.WHITE,x));
-        cards.add(new Card(Color.BLUE,x));
-        cards.add(new Card(Color.RED,x));
-        cards.add(new Card(Color.GREEN,x));
+    private void addAllColors(int x) {
+        for(Color color : Color.values())
+            cards.add(new Card(color,x));
     }
-    //public
+    
     Deck() {
         cards=new ArrayList <>();
         for(int i=0;i<2;++i)
@@ -26,19 +23,19 @@ public final class Deck {
         if(shuffle)
             Collections.shuffle(cards);
     }
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return cards.size()==0;
     }
-    Card top() throws EmptyDeckException {
+    public Card top() throws EmptyDeckException {
         if(isEmpty())
             throw new EmptyDeckException();
         return cards.get(cards.size()-1);
     }
-    Card pop() throws EmptyDeckException{
+    public Card pop() throws EmptyDeckException{
         if(isEmpty())
             throw new EmptyDeckException();
         Card ans=top();
-        cards.remove(cards.size()-1)
+        cards.remove(cards.size()-1);
         return ans;
     }
 }
