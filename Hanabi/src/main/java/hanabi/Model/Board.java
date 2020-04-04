@@ -142,15 +142,14 @@ public class Board {
             return;
         }
 
-
-        if (hasGameEnded())
-            throw new GameEndException();
     }
 
-    private void endMove(PlayerMove playerMove) {
+    private void endMove(PlayerMove playerMove) throws GameEndException {
         turnsUntilEnd--;
         currentPlayerIndex = (currentPlayerIndex+1)%playerAmount;
         playerMoveHistory.add(playerMove);
+        if (hasGameEnded())
+            throw new GameEndException();
     }
 
     //Roch Wojtowicz
@@ -175,6 +174,31 @@ public class Board {
             if(blocked(new Card(color,result.get(color)+1)))
                 return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder ans = new StringBuilder();
+        for (int i = 0; i< playerAmount; i++) {
+            ans.append("Player " + i + ": ");
+            ans.append(players.get(i));
+            ans.append("\n");
+        }
+        ans.append("Hint amount: ");
+        ans.append(currentHints);
+        ans.append("\n");
+        ans.append("Lives amount: ");
+        ans.append(currentLives);
+        ans.append("\nBoard: \n");
+        for (Color color : Color.values()){
+            ans.append(color);
+            ans.append(": ");
+            ans.append(result.get(color));
+            ans.append("\n");
+        }
+        ans.append("\n");
+
+        return new String(ans);
     }
 }
 
