@@ -9,20 +9,22 @@ public final class Deck {
         for(Color color : Color.values())
             cards.add(new Card(color,x));
     }
-    
-    Deck() {
+
+    Deck(boolean shuffle) {
         cards=new ArrayList <>();
         for(int i=0;i<2;++i)
             for(int j=0;j<4;++j)
                 addAllColors(j);
         addAllColors(1);
         addAllColors(5);
-    }
-    Deck(boolean shuffle) {
-        this();
         if(shuffle)
             Collections.shuffle(cards);
     }
+    Deck() {
+        this(true);
+    }
+
+    public int getSize() {return cards.size();}
     public boolean isEmpty() {
         return cards.size()==0;
     }
