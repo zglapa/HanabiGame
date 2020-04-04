@@ -27,8 +27,8 @@ public class Controller {
             System.out.println(board);
             MoveType type = MoveType.PLAY;
             Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
-            Card card = player.getHand().getFirst();
-            PlayerMove move = new PlayerMove(player,type,card);
+            //Card card = player.getHand().getFirst();
+            PlayerMove move = new PlayerMove(player,type,1);
             try{
                 board.action(move);
             }catch (Exception e){

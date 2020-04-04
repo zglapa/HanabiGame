@@ -5,9 +5,14 @@ public final class PlayerMove {
     private Card card;
     private Hint hint;
     private Player currentPlayer;
-    public PlayerMove(Player currentPlayer, MoveType moveType,Card card){
+    public PlayerMove(Player currentPlayer, MoveType moveType, Card card) {
         this.currentPlayer = currentPlayer;
         this.card = card;
+        this.moveType = moveType;
+    }
+    public PlayerMove(Player currentPlayer, MoveType moveType, int cardIndex) {
+        this.currentPlayer = currentPlayer;
+        this.card = currentPlayer.getHand().get(cardIndex);
         this.moveType = moveType;
     }
     public PlayerMove(Player currentPlayer, MoveType moveType, Hint hint){
