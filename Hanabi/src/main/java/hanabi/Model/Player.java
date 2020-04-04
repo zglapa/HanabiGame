@@ -8,7 +8,7 @@ public class Player {
     private LinkedList<Card> cards;
     Player(String name,LinkedList<Card> startingCards) {
         this.name=name;
-        cards=new LinkedList<>(startingCards);
+        cards=startingCards;
     }
 
     public LinkedList <Card> getHand() {return cards;}
