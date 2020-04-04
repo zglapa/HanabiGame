@@ -6,6 +6,7 @@ import java.util.*;
 public class Board {
     HashMap<Color, Integer> result;
     Deck deck;
+    HashSet<Color> inGameColors;
     DiscardPile discardPile;
     ArrayList<PlayerMove> playerMoveHistory;
     ArrayList<Player> players;
@@ -20,6 +21,7 @@ public class Board {
 
     public HashMap<Color, Integer> getResult() { return result; }
     public Deck getDeck() { return deck; }
+    public HashSet<Color> getInGameColors() { return inGameColors; }
     public DiscardPile getDiscardPile() { return discardPile; }
     public ArrayList<PlayerMove> getPlayerMoveHistory() { return playerMoveHistory; }
     public ArrayList<Player> getPlayers() { return players; }
@@ -43,6 +45,9 @@ public class Board {
         } else {
             deck = replacement;
         }
+
+        inGameColors = deck.getColors();
+
 
         discardPile = new DiscardPile();
 
