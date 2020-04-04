@@ -22,7 +22,7 @@ public class Controller {
         for(int i =0; i<4;++i){
             players[i] = s.next();
         }
-        Board board = new Board(4, 40, 8, 0, new Deck(true, true, true), false, players[0], players[1], players[2], players[3]);
+        Board board = new Board(4, 40, 8, 8, 0, new Deck(true, true, true), false, players[0], players[1], players[2], players[3]);
         while(true){
             System.out.println(board);
             MoveType type = MoveType.PLAY;
