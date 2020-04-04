@@ -171,9 +171,9 @@ public class Board {
         if (currentLives == 0)
             return true;
         for(Color color:Color.values())
-            if(blocked(new Card(color,result.get(color)+1)))
-                return false;
-        return true;
+            if(!blocked(new Card(color,result.get(color)+1)))
+                return true;
+        return false;
     }
 
     @Override
