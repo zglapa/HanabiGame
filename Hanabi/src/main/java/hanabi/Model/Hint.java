@@ -1,3 +1,4 @@
+//Aleksander Katan
 package hanabi.Model;
 
 public final class Hint {

@@ -1,3 +1,4 @@
+//Aleksander Katan
 package hanabi.Model;
 
 import java.util.*;
@@ -149,6 +150,30 @@ public class Board {
         turnsUntilEnd--;
         currentPlayerIndex = (currentPlayerIndex+1)%playerAmount;
         playerMoveHistory.add(playerMove);
+    }
+
+    //Roch Wojtowicz
+    private boolean blocked(Card x) {
+        int temp=0;
+        for(Card i:discardPile.getDiscardPile())
+            if(i.getColor()==x.getColor() && i.getValue()==x.getValue())
+                ++temp;
+        if(x.getValue()==1)
+            return temp==3;
+        if(x.getValue()==5)
+            return temp==1;
+        return temp==2;
+    }
+
+    private boolean hasGameEnded() {
+        if (turnsUntilEnd == 0)
+            return true;
+        if (currentLives == 0)
+            return true;
+        for(Color color:Color.values())
+            if(blocked(new Card(color,result.get(color)+1)))
+                return false;
+        return true;
     }
 }
 
