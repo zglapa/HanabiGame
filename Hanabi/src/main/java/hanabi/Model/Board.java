@@ -29,7 +29,7 @@ public class Board {
     public int getHandSize() { return handSize; }
     public int getTurnsUntilEnd() { return (turnsUntilEnd < 0) ? -1 : turnsUntilEnd; }
 
-    Board(int playerAmount, String... names) {
+    public Board(int playerAmount, String... names) {
         result = new HashMap<>();
         for (Color name : Color.values()) {
             result.put(name, 0);

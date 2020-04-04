@@ -9,7 +9,7 @@ public class DiscardPile {
         pile = new LinkedList<>();
         pileSize = 0;
     }
-    void addDiscarded(Card discarded){
+    void add(Card discarded){
         for(int i = 0; i < pileSize;++i){
             Card c = pile.get(i);
             if(discarded.compareTo(c) <= 0){

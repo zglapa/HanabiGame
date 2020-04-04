@@ -38,9 +38,7 @@ public final class PlayerMove {
     }
 
 }
-enum MoveType {
-    DISCARD, PLAY, HINT
-}
+
 class NoCardMoveException extends Exception{
     public NoCardMoveException(){};
 

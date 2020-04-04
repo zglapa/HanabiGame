@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
     private String name;
     private LinkedList<Card> cards;
-    Player(String name,List<Card> startingCards) {
+    Player(String name,LinkedList<Card> startingCards) {
         this.name=name;
         cards=new LinkedList<>(startingCards);
     }
