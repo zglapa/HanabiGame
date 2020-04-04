@@ -24,7 +24,8 @@ public class Controller {
         }
         Board board = new Board(4, players[0], players[1], players[2], players[3]);
         while(true){
-            MoveType type = MoveType.DISCARD;
+            System.out.println(board);
+            MoveType type = MoveType.PLAY;
             Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
             Card card = player.getHand().getFirst();
             PlayerMove move = new PlayerMove(player,type,card);
@@ -32,6 +33,7 @@ public class Controller {
                 board.action(move);
             }catch (Exception e){
                 e.printStackTrace();
+                break;
             }
         }
 

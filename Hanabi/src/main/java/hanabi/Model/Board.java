@@ -30,27 +30,35 @@ public class Board {
     public int getHandSize() { return handSize; }
     public int getTurnsUntilEnd() { return (turnsUntilEnd < 0) ? -1 : turnsUntilEnd; }
 
-    public Board(int playerAmount, String... names) {
+
+    public Board(int playerAmount, int lives, int hints, int handSize, Deck replacement, boolean shufflePlayers, String... names) {
+        //if replacement is null then the deck is ordinary 50 cards, if handsize is 0, it's automatically calculated
         result = new HashMap<>();
         for (Color name : Color.values()) {
             result.put(name, 0);
         }
 
-        deck = new Deck();
+        if (replacement == null) {
+            deck = new Deck();
+        } else {
+            deck = replacement;
+        }
 
         discardPile = new DiscardPile();
 
         playerMoveHistory = new ArrayList<>();
 
         this.playerAmount = playerAmount;
-        currentLives = 3;
-        currentHints = 8;
+        currentLives = lives;
+        currentHints = hints;
         currentPlayerIndex = 0;
 
-        if (playerAmount<4)
-            handSize = 5;
-        else
-            handSize = 4;
+        if (handSize <= 0) {
+            if (playerAmount < 4)
+                handSize = 5;
+            else
+                handSize = 4;
+        }
 
         turnsUntilEnd = -2137;
 
@@ -68,9 +76,14 @@ public class Board {
             players.add(new Player(name, hand));
         }
 
-        if (true) //for future
+        if (shufflePlayers)
             Collections.shuffle(players);
     }
+
+    public Board(int playerAmount, String... names) {
+        this(playerAmount, 3, 8, 0, null, true, names);
+    }
+
 
     public void action(PlayerMove playerMove) throws GameEndException, NoHintsLeft {
         if (playerMove.getType() == MoveType.HINT) {
@@ -166,14 +179,19 @@ public class Board {
     }
 
     private boolean hasGameEnded() {
-        if (turnsUntilEnd == 0)
+        if (turnsUntilEnd == 0) {
+            //System.out.println("turns");
             return true;
-        if (currentLives == 0)
+        }
+
+        if (currentLives == 0) {
+            //System.out.println("lives");
             return true;
+        }
         for(Color color:Color.values())
             if(!blocked(new Card(color,result.get(color)+1)))
-                return true;
-        return false;
+                return false;
+        return true;
     }
 
     @Override
