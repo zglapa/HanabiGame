@@ -1,4 +1,6 @@
 module hanabi {
     requires javafx.controls;
-    exports hanabi;
+    exports hanabi.Model;
+    exports hanabi.Controller;
+    exports hanabi.View;
 }

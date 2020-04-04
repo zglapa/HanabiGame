@@ -15,6 +15,7 @@ public final class PlayerMove {
         this.moveType = moveType;
         this.hint = hint;
     }
+    public Player getPlayer(){return  this.currentPlayer;}
     public MoveType getType() {
         return this.moveType;
     }
@@ -28,16 +29,13 @@ public final class PlayerMove {
     }
     @Override
     public String toString(){
-        String str = "";
         if(moveType == MoveType.HINT){
-            str+=currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toString();
+            return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toString();
         }
         else{
-            str+=currentPlayer.toString() + " | " + moveType.name() + " | " + card.toString();
+            return currentPlayer.toString() + " | " + moveType.name() + " | " + card.toString();
         }
-        return str;
     }
-
 
 }
 enum MoveType {
