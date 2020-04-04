@@ -17,6 +17,7 @@ public class Board {
     int turnsUntilEnd;
 
 
+
     public HashMap<Color, Integer> getResult() { return result; }
     public Deck getDeck() { return deck; }
     public DiscardPile getDiscardPile() { return discardPile; }
