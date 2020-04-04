@@ -160,7 +160,7 @@ public class Board {
             if (result.get(cardPlayed.getColor()) +1 == cardPlayed.getValue()) {
                 result.put(cardPlayed.getColor(), cardPlayed.getValue());
                 if (cardPlayed.getValue() == rewardedForPlaying)
-                    currentHints = (currentHints == maxHints) ? maxHints : currentHints+1;
+                    currentHints = (currentHints >= maxHints) ? maxHints : currentHints+1;
             } else {
                 currentLives--;
                 discardPile.add(cardPlayed);
