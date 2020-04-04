@@ -72,6 +72,9 @@ public final class Deck {
     public boolean isEmpty() {
         return cards.size()==0;
     }
+
+    public ArrayList<Card> getCards() { return cards; }
+
     public Card top() throws EmptyDeckException {
         if(isEmpty())
             throw new EmptyDeckException();

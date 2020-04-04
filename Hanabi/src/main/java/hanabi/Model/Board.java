@@ -13,9 +13,11 @@ public class Board {
     Integer playerAmount;
     int currentLives;
     int currentHints;
+    int maxHints;
     int currentPlayerIndex;
     int handSize;
     int turnsUntilEnd;
+    int rewardedForPlaying;
 
 
 
@@ -28,12 +30,14 @@ public class Board {
     public Integer getPlayerAmount() { return playerAmount; }
     public int getCurrentLives() { return handSize; }
     public int getCurrentHints() { return currentHints; }
+    public int getMaxHints() { return maxHints; }
     public int getCurrentPlayerIndex() { return currentPlayerIndex; }
     public int getHandSize() { return handSize; }
     public int getTurnsUntilEnd() { return (turnsUntilEnd < 0) ? -1 : turnsUntilEnd; }
+    public int getRewardedForPlaying() { return rewardedForPlaying; }
 
 
-    public Board(int playerAmount, int lives, int hints, int handSize, Deck replacement, boolean shufflePlayers, String... names) {
+    public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, String... names) {
         //if replacement is null then the deck is ordinary 50 cards, if handsize is 0, it's automatically calculated
         result = new HashMap<>();
         for (Color name : Color.values()) {
@@ -56,6 +60,7 @@ public class Board {
         this.playerAmount = playerAmount;
         currentLives = lives;
         currentHints = hints;
+        this.maxHints = maxHints;
         currentPlayerIndex = 0;
 
         if (handSize <= 0) {
@@ -66,6 +71,11 @@ public class Board {
         }
 
         turnsUntilEnd = -2137;
+        rewardedForPlaying = 0;
+        for (Card card : deck.getCards())
+            if (card.getValue() > rewardedForPlaying)
+                rewardedForPlaying = card.getValue();
+
 
         players = new ArrayList<>();
         for (String name : names) {
@@ -86,7 +96,7 @@ public class Board {
     }
 
     public Board(int playerAmount, String... names) {
-        this(playerAmount, 3, 8, 0, null, true, names);
+        this(playerAmount, 3, 8, 8, 0, null, true, names);
     }
 
 
@@ -122,7 +132,7 @@ public class Board {
 
             discardPile.add(cardDiscarded);
 
-            currentHints = (currentHints == 8) ? 8 : currentHints+1;
+            currentHints = (currentHints == maxHints) ? maxHints : currentHints+1;
             endMove(playerMove);
             return;
         }
@@ -149,8 +159,8 @@ public class Board {
 
             if (result.get(cardPlayed.getColor()) +1 == cardPlayed.getValue()) {
                 result.put(cardPlayed.getColor(), cardPlayed.getValue());
-                if (cardPlayed.getValue() == 5)
-                    currentHints = (currentHints == 8) ? 8 : currentHints+1;
+                if (cardPlayed.getValue() == rewardedForPlaying)
+                    currentHints = (currentHints == maxHints) ? maxHints : currentHints+1;
             } else {
                 currentLives--;
                 discardPile.add(cardPlayed);
