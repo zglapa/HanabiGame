@@ -2,7 +2,7 @@ package hanabi.Controller;
 
 
 import hanabi.Model.*;
-import hanabi.View.HanabiView;
+//import hanabi.View.HanabiView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -36,13 +36,13 @@ public class Controller {
         }
 
     }
-    public Controller(HanabiView view) throws Exception {
+   // public Controller(HanabiView view) throws Exception {
         /*view.start(stage);
         String action = "";
         while(!action.equals("stop")){
             action = view.action();
             view.setLabel(action);
         }*/
-    }
+   // }
 
 }

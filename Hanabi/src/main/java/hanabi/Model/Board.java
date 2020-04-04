@@ -60,7 +60,7 @@ public class Board {
 
             for (int i = 0; i< handSize; i++) {
                 try {
-                    hand.add(deck.top());
+                    hand.add(deck.pop());
                 } catch (EmptyDeckException e) {
                     System.out.println(e);
                 }
