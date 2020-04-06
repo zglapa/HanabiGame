@@ -7,15 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class HanabiMain extends Application {
-
+    Parent root;
     public static void main(String[] args){
         launch(args);
     }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/HanabiFXML.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/HanabiFXML.fxml"));
         stage.setTitle("Hello World");
-        stage.setScene(new Scene(root, 300, 275));
+        stage.setScene(new Scene(root, 800, 600));
         stage.show();
     }
+
 }
