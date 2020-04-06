@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="hanabi.HanabiController">
+
+    <fx:define>
+        <ToggleGroup fx:id="toggleGroup"/>
+    </fx:define>
+    <Label text="I love bacon" fx:id="firstLabel"/>
+    <Label text="${firstLabel.text}"/>
+    <Button text="Submit" fx:id="button1" onAction="#handleButtonClick"/>
+    <RadioButton text="Easy" toggleGroup="$toggleGroup"/>
+    <RadioButton text="Medium" toggleGroup="$toggleGroup"/>
+    <RadioButton text="Hard" toggleGroup="$toggleGroup"/>
+
+</VBox>
