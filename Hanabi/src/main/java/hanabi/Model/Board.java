@@ -18,7 +18,16 @@ public class Board {
     int handSize;
     int turnsUntilEnd;
     int rewardedForPlaying;
+    private static ArrayList<String> randomNames = new ArrayList<>();
+    {
+        randomNames.add("John");
+        randomNames.add("Ann");
+        randomNames.add("Paul");
+        randomNames.add("Marie");
 
+
+
+    }
 
 
     public HashMap<Color, Integer> getResult() { return result; }
@@ -233,7 +242,13 @@ public class Board {
 
         return new String(ans);
     }
+
+    public static String[] randomNames(int amount) {
+        return new String[4];
+
+
+    }
+    class GameEndException extends Exception {}
+    class NoHintsLeft extends Exception {}
 }
 
-class GameEndException extends Exception {}
-class NoHintsLeft extends Exception {}
