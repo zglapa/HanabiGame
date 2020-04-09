@@ -47,10 +47,7 @@ public class HanabiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         board = new Board(4, 40, 8, 8, 0, new Deck(true, true, true), false, Board.randomNames(4));
-        Player1.setText(board.getPlayers().get(0).getHand().toString());
-        Player2.setText(board.getPlayers().get(1).getHand().toString());
-        Player3.setText(board.getPlayers().get(2).getHand().toString());
-        Player4.setText(board.getPlayers().get(3).getHand().toString());
+        updateHands();
         cardIx = Integer.valueOf(0);
         colorChoice.getItems().addAll(Color.values());
         Integer [] arrayOfPlayersID = new Integer[board.getPlayerAmount().intValue()];
@@ -76,15 +73,18 @@ public class HanabiController implements Initializable {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         MoveType movetype = MoveType.HINT;
         Player hintedPlayer = board.getPlayers().get(playerIx);
+        //System.out.println("a");
         Hint hint;
-        if(hintType == "NUMBER")
-        hint = new Hint(hintedPlayer,cardValueChoice);
+        if(hintType.equals("NUMBER"))
+            hint = new Hint(hintedPlayer,cardValueChoice);
         else
             hint = new Hint(hintedPlayer,colorIx);
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
+        //System.out.println("b");
         try{
             board.action(playerMove);
         } catch (Exception e) {
+            System.out.println("AAAAA");
             e.printStackTrace();
         }
         updateHands();
@@ -129,13 +129,13 @@ public class HanabiController implements Initializable {
     }
 
     public void updateHands(){
-        Player1.setText(board.getPlayers().get(0).getHand().toString());
-        Player2.setText(board.getPlayers().get(1).getHand().toString());
-        Player3.setText(board.getPlayers().get(2).getHand().toString());
-        Player4.setText(board.getPlayers().get(3).getHand().toString());
+        Player1.setText(board.getPlayers().get(0).getName()  + "\n" + board.getPlayers().get(0).getHand().toString());
+        Player2.setText(board.getPlayers().get(1).getName()  + "\n" + board.getPlayers().get(1).getHand().toString());
+        Player3.setText(board.getPlayers().get(2).getName()  + "\n" + board.getPlayers().get(2).getHand().toString());
+        Player4.setText(board.getPlayers().get(3).getName()  + "\n" + board.getPlayers().get(3).getHand().toString());
     }
     public void updateMoveHistory(){
-        moveHistory.setText(board.getPlayerMoveHistory().toString());
+        moveHistory.setText(board.getStringPlayerMoveHistory());
     }
     public void updateResult(){
         result.setText(board.getResult().toString());

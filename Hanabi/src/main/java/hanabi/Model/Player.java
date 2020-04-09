@@ -21,6 +21,6 @@ public class Player {
     }
     @Override
     public String toString() {
-        return name + " " + cards;
+        return name;// + " " + cards;
     }
 }

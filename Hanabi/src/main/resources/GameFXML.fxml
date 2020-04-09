@@ -1,45 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<GridPane prefHeight="600.0" prefWidth="800.0" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="hanabi.HanabiController">
-    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER">
-        <Label text="Player1" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <Label fx:id="Player1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-        <Label text="Player2" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-        <Label fx:id="Player2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-        <Label text="Player3" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-        <Label fx:id="Player3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-        <Label text="Player4" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-        <Label fx:id="Player4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="10" prefHeight="600.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.HanabiController">
+    <GridPane alignment="CENTER" hgap="30.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Label text="Player1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="Player1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Player2" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="Player2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label text="Player3" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label fx:id="Player3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label text="Player4" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <Label fx:id="Player4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
     </GridPane>
-    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER">
-        <Label fx:id="result" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="500" maxWidth="500"/>
-        <Label fx:id="discardPile" GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="500" maxWidth="500" wrapText="true"/>
-        <Label fx:id="moveHistory" GridPane.columnIndex="2" GridPane.rowIndex="0" minWidth="500" maxWidth="500" wrapText="true"/>
+    <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label fx:id="result" maxWidth="500" minWidth="500" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="discardPile" maxWidth="500" minWidth="500" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="moveHistory" maxWidth="500" minWidth="500" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
-    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER">
-        <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#hintButtonClicked"/>
-        <Button fx:id="playButton" text="PLAY" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#playButtonClicked"/>
-        <Button fx:id="discardButton" text="DISCARD" GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#discardButtonClicked"/>
-        <Label text="select card number" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <ComboBox fx:id="cardChoice" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#cardChosen">
+    <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Button fx:id="hintButton" onAction="#hintButtonClicked" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="playButton" onAction="#playButtonClicked" text="PLAY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button fx:id="discardButton" onAction="#discardButtonClicked" text="DISCARD" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label text="select card number" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cardChoice" onAction="#cardChosen" GridPane.columnIndex="1" GridPane.rowIndex="1">
         </ComboBox>
-        <Label text="select player to hint" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <ComboBox fx:id="playerChoice" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#playerChosen">
+        <Label text="select player to hint" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <ComboBox fx:id="playerChoice" onAction="#playerChosen" GridPane.columnIndex="1" GridPane.rowIndex="2">
         </ComboBox>
-        <Label text="select hint type" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <ComboBox fx:id="hintTypeChoice" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#hintTypeChosen"/>
-        <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <ComboBox fx:id="colorChoice" GridPane.columnIndex="1" GridPane.rowIndex="4" onAction="#colorChosen">
+        <Label text="select hint type" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <ComboBox fx:id="hintTypeChoice" onAction="#hintTypeChosen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <ComboBox fx:id="colorChoice" onAction="#colorChosen" GridPane.columnIndex="1" GridPane.rowIndex="4">
         </ComboBox>
-        <Label text="select number to hint" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <ComboBox fx:id="numberChoice" GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#numberChosen">
+        <Label text="select number to hint" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <ComboBox fx:id="numberChoice" onAction="#numberChosen" GridPane.columnIndex="1" GridPane.rowIndex="5">
         </ComboBox>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 
 
 

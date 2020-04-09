@@ -302,8 +302,19 @@ public class Board {
 
     public String getStringPlayerMoveHistory() {
         StringBuilder ans = new StringBuilder();
-        for (PlayerMove move : playerMoveHistory) {
-            ans.append(move);
+
+        for (int i = 0; i< playerMoveHistory.size(); i++) {
+            PlayerMove move = playerMoveHistory.get(i);
+            try {
+                if (move.getHint().getHinted() == players.get(currentPlayerIndex))
+                    ans.append(move.toString(true));
+                else
+                    ans.append(move.toString(false));
+            } catch (Exception e) {
+                ans.append(move.toString(false));
+            }
+
+
             ans.append("\n");
         }
         return new String(ans);

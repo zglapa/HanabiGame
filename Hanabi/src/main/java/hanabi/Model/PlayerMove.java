@@ -32,10 +32,13 @@ public final class PlayerMove {
         if(this.moveType != MoveType.HINT) throw new NoHintMoveException();
         return this.hint;
     }
-    @Override
-    public String toString(){
+    //@Override
+    public String toString(boolean isCurrentPlayer){
         if(moveType == MoveType.HINT){
-            return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toString();
+            if (!isCurrentPlayer)
+                return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toString();
+            else
+                return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toStringHidden();
         }
         else{
             return currentPlayer.toString() + " | " + moveType.name() + " | " + card.toString();
