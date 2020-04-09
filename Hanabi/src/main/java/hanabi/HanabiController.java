@@ -24,7 +24,7 @@ public class HanabiController implements Initializable {
     Board board;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        board = new Board(4, 40, 8, 8, 0, new Deck(true, true, true), false, "Player1", "Player2", "Player3", "Player4");
+        board = new Board(4, 40, 8, 8, 0, new Deck(true, true, true), false, Board.randomNames(4));
         Player1.setText(board.getPlayers().get(0).getHand().toString());
         Player2.setText(board.getPlayers().get(1).getHand().toString());
         Player3.setText(board.getPlayers().get(2).getHand().toString());
