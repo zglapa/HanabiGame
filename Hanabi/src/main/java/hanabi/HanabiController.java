@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
+    @FXML TextField hintPlayer;
+    @FXML TextField hintValue;
     @FXML Label discardPile;
     @FXML Label result;
     @FXML Button chooseCard;
@@ -26,6 +28,9 @@ public class HanabiController implements Initializable {
     @FXML Button playButton;
     @FXML Button discardButton;
     @FXML TextField cardIndex;
+    Integer numberHint;
+    Color colorHint;
+    Player playerHint;
     Integer cardIx;
     Board board;
     @Override
@@ -35,9 +40,11 @@ public class HanabiController implements Initializable {
         Player2.setText(board.getPlayers().get(1).getHand().toString());
         Player3.setText(board.getPlayers().get(2).getHand().toString());
         Player4.setText(board.getPlayers().get(3).getHand().toString());
+        cardIx = Integer.valueOf(0);
         System.out.println("View is now loaded!");
     }
     public void hintButtonClicked(ActionEvent actionEvent){
+
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         MoveType movetype = MoveType.HINT;
         //PlayerMove playerMove = new PlayerMove(player,movetype,);
@@ -78,6 +85,7 @@ public class HanabiController implements Initializable {
 
     public void cardConfirmed(ActionEvent actionEvent) {
         cardIx = Integer.valueOf(cardIndex.getText());
+        if(cardIx == null) cardIx = Integer.valueOf(0);
     }
     public void updateHands(){
         Player1.setText(board.getPlayers().get(0).getHand().toString());

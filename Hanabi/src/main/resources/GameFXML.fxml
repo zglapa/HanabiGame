@@ -6,21 +6,31 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane prefHeight="600.0" prefWidth="800.0" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
           fx:controller="hanabi.HanabiController">
-    <Label text="Player1" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-    <Label fx:id="Player1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <Label text="Player2" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-    <Label fx:id="Player2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-    <Label text="Player3" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-    <Label fx:id="Player3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-    <Label text="Player4" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-    <Label fx:id="Player4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER">
+        <Label text="Player1" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label fx:id="Player1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Player2" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <Label fx:id="Player2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <Label text="Player3" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+        <Label fx:id="Player3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+        <Label text="Player4" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+        <Label fx:id="Player4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+    </GridPane>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER">
+        <Label fx:id="result" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="500" maxWidth="500"/>
+        <Label fx:id="discardPile" GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="500" maxWidth="500" wrapText="true"/>
+    </GridPane>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER">
+        <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#hintButtonClicked"/>
+        <Button fx:id="playButton" text="PLAY" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#playButtonClicked"/>
+        <Button fx:id="discardButton" text="DISCARD" GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#discardButtonClicked"/>
+        <TextField fx:id="cardIndex" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+        <Button fx:id="chooseCard" text="confirm" GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#cardConfirmed"/>
+        <TextField fx:id="hintPlayer" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+        <TextField fx:id="hintValue" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
 
-    <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="5" GridPane.rowIndex="2" onAction="#hintButtonClicked"/>
-    <Button fx:id="playButton" text="PLAY" GridPane.columnIndex="5" GridPane.rowIndex="3" onAction="#playButtonClicked"/>
-    <Button fx:id="discardButton" text="DISCARD" GridPane.columnIndex="5" GridPane.rowIndex="4" onAction="#discardButtonClicked"/>
-    <TextField fx:id="cardIndex" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
-    <Button fx:id="chooseCard" text="confirm" GridPane.columnIndex="5" GridPane.rowIndex="6" onAction="#cardConfirmed"/>
-    <Label fx:id="result" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-    <Label fx:id="discardPile" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+    </GridPane>
+
+
 
 </GridPane>
