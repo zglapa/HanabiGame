@@ -46,5 +46,4 @@ public class Controller {
             view.setLabel(action);
         }*/
    // }
-
 }

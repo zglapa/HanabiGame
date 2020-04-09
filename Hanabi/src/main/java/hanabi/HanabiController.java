@@ -99,4 +99,8 @@ public class HanabiController implements Initializable {
     public void updateDiscardPile(){
         discardPile.setText(board.getDiscardPile().toString());
     }
+
+    public static void handlePlayButton() {
+        System.exit(0);
+    }
 }
