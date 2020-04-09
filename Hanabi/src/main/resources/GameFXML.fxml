@@ -10,14 +10,21 @@
 
 <GridPane hgap="10" prefHeight="600.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.HanabiController">
     <GridPane alignment="CENTER" hgap="30.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <!--
         <Label text="Player1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label fx:id="Player1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label text="Player2" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Label fx:id="Player2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Label text="Player3" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-        <Label fx:id="Player3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Label text="Player4" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-        <Label fx:id="Player4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        ...
+        -->
+        <Label fx:id="player1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="player2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label fx:id="player3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label fx:id="player4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Label fx:id="player5" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+        <Label fx:id="player6" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+        <Label fx:id="player7" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+        <Label fx:id="player8" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+        <Label fx:id="player9" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+        <Label fx:id="player10" GridPane.columnIndex="10" GridPane.rowIndex="1" />
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />

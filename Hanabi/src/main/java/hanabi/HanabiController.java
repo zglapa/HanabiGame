@@ -13,6 +13,7 @@ import javafx.scene.input.InputMethodEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
@@ -27,10 +28,16 @@ public class HanabiController implements Initializable {
     @FXML Label discardPile;
     @FXML Label result;
     @FXML Button chooseCard;
-    @FXML Label Player1;
-    @FXML Label Player2;
-    @FXML Label Player3;
-    @FXML Label Player4;
+    @FXML Label player1;
+    @FXML Label player2;
+    @FXML Label player3;
+    @FXML Label player4;
+    @FXML Label player5;
+    @FXML Label player6;
+    @FXML Label player7;
+    @FXML Label player8;
+    @FXML Label player9;
+    @FXML Label player10;
     @FXML Button hintButton;
     @FXML Button playButton;
     @FXML Button discardButton;
@@ -44,23 +51,39 @@ public class HanabiController implements Initializable {
     Integer playerIx;
     Color colorIx;
     Board board;
+    ArrayList<Label> players;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        board = new Board(4, 40, 8, 8, 0, new Deck(true, true, true), false, Board.randomNames(4));
+        players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+        players.add(player6);
+        players.add(player7);
+        players.add(player8);
+        players.add(player9);
+        players.add(player10);
+        int PLAYERAMOUNT = 3; //thats temporary
+        board = new Board(PLAYERAMOUNT, 40, 8, 8, 7, new Deck(true, true, true), false, Board.randomNames(PLAYERAMOUNT));
         updateHands();
-        cardIx = Integer.valueOf(0);
+        cardIx = 0;
         colorChoice.getItems().addAll(Color.values());
-        Integer [] arrayOfPlayersID = new Integer[board.getPlayerAmount().intValue()];
-        Integer [] arrayOfCardsID = new Integer[4];
+        Integer [] arrayOfPlayersID = new Integer[board.getPlayerAmount()];
+        Integer [] arrayOfCardsID = new Integer[board.getHandSize()];
         Integer [] arrayOfCardValues = new Integer[5];
-        for(int i = 0; i < board.getPlayerAmount().intValue(); ++i){
-            arrayOfPlayersID[i] = Integer.valueOf(i);
+
+        for(int i = 0; i < board.getPlayerAmount(); ++i){
+            arrayOfPlayersID[i] = i;
         }
-        for(int i = 0; i < 4; ++i){
-            arrayOfCardsID[i] = Integer.valueOf(i);
+        //System.out.println(board.getHandSize());
+        for(int i = 0; i < board.getHandSize(); ++i){
+
+            arrayOfCardsID[i] = i+1;
         }
         for(int i = 0; i < 5; ++i){
-            arrayOfCardValues[i] = Integer.valueOf(i+1);
+            arrayOfCardValues[i] = i + 1;
         }
         playerChoice.getItems().addAll(arrayOfPlayersID);
         cardChoice.getItems().addAll(arrayOfCardsID);
@@ -95,7 +118,7 @@ public class HanabiController implements Initializable {
     public void discardButtonClicked(ActionEvent actionEvent) {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         MoveType movetype = MoveType.DISCARD;
-        PlayerMove playerMove = new PlayerMove(player,movetype,cardIx.intValue());
+        PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
         } catch (Exception e) {
@@ -115,7 +138,7 @@ public class HanabiController implements Initializable {
         System.out.println(player);
         System.out.println(movetype);
         System.out.println(cardIx.intValue());
-        PlayerMove playerMove = new PlayerMove(player,movetype,cardIx.intValue());
+        PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
         } catch (Exception e) {
@@ -129,10 +152,12 @@ public class HanabiController implements Initializable {
     }
 
     public void updateHands(){
-        Player1.setText(board.getPlayers().get(0).getName()  + "\n" + board.getPlayers().get(0).getHand().toString());
-        Player2.setText(board.getPlayers().get(1).getName()  + "\n" + board.getPlayers().get(1).getHand().toString());
-        Player3.setText(board.getPlayers().get(2).getName()  + "\n" + board.getPlayers().get(2).getHand().toString());
-        Player4.setText(board.getPlayers().get(3).getName()  + "\n" + board.getPlayers().get(3).getHand().toString());
+        for (int i = 0; i< board.getPlayerAmount(); i++) {
+            if (board.getCurrentPlayerIndex() == i) {
+                players.get(i).setText(board.getPlayers().get(i).getStringBlurredData());
+            } else
+                players.get(i).setText(board.getPlayers().get(i).getStringData());
+        }
     }
     public void updateMoveHistory(){
         moveHistory.setText(board.getStringPlayerMoveHistory());

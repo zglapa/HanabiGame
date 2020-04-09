@@ -66,9 +66,11 @@ public class Board {
 
         if (handSize <= 0) {
             if (playerAmount < 4)
-                handSize = 5;
+                this.handSize = 5;
             else
-                handSize = 4;
+                this.handSize = 4;
+        } else {
+            this.handSize = handSize;
         }
 
         turnsUntilEnd = -2137;

@@ -23,4 +23,22 @@ public class Player {
     public String toString() {
         return name;// + " " + cards;
     }
+
+    public String getStringData() {
+        return new String(name + "\n" + cards.toString());
+    }
+
+    public String getStringBlurredData() {
+        StringBuilder ans = new StringBuilder();
+        ans.append(name);
+        ans.append("\n");
+        ans.append("[");
+        for (int j = 0; j< cards.size(); j++) {
+            ans.append("???");
+            if (j != cards.size()-1)
+                ans.append(", ");
+        }
+        ans.append("]");
+        return new String(ans);
+    }
 }
