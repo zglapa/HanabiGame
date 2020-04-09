@@ -24,11 +24,14 @@
         <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#hintButtonClicked"/>
         <Button fx:id="playButton" text="PLAY" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#playButtonClicked"/>
         <Button fx:id="discardButton" text="DISCARD" GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#discardButtonClicked"/>
-        <TextField fx:id="cardIndex" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-        <Button fx:id="chooseCard" text="confirm" GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#cardConfirmed"/>
-        <TextField fx:id="hintPlayer" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-        <TextField fx:id="hintValue" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-
+        <Label text="select card number" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <ComboBox fx:id="cardChoice" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#cardChosen">
+        </ComboBox>
+        <ComboBox fx:id="playerChoice" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#playerChosen">
+        </ComboBox>
+        <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="colorChoice" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#colorChosen">
+        </ComboBox>
     </GridPane>
 
 
