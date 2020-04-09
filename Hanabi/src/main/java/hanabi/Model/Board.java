@@ -20,13 +20,56 @@ public class Board {
     int rewardedForPlaying;
     private static ArrayList<String> randomNames = new ArrayList<>();
     {
-        randomNames.add("John");
-        randomNames.add("Ann");
-        randomNames.add("Paul");
-        randomNames.add("Marie");
-
-
-
+        randomNames.add("Rolande");
+        randomNames.add("Domingo");
+        randomNames.add("Cody");
+        randomNames.add("Shawanda");
+        randomNames.add("Tashia");
+        randomNames.add("Tesha");
+        randomNames.add("Yukiko");
+        randomNames.add("Donita");
+        randomNames.add("Paulette");
+        randomNames.add("Dorie");
+        randomNames.add("Yuki");
+        randomNames.add("Nilsa");
+        randomNames.add("Yevette");
+        randomNames.add("Sabine");
+        randomNames.add("Herma");
+        randomNames.add("Adina");
+        randomNames.add("Alphonse");
+        randomNames.add("Adena");
+        randomNames.add("Tomika");
+        randomNames.add("Lanita");
+        randomNames.add("Ethyl");
+        randomNames.add("Abbie");
+        randomNames.add("Marvin");
+        randomNames.add("Myrta");
+        randomNames.add("Sal");
+        randomNames.add("Chung");
+        randomNames.add("Joie");
+        randomNames.add("Rosendo");
+        randomNames.add("Anjanette");
+        randomNames.add("Jonelle");
+        randomNames.add("Florinda");
+        randomNames.add("Leone");
+        randomNames.add("Nickole");
+        randomNames.add("Zada");
+        randomNames.add("Cinda");
+        randomNames.add("Kacy");
+        randomNames.add("Jessica");
+        randomNames.add("Neida");
+        randomNames.add("Khadijah");
+        randomNames.add("Chanel");
+        randomNames.add("Marcelene");
+        randomNames.add("Mari");
+        randomNames.add("Odilia");
+        randomNames.add("Jeanice");
+        randomNames.add("Marvella");
+        randomNames.add("Silva");
+        randomNames.add("Simonne");
+        randomNames.add("Dani");
+        randomNames.add("Meaghan");
+        randomNames.add("Latashia");
     }
 
 
@@ -244,10 +287,17 @@ public class Board {
     }
 
     public static String[] randomNames(int amount) {
-        return new String[4];
+        String[] ans = new String[amount];
 
+        Collections.shuffle(randomNames);
 
+        for (int i = 0; i< amount; i++) {
+            ans[i]=randomNames.get(i);
+        }
+
+        return ans;
     }
+    
     class GameEndException extends Exception {}
     class NoHintsLeft extends Exception {}
 }
