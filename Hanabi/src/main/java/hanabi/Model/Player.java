@@ -25,7 +25,8 @@ public class Player {
     }
 
     public String getStringData() {
-        return new String(name + "\n" + cards.toString());
+        //System.out.println(name + "\n" + cards.toString());
+        return name + "\n" + cards.toString();
     }
 
     public String getStringBlurredData() {

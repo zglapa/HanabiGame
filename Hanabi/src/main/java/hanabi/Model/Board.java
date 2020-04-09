@@ -84,7 +84,7 @@ public class Board {
         for (String name : names) {
             LinkedList<Card> hand = new LinkedList<>();
 
-            for (int i = 0; i< handSize; i++) {
+            for (int i = 0; i< this.handSize; i++) {
                 try {
                     hand.add(deck.pop());
                 } catch (EmptyDeckException e) {

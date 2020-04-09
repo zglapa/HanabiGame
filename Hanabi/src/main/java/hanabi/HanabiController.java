@@ -65,8 +65,8 @@ public class HanabiController implements Initializable {
         players.add(player8);
         players.add(player9);
         players.add(player10);
-        int PLAYERAMOUNT = 3; //thats temporary
-        board = new Board(PLAYERAMOUNT, 40, 8, 8, 7, new Deck(true, true, true), false, Board.randomNames(PLAYERAMOUNT));
+        int PLAYERAMOUNT = 5; //thats temporary
+        board = new Board(PLAYERAMOUNT, 40, 8, 8, 0, new Deck(true, true, true), false, Board.randomNames(PLAYERAMOUNT));
         updateHands();
         cardIx = 0;
         colorChoice.getItems().addAll(Color.values());
@@ -77,7 +77,7 @@ public class HanabiController implements Initializable {
         for(int i = 0; i < board.getPlayerAmount(); ++i){
             arrayOfPlayersID[i] = i;
         }
-        //System.out.println(board.getHandSize());
+        System.out.println(board.getHandSize());
         for(int i = 0; i < board.getHandSize(); ++i){
 
             arrayOfCardsID[i] = i+1;
