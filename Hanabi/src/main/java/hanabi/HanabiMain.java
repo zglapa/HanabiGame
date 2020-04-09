@@ -15,7 +15,7 @@ public class HanabiMain extends Application {
     public void start(Stage stage) throws Exception {
         root = FXMLLoader.load(getClass().getResource("/GameFXML.fxml"));
         stage.setTitle("Hello World");
-        stage.setScene(new Scene(root, 800, 600));
+        stage.setScene(new Scene(root, 1200, 600));
         stage.show();
     }
 
