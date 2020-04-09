@@ -30,14 +30,15 @@ public class DiscardPile {
         StringBuilder ans = new StringBuilder();
 
         for (Color color: Color.values()) {
-
-            StringBuilder temp = new StringBuilder();
+            StringBuilder temp = new StringBuilder(color+": ");
+            boolean ifAdd=false;
             for (Card card : pile) {
-                if (card.getColor() == color)
-                    temp.append(card).append(" ");
+                if (card.getColor() == color) {
+                    temp.append(card.getValue()).append(" ");
+                    ifAdd=true;
+                }
             }
-
-            if (temp.length() > 0)
+            if (ifAdd)
                 ans.append(temp).append('\n');
         }
         return new String(ans);
