@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
+    @FXML Label discardPile;
+    @FXML Label result;
+    @FXML Button chooseCard;
     @FXML Label Player1;
     @FXML Label Player2;
     @FXML Label Player3;
@@ -22,8 +25,8 @@ public class HanabiController implements Initializable {
     @FXML Button hintButton;
     @FXML Button playButton;
     @FXML Button discardButton;
-    @FXML ComboBox<String> cardChoice;
-    Integer cardIndex;
+    @FXML TextField cardIndex;
+    Integer cardIx;
     Board board;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,26 +45,50 @@ public class HanabiController implements Initializable {
     public void discardButtonClicked(ActionEvent actionEvent) {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         MoveType movetype = MoveType.DISCARD;
-        PlayerMove playerMove = new PlayerMove(player,movetype,cardIndex.intValue());
+        PlayerMove playerMove = new PlayerMove(player,movetype,cardIx.intValue());
         try{
             board.action(playerMove);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        updateHands();
+        updateResult();
+        updateDiscardPile();
+        System.out.println(board.getCurrentPlayerIndex());
+
     }
 
     public void playButtonClicked(ActionEvent actionEvent) {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         MoveType movetype = MoveType.PLAY;
-        PlayerMove playerMove = new PlayerMove(player,movetype,cardIndex.intValue());
+        System.out.println(player);
+        System.out.println(movetype);
+        System.out.println(cardIx.intValue());
+        PlayerMove playerMove = new PlayerMove(player,movetype,cardIx.intValue());
         try{
             board.action(playerMove);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        updateHands();
+        updateResult();
+        updateDiscardPile();
+        System.out.println(board.getCurrentPlayerIndex());
     }
 
-    public void selectedCard(InputMethodEvent inputMethodEvent) {
-        cardIndex = Integer.valueOf(cardChoice.getValue());
+    public void cardConfirmed(ActionEvent actionEvent) {
+        cardIx = Integer.valueOf(cardIndex.getText());
+    }
+    public void updateHands(){
+        Player1.setText(board.getPlayers().get(0).getHand().toString());
+        Player2.setText(board.getPlayers().get(1).getHand().toString());
+        Player3.setText(board.getPlayers().get(2).getHand().toString());
+        Player4.setText(board.getPlayers().get(3).getHand().toString());
+    }
+    public void updateResult(){
+        result.setText(board.getResult().toString());
+    }
+    public void updateDiscardPile(){
+        discardPile.setText(board.getDiscardPile().toString());
     }
 }

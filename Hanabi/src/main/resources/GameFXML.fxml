@@ -18,13 +18,9 @@
     <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="5" GridPane.rowIndex="2" onAction="#hintButtonClicked"/>
     <Button fx:id="playButton" text="PLAY" GridPane.columnIndex="5" GridPane.rowIndex="3" onAction="#playButtonClicked"/>
     <Button fx:id="discardButton" text="DISCARD" GridPane.columnIndex="5" GridPane.rowIndex="4" onAction="#discardButtonClicked"/>
-    <ComboBox fx:id="cardChoice" GridPane.columnIndex="5" GridPane.rowIndex="5" onInputMethodTextChanged="#selectedCard"/>
-        <String fx:value="1"/>
-        <String fx:value="2"/>
-        <String fx:value="3"/>
-        <String fx:value="4"/>
-    </ComboBox>
-
-
+    <TextField fx:id="cardIndex" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
+    <Button fx:id="chooseCard" text="confirm" GridPane.columnIndex="5" GridPane.rowIndex="6" onAction="#cardConfirmed"/>
+    <Label fx:id="result" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+    <Label fx:id="discardPile" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
 
 </GridPane>
