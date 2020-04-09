@@ -19,6 +19,7 @@
     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER">
         <Label fx:id="result" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="500" maxWidth="500"/>
         <Label fx:id="discardPile" GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="500" maxWidth="500" wrapText="true"/>
+        <Label fx:id="moveHistory" GridPane.columnIndex="2" GridPane.rowIndex="0" minWidth="500" maxWidth="500" wrapText="true"/>
     </GridPane>
     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER">
         <Button fx:id="hintButton" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#hintButtonClicked"/>
@@ -27,10 +28,16 @@
         <Label text="select card number" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <ComboBox fx:id="cardChoice" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#cardChosen">
         </ComboBox>
+        <Label text="select player to hint" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <ComboBox fx:id="playerChoice" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#playerChosen">
         </ComboBox>
-        <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <ComboBox fx:id="colorChoice" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#colorChosen">
+        <Label text="select hint type" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="hintTypeChoice" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#hintTypeChosen"/>
+        <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <ComboBox fx:id="colorChoice" GridPane.columnIndex="1" GridPane.rowIndex="4" onAction="#colorChosen">
+        </ComboBox>
+        <Label text="select number to hint" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <ComboBox fx:id="numberChoice" GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#numberChosen">
         </ComboBox>
     </GridPane>
 

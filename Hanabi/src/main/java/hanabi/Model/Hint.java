@@ -7,12 +7,12 @@ public final class Hint {
     private Player hinted;
 
 
-    Hint(Player hinted, Color cardColor) {
+    public Hint(Player hinted, Color cardColor) {
         this.hinted = hinted;
         this.cardColor = cardColor;
     }
 
-    Hint(Player hinted, Integer cardValue) {
+    public Hint(Player hinted, Integer cardValue) {
         this.hinted = hinted;
         this.cardValue = cardValue;
         this.cardColor = null;
