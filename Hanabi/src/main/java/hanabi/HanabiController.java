@@ -45,7 +45,7 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype,cardIndex.intValue());
         try{
             board.action(playerMove);
-        } catch (Board.GameEndException | Board.NoHintsLeft e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
