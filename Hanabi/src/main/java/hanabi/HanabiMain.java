@@ -13,7 +13,7 @@ public class HanabiMain extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("/HanabiFXML.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/GameFXML.fxml"));
         stage.setTitle("Hello World");
         stage.setScene(new Scene(root, 800, 600));
         stage.show();

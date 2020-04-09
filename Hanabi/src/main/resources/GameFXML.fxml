@@ -7,7 +7,12 @@
 <GridPane prefHeight="600.0" prefWidth="800.0" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
           fx:controller="hanabi.HanabiController">
     <Label text="Current Players" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-
+    <TableView GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <columns>
+            <TableColumn text="Player"/>
+            <TableColumn text="Hand"/>
+        </columns>
+    </TableView>
 
 
 </GridPane>
