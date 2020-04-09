@@ -50,7 +50,7 @@ public final class Hint {
         else
             ans.append(cardValue);
         ans.append(" to ");
-        ans.append(hinted);
+        ans.append(hinted.getName());
 
         return new String(ans);
     }

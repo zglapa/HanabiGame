@@ -299,7 +299,16 @@ public class Board {
 
         return ans;
     }
-    
+
+    public String getStringPlayerMoveHistory() {
+        StringBuilder ans = new StringBuilder();
+        for (PlayerMove move : playerMoveHistory) {
+            ans.append(move);
+            ans.append("\n");
+        }
+        return new String(ans);
+    }
+
     class GameEndException extends Exception {}
     class NoHintsLeft extends Exception {}
 }
