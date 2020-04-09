@@ -1,5 +1,6 @@
 package hanabi;
 import hanabi.Model.*;
+import hanabi.Model.Board;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,8 @@ public class HanabiController implements Initializable {
     @FXML Label Player3;
     @FXML Label Player4;
     @FXML Button hintButton;
+    @FXML Button playButton;
+    @FXML Button discardButton;
     @FXML ComboBox<String> cardChoice;
     Integer cardIndex;
     Board board;
@@ -42,7 +45,8 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype,cardIndex.intValue());
         try{
             board.action(playerMove);
-        } catch (hanabi.Model.GameEndException | hanabi.Model.NoHintsLeft ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -52,7 +56,8 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype,cardIndex.intValue());
         try{
             board.action(playerMove);
-        } catch (GameEndException | NoHintsLeft ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
