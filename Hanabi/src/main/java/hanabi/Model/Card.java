@@ -9,7 +9,7 @@ public class Card implements Comparable<Card>{
         this.value = value;
     }
 
-    Color getColor() { return color; }
+    public Color getColor() { return color; }
     int getValue() { return value; }
     @Override
     public String toString(){

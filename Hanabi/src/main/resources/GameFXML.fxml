@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 
-<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.HanabiController">
    <bottom>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -59,9 +60,11 @@
          <rowConstraints>
             <RowConstraints />
             <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
          </rowConstraints>
          <children>
-            <Label fx:id="player1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="player1" prefHeight="16.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="player2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label fx:id="player3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Label fx:id="player4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
@@ -71,6 +74,196 @@
             <Label fx:id="player8" GridPane.columnIndex="8" GridPane.rowIndex="1" />
             <Label fx:id="player9" GridPane.columnIndex="9" GridPane.rowIndex="1" />
             <Label fx:id="player10" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="210.0" layoutY="26.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card1_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card1_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card1_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card1_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="110.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card2_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card2_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card2_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card2_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="290.0" layoutY="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card3_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card3_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card3_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card3_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card4_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card4_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card4_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card4_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card5_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card5_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card5_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card5_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card6_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card6_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card6_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card6_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card7_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card7_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card7_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card7_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card8_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card8_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card8_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card8_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="9" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card9_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card9_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card9_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card9_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="10" GridPane.rowIndex="3">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle id="card1" fx:id="card10_1" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+                  <Rectangle id="card1" fx:id="card10_2" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card10_3" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                  <Rectangle id="card1" fx:id="card10_4" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </top>
