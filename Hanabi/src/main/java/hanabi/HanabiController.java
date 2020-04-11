@@ -191,11 +191,18 @@ public class HanabiController implements Initializable {
             LinearGradient rainbow = null;
             if(color==Color.Y) paintColor = javafx.scene.paint.Color.YELLOW;
             else if(color==Color.R) paintColor = javafx.scene.paint.Color.RED;
-            else if(color==Color.G) paintColor = javafx.scene.paint.Color.GREEN;
+            else if(color==Color.G) paintColor = javafx.scene.paint.Color.LAWNGREEN;
             else if(color==Color.B) paintColor = javafx.scene.paint.Color.BLUE;
             else if(color==Color.RAINBOW){
-                Stop[] stops = new Stop[] { new Stop(0, javafx.scene.paint.Color.BLUE), new Stop(1, javafx.scene.paint.Color.YELLOWGREEN)};
-                rainbow = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
+                Stop[] stops = new Stop[] {
+                        new Stop(0, javafx.scene.paint.Color.RED),
+                        new Stop(0.2, javafx.scene.paint.Color.ORANGE),
+                        new Stop(0.4, javafx.scene.paint.Color.YELLOW),
+                        new Stop(0.6, javafx.scene.paint.Color.LAWNGREEN),
+                        new Stop(0.8, javafx.scene.paint.Color.BLUE),
+                        new Stop(1, javafx.scene.paint.Color.VIOLET)
+                };
+                rainbow = new LinearGradient(0, 0, 1, 0, true, CycleMethod.REPEAT, stops);
             }
             if(rainbow == null){
                 cards.get(index).get(i).setFill(paintColor);
