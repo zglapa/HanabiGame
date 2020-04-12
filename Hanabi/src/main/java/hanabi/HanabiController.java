@@ -58,6 +58,7 @@ public class HanabiController implements Initializable {
     ArrayList<ImagePattern> reds;
     ArrayList<ImagePattern> rainbows;
     ArrayList<ArrayList<ImagePattern>> allColorLists;
+    ImagePattern blank;
     Integer numberHint;
     Color colorHint;
     Player playerHint;
@@ -207,7 +208,7 @@ public class HanabiController implements Initializable {
     }
     public void blurMe(int index){
         for(int i = 0; i < board.getHandSize(); ++i){
-            cards.get(index).get(i).setFill(javafx.scene.paint.Color.DARKSLATEGRAY);
+            cards.get(index).get(i).setFill(blank);
         }
     }
     public void updateHands(int index){
@@ -391,6 +392,8 @@ public class HanabiController implements Initializable {
         allColorLists.add(greens);
         allColorLists.add(blues);
         allColorLists.add(rainbows);
+
+        blank = new ImagePattern(new Image(getClass().getResource("/Colors/Blank.jpg").toURI().toString()));
     }
     public void addResultCards(boolean rainbowCard) throws URISyntaxException {
         resultCardW.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/White.jpg").toURI().toString())));
