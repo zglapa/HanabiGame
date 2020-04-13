@@ -20,7 +20,7 @@ public class HanabiMain extends Application {
 
         root = FXMLLoader.load(getClass().getResource("/GameFXML.fxml"));
         stage.setTitle("Hello World");
-        stage.setScene(new Scene(root, 1200, 600));
+        stage.setScene(new Scene(root, 1300, 600));
         stage.show();
     }
 
