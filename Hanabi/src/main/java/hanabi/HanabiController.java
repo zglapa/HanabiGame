@@ -92,7 +92,7 @@ public class HanabiController implements Initializable {
         cards = new ArrayList<>();
         board=HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
-        boolean WITHRAINBOWS = true; //temporary as well
+        boolean WITHRAINBOWS = HanabiMain.setUpWindow.hasRainbows;
         addCardsToArrayList(PLAYERAMOUNT);
         try {
             addResultCards(WITHRAINBOWS);

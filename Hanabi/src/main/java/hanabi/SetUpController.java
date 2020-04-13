@@ -16,14 +16,19 @@ import java.io.IOException;
 public class SetUpController {
     @FXML Slider numOfPlayers;
     @FXML Slider randomOrder;
+    @FXML Slider numOfCards;
+    @FXML Slider hasRainbows;
     @FXML Button play;
 
     public void startGame(ActionEvent actionEvent) {
-        Double num=new Double(numOfPlayers.getValue()) ;
-        System.out.println(num.intValue());
-        boolean random= (randomOrder.getValue()==1);
-        HanabiMain.setUpWindow.board = new Board(num.intValue(), 40, 8, 8, 3, new Deck(true, true, true),
-                random, Board.randomNames(num.intValue()));
+        int players=new Double(numOfPlayers.getValue()).intValue();
+        int cards= new Double(numOfCards.getValue()).intValue();
+        boolean rainbow= (hasRainbows.getValue()==1.0);
+        boolean random= (randomOrder.getValue()==1.0);
+
+        HanabiMain.setUpWindow.board = new Board(players, 40, 8, 8, cards, new Deck(true, rainbow, true),
+                random, Board.randomNames(players));
+        HanabiMain.setUpWindow.hasRainbows = rainbow;
         HanabiMain.setUpWindow.stage.close();
     }
 }

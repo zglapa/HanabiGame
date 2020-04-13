@@ -11,6 +11,7 @@ import java.io.IOException;
 public class SetUpWindow {
     public Board board;
     public Stage stage;
+    public boolean hasRainbows;
     public void setUp() throws IOException {
         stage=new Stage();
         Parent setUpRoot;
