@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,13 @@ public class SetUpController {
     @FXML Slider numOfCards;
     @FXML Slider hasRainbows;
     @FXML Button play;
+
+    public void adjustCards(MouseEvent mouseEvent) {
+        if(numOfPlayers.getValue()<=3.0)
+            numOfCards.setValue(5.0);
+        else
+            numOfCards.setValue(4.0);
+    }
 
     public void startGame(ActionEvent actionEvent) {
         int players=new Double(numOfPlayers.getValue()).intValue();

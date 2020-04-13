@@ -16,13 +16,13 @@
          <children>
             <VBox>
                <children>
-                  <Label text="Liczba graczy:" />
-                  <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                  <Label text="Number of players:" />
+                  <Slider fx:id="numOfPlayers" onMouseClicked="#adjustCards" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </Slider>
-                  <Label layoutX="20.0" layoutY="20.0" text="Liczba kart na ręce">
+                  <Label layoutX="20.0" layoutY="20.0" text="Hand size:">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -39,33 +39,33 @@
             </VBox>
             <VBox maxWidth="200.0">
                <children>
-                  <Label text="Losowa kolejność:" />
-                  <Slider fx:id="randomOrder" blockIncrement="1.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true" value="1.0">
+                  <Label text="Random order of players:" />
+                  <Slider fx:id="randomOrder" blockIncrement="1.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true">
                      <padding>
                         <Insets top="5.0" />
                      </padding></Slider>
                   <HBox>
                      <children>
-                        <Label text="Nie" />
+                        <Label text="No" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Tak" />
+                        <Label text="Yes" />
                      </children>
                   </HBox>
-                  <Label layoutX="20.0" layoutY="20.0" text="Karty tęczowe:">
+                  <Label layoutX="20.0" layoutY="20.0" text="Rainbow cards:">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Label>
-                  <Slider fx:id="hasRainbows" blockIncrement="1.0" layoutX="20.0" layoutY="36.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true" value="1.0">
+                  <Slider fx:id="hasRainbows" blockIncrement="1.0" layoutX="20.0" layoutY="36.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </Slider>
                   <HBox layoutX="20.0" layoutY="57.0">
                      <children>
-                        <Label text="Nie" />
+                        <Label text="No" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Tak" />
+                        <Label text="Yes" />
                      </children>
                   </HBox>
                </children>
