@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class HanabiMain extends Application {
     Parent root;
-    public static SetUpController setUpWindow=new SetUpController();
+    public static SetUpWindow setUpWindow=new SetUpWindow();
     public static void main(String[] args){
         launch(args);
     }

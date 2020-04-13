@@ -90,9 +90,9 @@ public class HanabiController implements Initializable {
         players.add(player10);
         resultCards = new ArrayList<>();
         cards = new ArrayList<>();
-        int PLAYERAMOUNT = 7; //thats temporary
+        board=HanabiMain.setUpWindow.board;
+        int PLAYERAMOUNT = board.getPlayerAmount();
         boolean WITHRAINBOWS = true; //temporary as well
-        board = new Board(PLAYERAMOUNT, 40, 8, 8, 3, new Deck(true, WITHRAINBOWS, true), false, Board.randomNames(PLAYERAMOUNT));
         addCardsToArrayList(PLAYERAMOUNT);
         try {
             addResultCards(WITHRAINBOWS);
