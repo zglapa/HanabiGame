@@ -22,7 +22,7 @@ public class DiscardPile {
         }
         pileSize++;
     }
-    LinkedList<Card> getDiscardPile(){
+    public LinkedList<Card> getDiscardPile(){
         return pile;
     }
     @Override

@@ -20,22 +20,33 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
 
 
+    @FXML Label endGameLabel;
     @FXML Rectangle resultCardW,resultCardY,resultCardR,resultCardG,resultCardB,resultCardRB;
     @FXML Rectangle card1_1,card1_2,card1_3,card1_4, card1_5, card1_6,card2_1,card2_2,card2_3,card2_4,card2_5, card2_6,
             card3_1,card3_2,card3_3,card3_4,card3_5, card3_6, card4_1,card4_2,card4_3,card4_4,card4_5, card4_6,
             card5_1,card5_2,card5_3,card5_4,card5_5, card5_6, card6_1,card6_2,card6_3,card6_4,card6_5, card6_6,
             card7_1,card7_2,card7_3,card7_4,card7_5, card7_6;
+    @FXML Rectangle dCard1_1, dCard1_2, dCard1_3, dCard1_4, dCard1_5, dCard1_6,
+            dCard2_1, dCard2_2, dCard2_3, dCard2_4, dCard2_5, dCard2_6,
+            dCard3_1, dCard3_2, dCard3_3, dCard3_4, dCard3_5, dCard3_6,
+            dCard4_1, dCard4_2, dCard4_3, dCard4_4, dCard4_5, dCard4_6,
+            dCard5_1, dCard5_2, dCard5_3, dCard5_4, dCard5_5, dCard5_6,
+            dCard6_1, dCard6_2, dCard6_3, dCard6_4, dCard6_5, dCard6_6,
+            dCard7_1, dCard7_2, dCard7_3, dCard7_4, dCard7_5, dCard7_6,
+            dCard8_1, dCard8_2, dCard8_3, dCard8_4, dCard8_5, dCard8_6,
+            dCard9_1, dCard9_2, dCard9_3, dCard9_4, dCard9_5, dCard9_6,
+            dCard10_1, dCard10_2, dCard10_3, dCard10_4, dCard10_5, dCard10_6;
     @FXML Label moveHistory;
     @FXML ComboBox<String> hintTypeChoice;
     @FXML ComboBox<Color> colorChoice;
     @FXML ComboBox<Integer> playerChoice, cardChoice, numberChoice;;
     @FXML Label discardPile;
-    @FXML Label result;
     @FXML Label player1;
     @FXML Label player2;
     @FXML Label player3;
@@ -70,6 +81,7 @@ public class HanabiController implements Initializable {
     Board board;
     ArrayList<Label> players;
     ArrayList<ArrayList<Rectangle>> cards;
+    ArrayList<Rectangle> discardCards;
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
         try {
@@ -89,6 +101,7 @@ public class HanabiController implements Initializable {
         players.add(player9);
         players.add(player10);
         resultCards = new ArrayList<>();
+        discardCards = new ArrayList<>();
         cards = new ArrayList<>();
         board=HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
@@ -100,6 +113,7 @@ public class HanabiController implements Initializable {
             e.printStackTrace();
         }
         updateHands();
+        addDiscardCards();
         showYourTrueColors();
         cardIx = 0;
         colorChoice.getItems().addAll(Color.values());
@@ -131,28 +145,23 @@ public class HanabiController implements Initializable {
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.HINT;
         Player hintedPlayer = board.getPlayers().get(playerIx);
-        //System.out.println("a");
         Hint hint;
         if(hintType.equals("NUMBER"))
             hint = new Hint(hintedPlayer,cardValueChoice);
         else
             hint = new Hint(hintedPlayer,colorIx);
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
-        //System.out.println("b");
         try{
             board.action(playerMove);
         } catch (GameEndException e) {
-            System.out.println("AAAAA");
-            e.printStackTrace();
+            endGameLabel.setText("Game over");
         }catch (NoHintsLeftException e){
             NoHints.display("Alert","No hints left");
         }
         updateHands();
         updateHands(index);
         blurMe((index+1)%board.getPlayerAmount());
-        updateResult();
         updateResultCards();
-        updateDiscardPile();
         updateMoveHistory();
     }
     public void discardButtonClicked(ActionEvent actionEvent) {
@@ -163,14 +172,13 @@ public class HanabiController implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            e.printStackTrace();
+            endGameLabel.setText("Game over");
         }
         updateHands();
         updateHands(index);
         blurMe((index+1)%board.getPlayerAmount());
-        updateResult();
         updateResultCards();
-        updateDiscardPile();
+        updateDiscardPileCards();
         updateMoveHistory();
         System.out.println(board.getCurrentPlayerIndex());
 
@@ -186,15 +194,13 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (GameEndException | NoHintsLeftException e) {
+            endGameLabel.setText("Game over");
         }
         updateHands();
         updateHands(index);
         blurMe((index+1)%board.getPlayerAmount());
-        updateResult();
         updateResultCards();
-        updateDiscardPile();
         updateMoveHistory();
         System.out.println(board.getCurrentPlayerIndex());
     }
@@ -210,7 +216,10 @@ public class HanabiController implements Initializable {
         }
     }
     public void updateHands(int index){
-        for(int i = 0; i < board.getHandSize(); ++i){
+        if(board.getDeck().getSize() == 0){
+            cards.get(index).get(board.getHandSize()-1).setVisible(false);
+        }
+        for(int i = 0; i < board.getPlayers().get(index).getHand().size(); ++i){
             Card card= board.getPlayers().get(index).getHand().get(i);
             int cardValue = card.getValue();
             Color color = card.getColor();
@@ -221,7 +230,6 @@ public class HanabiController implements Initializable {
             else if(color==Color.B) colorPattern = blues.get(cardValue-1);
             else if(color==Color.RAINBOW) colorPattern = rainbows.get(cardValue-1);
             cards.get(index).get(i).setFill(colorPattern);
-
         }
     }
     public void showYourTrueColors(){
@@ -234,9 +242,6 @@ public class HanabiController implements Initializable {
     public void updateMoveHistory(){
         moveHistory.setText(board.getStringPlayerMoveHistory());
     }
-    public void updateResult(){
-        result.setText(board.getResult().toString());
-    }
     public void updateResultCards(){
         for(int i = 0; i< resultCards.size(); ++i){
             int cardValue = board.getResult().get(Color.values()[i]);
@@ -245,10 +250,22 @@ public class HanabiController implements Initializable {
             resultCards.get(i).setFill(colorPattern);
         }
     }
-    public void updateDiscardPile(){
-        discardPile.setText(board.getDiscardPile().toString());
+    public void updateDiscardPileCards(){
+        LinkedList<Card> pile = board.getDiscardPile().getDiscardPile();
+        for(int i = 0; i<pile.size(); ++i){
+            Card card = pile.get(i);
+            int cardValue = card.getValue();
+            Color color = card.getColor();
+            ImagePattern colorPattern = whites.get(cardValue-1);
+            if(color==Color.Y) colorPattern = yellows.get(cardValue-1);
+            else if(color==Color.R) colorPattern = reds.get(cardValue-1);
+            else if(color==Color.G) colorPattern = greens.get(cardValue-1);
+            else if(color==Color.B) colorPattern = blues.get(cardValue-1);
+            else if(color==Color.RAINBOW) colorPattern = rainbows.get(cardValue-1);
+            discardCards.get(i).setFill(colorPattern);
+            discardCards.get(i).setVisible(true);
+        }
     }
-
     public void cardChosen(ActionEvent actionEvent) {
         cardIx = cardChoice.getValue() - 1;
     }
@@ -389,5 +406,70 @@ public class HanabiController implements Initializable {
         resultCards.add(resultCardB);
         if(!rainbowCard) resultCardRB.setVisible(false);
         else resultCards.add(resultCardRB);
+    }
+    public void addDiscardCards(){
+        discardCards.add(dCard1_1);
+        discardCards.add(dCard1_2);
+        discardCards.add(dCard1_3);
+        discardCards.add(dCard1_4);
+        discardCards.add(dCard1_5);
+        discardCards.add(dCard1_6);
+        discardCards.add(dCard2_1);
+        discardCards.add(dCard2_2);
+        discardCards.add(dCard2_3);
+        discardCards.add(dCard2_4);
+        discardCards.add(dCard2_5);
+        discardCards.add(dCard2_6);
+        discardCards.add(dCard3_1);
+        discardCards.add(dCard3_2);
+        discardCards.add(dCard3_3);
+        discardCards.add(dCard3_4);
+        discardCards.add(dCard3_5);
+        discardCards.add(dCard3_6);
+        discardCards.add(dCard4_1);
+        discardCards.add(dCard4_2);
+        discardCards.add(dCard4_3);
+        discardCards.add(dCard4_4);
+        discardCards.add(dCard4_5);
+        discardCards.add(dCard4_6);
+        discardCards.add(dCard5_1);
+        discardCards.add(dCard5_2);
+        discardCards.add(dCard5_3);
+        discardCards.add(dCard5_4);
+        discardCards.add(dCard5_5);
+        discardCards.add(dCard5_6);
+        discardCards.add(dCard6_1);
+        discardCards.add(dCard6_2);
+        discardCards.add(dCard6_3);
+        discardCards.add(dCard6_4);
+        discardCards.add(dCard6_5);
+        discardCards.add(dCard6_6);
+        discardCards.add(dCard7_1);
+        discardCards.add(dCard7_2);
+        discardCards.add(dCard7_3);
+        discardCards.add(dCard7_4);
+        discardCards.add(dCard7_5);
+        discardCards.add(dCard7_6);
+        discardCards.add(dCard8_1);
+        discardCards.add(dCard8_2);
+        discardCards.add(dCard8_3);
+        discardCards.add(dCard8_4);
+        discardCards.add(dCard8_5);
+        discardCards.add(dCard8_6);
+        discardCards.add(dCard9_1);
+        discardCards.add(dCard9_2);
+        discardCards.add(dCard9_3);
+        discardCards.add(dCard9_4);
+        discardCards.add(dCard9_5);
+        discardCards.add(dCard9_6);
+        discardCards.add(dCard10_1);
+        discardCards.add(dCard10_2);
+        discardCards.add(dCard10_3);
+        discardCards.add(dCard10_4);
+        discardCards.add(dCard10_5);
+        discardCards.add(dCard10_6);
+        for(Rectangle c: discardCards){
+            c.setVisible(false);
+        }
     }
 }
