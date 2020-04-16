@@ -5,16 +5,15 @@ import hanabi.Model.Deck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class SetUpController implements Initializable {
@@ -22,9 +21,10 @@ public class SetUpController implements Initializable {
     @FXML Slider numOfCards;
     @FXML CheckBox randomOrder;
     @FXML CheckBox hasRainbows;
-    @FXML CheckBox showAdvanced;
+    @FXML Button randomNames;
     @FXML VBox advancedSettings;
-    @FXML CheckBox randomNames;
+
+    @FXML Button showAdvanced;
     @FXML VBox namesBox;
     @FXML TextField name1;
     @FXML TextField name2;
@@ -56,17 +56,25 @@ public class SetUpController implements Initializable {
         else
             numOfCards.setValue(3.0);
 
-        for(int i=0;i<7;++i) {
+        for(int i=0;i<7;++i)
             names.get(i).setVisible(i<players);
-        }
     }
 
-    public void advanced(MouseEvent mouseEvent) {
-        advancedSettings.setVisible(showAdvanced.isSelected());
+    public void showAdvanced(MouseEvent mouseEvent) {
+        advancedSettings.setVisible(true);
+        showAdvanced.setVisible(false);
+    }
+
+    public void hideAdvanced(MouseEvent mouseEvent) {
+        advancedSettings.setVisible(false);
+        showAdvanced.setVisible(true);
     }
 
     public void changeNames(MouseEvent mouseEvent) {
-        namesBox.setVisible(!randomNames.isSelected());
+        int players= ( (Double) numOfPlayers.getValue() ).intValue();
+        String[] random= Board.randomNames(players);
+        for(int i=0;i<players;++i)
+            names.get(i).setText(random[i]);
     }
 
     public void startGame(ActionEvent actionEvent) {
@@ -74,9 +82,12 @@ public class SetUpController implements Initializable {
         int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= hasRainbows.isSelected();
         boolean random= randomOrder.isSelected();
+        String[] finalNames=new String[players];
+        for(int i=0;i<players;++i)
+            finalNames[i]=names.get(i).getText();
 
         HanabiMain.setUpWindow.board = new Board(players, 40, 8, 8, cards, new Deck(true, rainbow, true),
-                random, Board.randomNames(players));
+                random, finalNames);
         HanabiMain.setUpWindow.hasRainbows = rainbow;
         HanabiMain.setUpWindow.stage.close();
     }
