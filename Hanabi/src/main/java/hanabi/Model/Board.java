@@ -103,14 +103,14 @@ public class Board {
     }
 
 
-    public void action(PlayerMove playerMove) throws GameEndException, NoHintsLeft {
+    public void action(PlayerMove playerMove) throws GameEndException, NoHintsLeftException {
         if (playerMove.getType() == MoveType.HINT) {
             if (currentHints > 0) {
                 currentHints--;
                 endMove(playerMove);
                 return;
             }
-            throw new NoHintsLeft();
+            throw new NoHintsLeftException();
         }
         if (playerMove.getType() == MoveType.DISCARD) {
             Card cardDiscarded;
@@ -321,8 +321,5 @@ public class Board {
         }
         return new String(ans);
     }
-
-    class GameEndException extends Exception {}
-    class NoHintsLeft extends Exception {}
 }
 
