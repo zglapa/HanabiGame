@@ -23,12 +23,12 @@
                         <Insets top="5.0" />
                      </padding>
                   </Slider>
-                  <CheckBox mnemonicParsing="false" text="Show advanced settings">
+                  <CheckBox fx:id="showAdvanced" onMouseClicked="#advanced" mnemonicParsing="false" text="Show advanced settings">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <Pane>
+                  <Pane fx:id="advancedSettings" visible="false">
                      <children>
                         <Label text="Hand size:" />
                         <Slider fx:id="numOfCards" blockIncrement="1.0" layoutY="16.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">

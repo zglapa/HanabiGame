@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class SetUpController {
     @FXML Slider numOfPlayers;
@@ -16,6 +17,7 @@ public class SetUpController {
     @FXML Slider hasRainbows;
     @FXML CheckBox showAdvanced;
     @FXML Button play;
+    @FXML Pane advancedSettings;
 
     public void adjustCards(MouseEvent mouseEvent) {
         if(numOfPlayers.getValue()<=3.0)
@@ -27,8 +29,8 @@ public class SetUpController {
     }
 
     public void startGame(ActionEvent actionEvent) {
-        int players=new Double(numOfPlayers.getValue()).intValue();
-        int cards= new Double(numOfCards.getValue()).intValue();
+        int players= ( (Double) numOfPlayers.getValue() ).intValue();
+        int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= (hasRainbows.getValue()==1.0);
         boolean random= (randomOrder.getValue()==1.0);
 
@@ -39,6 +41,6 @@ public class SetUpController {
     }
 
     public void advanced(MouseEvent mouseEvent) {
-
+        advancedSettings.setVisible(showAdvanced.isSelected());
     }
 }
