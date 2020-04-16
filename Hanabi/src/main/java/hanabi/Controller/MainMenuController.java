@@ -1,5 +1,6 @@
-package hanabi;
+package hanabi.Controller;
 
+import hanabi.MainMenuWindow;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
 import javafx.event.ActionEvent;
