@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -19,13 +20,16 @@ public class SetUpController {
     @FXML Slider randomOrder;
     @FXML Slider numOfCards;
     @FXML Slider hasRainbows;
+    @FXML CheckBox showAdvanced;
     @FXML Button play;
 
     public void adjustCards(MouseEvent mouseEvent) {
         if(numOfPlayers.getValue()<=3.0)
             numOfCards.setValue(5.0);
-        else
+        else if(numOfPlayers.getValue()<=5.0)
             numOfCards.setValue(4.0);
+        else
+            numOfCards.setValue(3.0);
     }
 
     public void startGame(ActionEvent actionEvent) {
@@ -38,5 +42,9 @@ public class SetUpController {
                 random, Board.randomNames(players));
         HanabiMain.setUpWindow.hasRainbows = rainbow;
         HanabiMain.setUpWindow.stage.close();
+    }
+
+    public void advanced(MouseEvent mouseEvent) {
+
     }
 }
