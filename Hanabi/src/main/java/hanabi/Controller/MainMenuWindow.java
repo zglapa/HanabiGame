@@ -1,4 +1,4 @@
-package hanabi;
+package hanabi.Controller;
 
 import hanabi.Model.Board;
 import javafx.fxml.FXML;

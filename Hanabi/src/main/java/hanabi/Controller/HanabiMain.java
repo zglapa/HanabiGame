@@ -1,5 +1,7 @@
-package hanabi;
+package hanabi.Controller;
 
+import hanabi.Controller.MainMenuWindow;
+import hanabi.Controller.SetUpWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

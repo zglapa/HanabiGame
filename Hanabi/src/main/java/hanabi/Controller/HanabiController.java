@@ -1,10 +1,7 @@
-package hanabi;
-import hanabi.Controller.NoHints;
+package hanabi.Controller;
 import hanabi.Model.*;
 import hanabi.Model.Board;
 import hanabi.Model.Color;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,11 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -103,7 +98,7 @@ public class HanabiController implements Initializable {
         resultCards = new ArrayList<>();
         discardCards = new ArrayList<>();
         cards = new ArrayList<>();
-        board=HanabiMain.setUpWindow.board;
+        board= HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
         boolean WITHRAINBOWS = HanabiMain.setUpWindow.hasRainbows;
         addCardsToArrayList(PLAYERAMOUNT);

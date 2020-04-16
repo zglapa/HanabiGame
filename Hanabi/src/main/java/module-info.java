@@ -3,7 +3,5 @@ module hanabi {
     requires javafx.fxml;
     exports hanabi.Model;
     exports hanabi.Controller;
-    exports hanabi.View;
-    exports hanabi;
-    opens hanabi;
+    opens hanabi.Controller;
 }
