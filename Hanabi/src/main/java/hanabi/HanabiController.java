@@ -28,8 +28,7 @@ public class HanabiController implements Initializable {
     @FXML Rectangle card1_1,card1_2,card1_3,card1_4, card1_5, card1_6,card2_1,card2_2,card2_3,card2_4,card2_5, card2_6,
             card3_1,card3_2,card3_3,card3_4,card3_5, card3_6, card4_1,card4_2,card4_3,card4_4,card4_5, card4_6,
             card5_1,card5_2,card5_3,card5_4,card5_5, card5_6, card6_1,card6_2,card6_3,card6_4,card6_5, card6_6,
-            card7_1,card7_2,card7_3,card7_4,card7_5, card7_6, card8_1,card8_2,card8_3,card8_4,card8_5, card8_6,
-            card9_1,card9_2,card9_3,card9_4,card9_5, card9_6, card10_1,card10_2,card10_3,card10_4,card10_5, card10_6;
+            card7_1,card7_2,card7_3,card7_4,card7_5, card7_6;
     @FXML Label moveHistory;
     @FXML ComboBox<String> hintTypeChoice;
     @FXML ComboBox<Color> colorChoice;
@@ -199,11 +198,7 @@ public class HanabiController implements Initializable {
 
     public void updateHands(){
         for (int i = 0; i< board.getPlayerAmount(); i++) {
-            if (board.getCurrentPlayerIndex() == i) {
-                players.get(i).setText(board.getPlayers().get(i).getStringBlurredData());
-            } else {
-                players.get(i).setText(board.getPlayers().get(i).getStringData());
-            }
+            players.get(i).setText(board.getPlayers().get(i).toString());
         }
     }
     public void blurMe(int index){
@@ -269,7 +264,7 @@ public class HanabiController implements Initializable {
     public void hintTypeChosen(ActionEvent actionEvent) { hintType = hintTypeChoice.getValue();
     }
     public void addCardsToArrayList(int numberOfPlayers){
-        for(int i = 0; i < 10;++i)
+        for(int i = 0; i < 7;++i)
         cards.add(new ArrayList<Rectangle>());
         cards.get(0).add(card1_1);
         cards.get(0).add(card1_2);
@@ -313,28 +308,10 @@ public class HanabiController implements Initializable {
         cards.get(6).add(card7_4);
         cards.get(6).add(card7_5);
         cards.get(6).add(card7_6);
-        cards.get(7).add(card8_1);
-        cards.get(7).add(card8_2);
-        cards.get(7).add(card8_3);
-        cards.get(7).add(card8_4);
-        cards.get(7).add(card8_5);
-        cards.get(7).add(card8_6);
-        cards.get(8).add(card9_1);
-        cards.get(8).add(card9_2);
-        cards.get(8).add(card9_3);
-        cards.get(8).add(card9_4);
-        cards.get(8).add(card9_5);
-        cards.get(8).add(card9_6);
-        cards.get(9).add(card10_1);
-        cards.get(9).add(card10_2);
-        cards.get(9).add(card10_3);
-        cards.get(9).add(card10_4);
-        cards.get(9).add(card10_5);
-        cards.get(9).add(card10_6);
         for(int i = 0; i < numberOfPlayers; ++i){
             for(int j = board.getHandSize(); j < 6;++j) cards.get(i).get(j).setVisible(false);
         }
-        for(int i = numberOfPlayers; i < 10; ++i){
+        for(int i = numberOfPlayers; i < 7; ++i){
             for(int j = 0; j <6; ++j){
                 cards.get(i).get(j).setVisible(false);
             }
