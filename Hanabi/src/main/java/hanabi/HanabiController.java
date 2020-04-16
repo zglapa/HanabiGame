@@ -1,4 +1,5 @@
 package hanabi;
+import hanabi.Controller.NoHints;
 import hanabi.Model.*;
 import hanabi.Model.Board;
 import hanabi.Model.Color;
@@ -140,9 +141,11 @@ public class HanabiController implements Initializable {
         //System.out.println("b");
         try{
             board.action(playerMove);
-        } catch (Exception e) {
+        } catch (GameEndException e) {
             System.out.println("AAAAA");
             e.printStackTrace();
+        }catch (NoHintsLeftException e){
+            NoHints.display("Alert","No hints left");
         }
         updateHands();
         updateHands(index);
@@ -159,7 +162,7 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
-        } catch (Exception e) {
+        } catch (GameEndException | NoHintsLeftException e) {
             e.printStackTrace();
         }
         updateHands();
