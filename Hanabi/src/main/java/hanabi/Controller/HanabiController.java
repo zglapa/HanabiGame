@@ -303,10 +303,10 @@ public class HanabiController implements Initializable {
             cards.add(new ArrayList<Rectangle>());
             for(int j = 0; j <handSize; ++j){
                 Rectangle newCard = new Rectangle();
-                newCard.arcHeightProperty().setValue(10);
-                newCard.arcWidthProperty().setValue(10);
-                newCard.widthProperty().setValue(40);
-                newCard.heightProperty().setValue(40);
+                newCard.arcHeightProperty().setValue(15);
+                newCard.arcWidthProperty().setValue(15);
+                newCard.widthProperty().setValue(45);
+                newCard.heightProperty().setValue(45);
                 cards.get(i).add(newCard);
                 gridPane.add(newCard,j,0);
             }
@@ -384,10 +384,10 @@ public class HanabiController implements Initializable {
         if(rainbowCard) numOfResultCards++;
         for(int i = 0; i < numOfResultCards; ++i){
             Rectangle newCard = new Rectangle();
-            newCard.arcHeightProperty().setValue(30);
-            newCard.arcWidthProperty().setValue(30);
-            newCard.widthProperty().setValue(80);
-            newCard.heightProperty().setValue(80);
+            newCard.arcHeightProperty().setValue(40);
+            newCard.arcWidthProperty().setValue(40);
+            newCard.widthProperty().setValue(100);
+            newCard.heightProperty().setValue(100);
             newCard.setFill(blanks.get(i));
             resultCards.add(newCard);
             resultPane.getChildren().add(newCard);
