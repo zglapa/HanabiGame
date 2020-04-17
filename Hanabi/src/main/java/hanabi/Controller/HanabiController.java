@@ -5,12 +5,18 @@ import hanabi.Model.Color;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -21,22 +27,7 @@ import java.util.ResourceBundle;
 public class HanabiController implements Initializable {
 
 
-    @FXML Label endGameLabel;
-    @FXML Rectangle resultCardW,resultCardY,resultCardR,resultCardG,resultCardB,resultCardRB;
-    @FXML Rectangle card1_1,card1_2,card1_3,card1_4, card1_5, card1_6,card2_1,card2_2,card2_3,card2_4,card2_5, card2_6,
-            card3_1,card3_2,card3_3,card3_4,card3_5, card3_6, card4_1,card4_2,card4_3,card4_4,card4_5, card4_6,
-            card5_1,card5_2,card5_3,card5_4,card5_5, card5_6, card6_1,card6_2,card6_3,card6_4,card6_5, card6_6,
-            card7_1,card7_2,card7_3,card7_4,card7_5, card7_6;
-    @FXML Rectangle dCard1_1, dCard1_2, dCard1_3, dCard1_4, dCard1_5, dCard1_6,
-            dCard2_1, dCard2_2, dCard2_3, dCard2_4, dCard2_5, dCard2_6,
-            dCard3_1, dCard3_2, dCard3_3, dCard3_4, dCard3_5, dCard3_6,
-            dCard4_1, dCard4_2, dCard4_3, dCard4_4, dCard4_5, dCard4_6,
-            dCard5_1, dCard5_2, dCard5_3, dCard5_4, dCard5_5, dCard5_6,
-            dCard6_1, dCard6_2, dCard6_3, dCard6_4, dCard6_5, dCard6_6,
-            dCard7_1, dCard7_2, dCard7_3, dCard7_4, dCard7_5, dCard7_6,
-            dCard8_1, dCard8_2, dCard8_3, dCard8_4, dCard8_5, dCard8_6,
-            dCard9_1, dCard9_2, dCard9_3, dCard9_4, dCard9_5, dCard9_6,
-            dCard10_1, dCard10_2, dCard10_3, dCard10_4, dCard10_5, dCard10_6;
+    @FXML FlowPane playerHands, discardPane, resultPane;
     @FXML Label moveHistory;
     @FXML ComboBox<String> hintTypeChoice;
     @FXML ComboBox<Color> colorChoice;
@@ -63,6 +54,7 @@ public class HanabiController implements Initializable {
     ArrayList<ImagePattern> blues;
     ArrayList<ImagePattern> reds;
     ArrayList<ImagePattern> rainbows;
+    ArrayList<ImagePattern> blanks;
     ArrayList<ArrayList<ImagePattern>> allColorLists;
     ImagePattern blank;
     Integer numberHint;
@@ -85,7 +77,7 @@ public class HanabiController implements Initializable {
             e.printStackTrace();
         }
         players = new ArrayList<>();
-        players.add(player1);
+        /*players.add(player1);
         players.add(player2);
         players.add(player3);
         players.add(player4);
@@ -95,20 +87,23 @@ public class HanabiController implements Initializable {
         players.add(player8);
         players.add(player9);
         players.add(player10);
+        */
         resultCards = new ArrayList<>();
         discardCards = new ArrayList<>();
         cards = new ArrayList<>();
         board= HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
+        int HANDSIZE = board.getHandSize();
         boolean WITHRAINBOWS = HanabiMain.setUpWindow.hasRainbows;
-        addCardsToArrayList(PLAYERAMOUNT);
+        //addCardsToArrayList(PLAYERAMOUNT);
+        addHands(PLAYERAMOUNT,HANDSIZE);
         try {
             addResultCards(WITHRAINBOWS);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         updateHands();
-        addDiscardCards();
+        //addDiscardCards();
         showYourTrueColors();
         cardIx = 0;
         colorChoice.getItems().addAll(Color.values());
@@ -135,21 +130,26 @@ public class HanabiController implements Initializable {
         System.out.println("View is now loaded!");
     }
     public void hintButtonClicked(ActionEvent actionEvent){
-
         int index = board.getCurrentPlayerIndex();
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.HINT;
+        if(playerIx == null) playerIx = 0;
         Player hintedPlayer = board.getPlayers().get(playerIx);
         Hint hint;
-        if(hintType.equals("NUMBER"))
+        if(hintType == null) hintType = "NUMBER";
+        if(hintType.equals("NUMBER")){
+            if(cardValueChoice == null) cardValueChoice=1;
             hint = new Hint(hintedPlayer,cardValueChoice);
-        else
+        }
+        else{
+            if(colorIx == null) colorIx = Color.values()[0];
             hint = new Hint(hintedPlayer,colorIx);
+        }
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
         try{
             board.action(playerMove);
         } catch (GameEndException e) {
-            endGameLabel.setText("Game over");
+            //endGameLabel.setText("Game over");
         }catch (NoHintsLeftException e){
             NoHints.display("Alert","No hints left");
         }
@@ -167,7 +167,7 @@ public class HanabiController implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            endGameLabel.setText("Game over");
+            //endGameLabel.setText("Game over");
         }
         updateHands();
         updateHands(index);
@@ -190,7 +190,7 @@ public class HanabiController implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            endGameLabel.setText("Game over");
+            //endGameLabel.setText("Game over");
         }
         updateHands();
         updateHands(index);
@@ -219,11 +219,11 @@ public class HanabiController implements Initializable {
             int cardValue = card.getValue();
             Color color = card.getColor();
             ImagePattern colorPattern = whites.get(cardValue-1);
-            if(color==Color.Y) colorPattern = yellows.get(cardValue-1);
-            else if(color==Color.R) colorPattern = reds.get(cardValue-1);
-            else if(color==Color.G) colorPattern = greens.get(cardValue-1);
-            else if(color==Color.B) colorPattern = blues.get(cardValue-1);
-            else if(color==Color.RAINBOW) colorPattern = rainbows.get(cardValue-1);
+            if(color==Color.values()[1]) colorPattern = yellows.get(cardValue-1);
+            else if(color==Color.values()[2]) colorPattern = reds.get(cardValue-1);
+            else if(color==Color.values()[3]) colorPattern = greens.get(cardValue-1);
+            else if(color==Color.values()[4])colorPattern = blues.get(cardValue-1);
+            else if(color==Color.values()[5]) colorPattern = rainbows.get(cardValue-1);
             cards.get(index).get(i).setFill(colorPattern);
         }
     }
@@ -246,19 +246,29 @@ public class HanabiController implements Initializable {
         }
     }
     public void updateDiscardPileCards(){
+        Rectangle newCard = new Rectangle();
+        newCard.arcHeightProperty().setValue(10);
+        newCard.arcWidthProperty().setValue(10);
+        newCard.widthProperty().setValue(40);
+        newCard.heightProperty().setValue(40);
+        newCard.setVisible(false);
+        discardPane.getChildren().add(newCard);
+        discardCards.add(newCard);
         LinkedList<Card> pile = board.getDiscardPile().getDiscardPile();
-        for(int i = 0; i<pile.size(); ++i){
+        for(int i = 0; i<discardCards.size(); ++i){
             Card card = pile.get(i);
             int cardValue = card.getValue();
             Color color = card.getColor();
             ImagePattern colorPattern = whites.get(cardValue-1);
-            if(color==Color.Y) colorPattern = yellows.get(cardValue-1);
-            else if(color==Color.R) colorPattern = reds.get(cardValue-1);
-            else if(color==Color.G) colorPattern = greens.get(cardValue-1);
-            else if(color==Color.B) colorPattern = blues.get(cardValue-1);
-            else if(color==Color.RAINBOW) colorPattern = rainbows.get(cardValue-1);
+            if(color==Color.values()[1]) colorPattern = yellows.get(cardValue-1);
+            else if(color==Color.values()[2]) colorPattern = reds.get(cardValue-1);
+            else if(color==Color.values()[3]) colorPattern = greens.get(cardValue-1);
+            else if(color==Color.values()[4])colorPattern = blues.get(cardValue-1);
+            else if(color==Color.values()[5]) colorPattern = rainbows.get(cardValue-1);
             discardCards.get(i).setFill(colorPattern);
             discardCards.get(i).setVisible(true);
+            System.out.println(discardCards.size());
+
         }
     }
     public void cardChosen(ActionEvent actionEvent) {
@@ -278,58 +288,32 @@ public class HanabiController implements Initializable {
 
     public void hintTypeChosen(ActionEvent actionEvent) { hintType = hintTypeChoice.getValue();
     }
-    public void addCardsToArrayList(int numberOfPlayers){
-        for(int i = 0; i < 7;++i)
-        cards.add(new ArrayList<Rectangle>());
-        cards.get(0).add(card1_1);
-        cards.get(0).add(card1_2);
-        cards.get(0).add(card1_3);
-        cards.get(0).add(card1_4);
-        cards.get(0).add(card1_5);
-        cards.get(0).add(card1_6);
-        cards.get(1).add(card2_1);
-        cards.get(1).add(card2_2);
-        cards.get(1).add(card2_3);
-        cards.get(1).add(card2_4);
-        cards.get(1).add(card2_5);
-        cards.get(1).add(card2_6);
-        cards.get(2).add(card3_1);
-        cards.get(2).add(card3_2);
-        cards.get(2).add(card3_3);
-        cards.get(2).add(card3_4);
-        cards.get(2).add(card3_5);
-        cards.get(2).add(card3_6);
-        cards.get(3).add(card4_1);
-        cards.get(3).add(card4_2);
-        cards.get(3).add(card4_3);
-        cards.get(3).add(card4_4);
-        cards.get(3).add(card4_5);
-        cards.get(3).add(card4_6);
-        cards.get(4).add(card5_1);
-        cards.get(4).add(card5_2);
-        cards.get(4).add(card5_3);
-        cards.get(4).add(card5_4);
-        cards.get(4).add(card5_5);
-        cards.get(4).add(card5_6);
-        cards.get(5).add(card6_1);
-        cards.get(5).add(card6_2);
-        cards.get(5).add(card6_3);
-        cards.get(5).add(card6_4);
-        cards.get(5).add(card6_5);
-        cards.get(5).add(card6_6);
-        cards.get(6).add(card7_1);
-        cards.get(6).add(card7_2);
-        cards.get(6).add(card7_3);
-        cards.get(6).add(card7_4);
-        cards.get(6).add(card7_5);
-        cards.get(6).add(card7_6);
-        for(int i = 0; i < numberOfPlayers; ++i){
-            for(int j = board.getHandSize(); j < 6;++j) cards.get(i).get(j).setVisible(false);
-        }
-        for(int i = numberOfPlayers; i < 7; ++i){
-            for(int j = 0; j <6; ++j){
-                cards.get(i).get(j).setVisible(false);
+    public void addHands(int numberOfPlayers, int handSize){
+        for(int i = 0;i < numberOfPlayers; ++i){
+            GridPane outerGrid = new GridPane();
+            GridPane gridPane = new GridPane();
+            outerGrid.setAlignment(Pos.CENTER);
+            outerGrid.setVgap(10);
+            gridPane.setHgap(10);
+            gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
+            gridPane.setAlignment(Pos.CENTER);
+            Label player = new Label();
+            player.setAlignment(Pos.CENTER);
+            players.add(player);
+            cards.add(new ArrayList<Rectangle>());
+            for(int j = 0; j <handSize; ++j){
+                Rectangle newCard = new Rectangle();
+                newCard.arcHeightProperty().setValue(10);
+                newCard.arcWidthProperty().setValue(10);
+                newCard.widthProperty().setValue(40);
+                newCard.heightProperty().setValue(40);
+                cards.get(i).add(newCard);
+                gridPane.add(newCard,j,0);
             }
+            player.setPrefWidth(gridPane.getPrefWidth());
+            outerGrid.add(player, 0,0);
+            outerGrid.add(gridPane, 0, 1);
+            playerHands.getChildren().add(outerGrid);
         }
     }
     public void addColors() throws URISyntaxException {
@@ -339,6 +323,7 @@ public class HanabiController implements Initializable {
         greens = new ArrayList<>();
         blues = new ArrayList<>();
         rainbows = new ArrayList<>();
+        blanks = new ArrayList<>();
 
         whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White1.jpg").toURI().toString())));
         whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White2.jpg").toURI().toString())));
@@ -376,6 +361,13 @@ public class HanabiController implements Initializable {
         rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB4.jpg").toURI().toString())));
         rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB5.jpg").toURI().toString())));
 
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/White.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB.jpg").toURI().toString())));
+
         allColorLists = new ArrayList<>();
 
         allColorLists.add(whites);
@@ -388,83 +380,17 @@ public class HanabiController implements Initializable {
         blank = new ImagePattern(new Image(getClass().getResource("/Colors/Blank.jpg").toURI().toString()));
     }
     public void addResultCards(boolean rainbowCard) throws URISyntaxException {
-        resultCardW.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/White.jpg").toURI().toString())));
-        resultCardY.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow.jpg").toURI().toString())));
-        resultCardR.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/Red.jpg").toURI().toString())));
-        resultCardG.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/Green.jpg").toURI().toString())));
-        resultCardB.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/Blue.jpg").toURI().toString())));
-        resultCardRB.setFill(new ImagePattern(new Image(getClass().getResource("/Colors/RB.jpg").toURI().toString())));
-        resultCards.add(resultCardW);
-        resultCards.add(resultCardY);
-        resultCards.add(resultCardR);
-        resultCards.add(resultCardG);
-        resultCards.add(resultCardB);
-        if(!rainbowCard) resultCardRB.setVisible(false);
-        else resultCards.add(resultCardRB);
-    }
-    public void addDiscardCards(){
-        discardCards.add(dCard1_1);
-        discardCards.add(dCard1_2);
-        discardCards.add(dCard1_3);
-        discardCards.add(dCard1_4);
-        discardCards.add(dCard1_5);
-        discardCards.add(dCard1_6);
-        discardCards.add(dCard2_1);
-        discardCards.add(dCard2_2);
-        discardCards.add(dCard2_3);
-        discardCards.add(dCard2_4);
-        discardCards.add(dCard2_5);
-        discardCards.add(dCard2_6);
-        discardCards.add(dCard3_1);
-        discardCards.add(dCard3_2);
-        discardCards.add(dCard3_3);
-        discardCards.add(dCard3_4);
-        discardCards.add(dCard3_5);
-        discardCards.add(dCard3_6);
-        discardCards.add(dCard4_1);
-        discardCards.add(dCard4_2);
-        discardCards.add(dCard4_3);
-        discardCards.add(dCard4_4);
-        discardCards.add(dCard4_5);
-        discardCards.add(dCard4_6);
-        discardCards.add(dCard5_1);
-        discardCards.add(dCard5_2);
-        discardCards.add(dCard5_3);
-        discardCards.add(dCard5_4);
-        discardCards.add(dCard5_5);
-        discardCards.add(dCard5_6);
-        discardCards.add(dCard6_1);
-        discardCards.add(dCard6_2);
-        discardCards.add(dCard6_3);
-        discardCards.add(dCard6_4);
-        discardCards.add(dCard6_5);
-        discardCards.add(dCard6_6);
-        discardCards.add(dCard7_1);
-        discardCards.add(dCard7_2);
-        discardCards.add(dCard7_3);
-        discardCards.add(dCard7_4);
-        discardCards.add(dCard7_5);
-        discardCards.add(dCard7_6);
-        discardCards.add(dCard8_1);
-        discardCards.add(dCard8_2);
-        discardCards.add(dCard8_3);
-        discardCards.add(dCard8_4);
-        discardCards.add(dCard8_5);
-        discardCards.add(dCard8_6);
-        discardCards.add(dCard9_1);
-        discardCards.add(dCard9_2);
-        discardCards.add(dCard9_3);
-        discardCards.add(dCard9_4);
-        discardCards.add(dCard9_5);
-        discardCards.add(dCard9_6);
-        discardCards.add(dCard10_1);
-        discardCards.add(dCard10_2);
-        discardCards.add(dCard10_3);
-        discardCards.add(dCard10_4);
-        discardCards.add(dCard10_5);
-        discardCards.add(dCard10_6);
-        for(Rectangle c: discardCards){
-            c.setVisible(false);
+        int numOfResultCards = 5;
+        if(rainbowCard) numOfResultCards++;
+        for(int i = 0; i < numOfResultCards; ++i){
+            Rectangle newCard = new Rectangle();
+            newCard.arcHeightProperty().setValue(30);
+            newCard.arcWidthProperty().setValue(30);
+            newCard.widthProperty().setValue(80);
+            newCard.heightProperty().setValue(80);
+            newCard.setFill(blanks.get(i));
+            resultCards.add(newCard);
+            resultPane.getChildren().add(newCard);
         }
     }
 }
