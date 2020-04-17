@@ -17,7 +17,7 @@ public class SetUpWindow {
         Parent setUpRoot;
         setUpRoot = FXMLLoader.load(getClass().getResource("/setUpFXML.fxml"));
         stage.setTitle("Set Up");
-        stage.setScene(new Scene(setUpRoot, 600, 400));
+        stage.setScene(new Scene(setUpRoot, 1600, 900));
         stage.showAndWait();
     }
 }

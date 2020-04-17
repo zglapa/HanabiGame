@@ -6,10 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.SetUpController">
    <items>
@@ -23,72 +25,107 @@
                         <Insets top="5.0" />
                      </padding>
                   </Slider>
-                  <CheckBox mnemonicParsing="false" text="Show advanced settings">
+                  <CheckBox fx:id="hasRainbows" mnemonicParsing="false" onMouseClicked="#advanced" text="Rainbows">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
                   </CheckBox>
-                  <Pane>
+                  <CheckBox fx:id="showAdvanced" layoutX="20.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#advanced" text="more settings" />
+                  <VBox fx:id="advancedSettings" fillWidth="false" visible="false">
                      <children>
-                        <Label text="Hand size:" />
-                        <Slider fx:id="numOfCards" blockIncrement="1.0" layoutY="16.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                        <Label text="Advanced settings:" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Hand size:">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Slider fx:id="numOfCards" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
                            <padding>
                               <Insets top="5.0" />
                            </padding>
                         </Slider>
+                        <CheckBox fx:id="randomOrder" mnemonicParsing="false" onMouseClicked="#advanced" text="Random order of players">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </CheckBox>
                      </children>
-                  </Pane>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox maxWidth="200.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="Random order of players:" />
-                  <Slider fx:id="randomOrder" blockIncrement="1.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true">
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding></Slider>
-                  <HBox>
-                     <children>
-                        <Label text="No" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Yes" />
-                     </children>
-                  </HBox>
-                  <Label layoutX="20.0" layoutY="20.0" text="Rainbow cards:">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
-                  </Label>
-                  <Slider fx:id="hasRainbows" blockIncrement="1.0" layoutX="20.0" layoutY="36.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" snapToTicks="true">
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </Slider>
-                  <HBox layoutX="20.0" layoutY="57.0">
-                     <children>
-                        <Label text="No" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Yes" />
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </VBox>
-            <VBox />
+            <VBox minWidth="270.0">
+               <children>
+                  <CheckBox fx:id="randomNames" onMouseClicked="#changeNames" mnemonicParsing="false" selected="true" text="Random names">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <VBox fx:id="namesBox" visible="false" >
+                     <children>
+                        <TextField fx:id="name1" promptText="Player1">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name2" layoutX="10.0" layoutY="36.0" promptText="Player2">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name3" layoutX="10.0" layoutY="36.0" promptText="Player3">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name4" layoutX="10.0" layoutY="88.0" promptText="Player4">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name5" visible="false" layoutX="10.0" layoutY="140.0" promptText="Player5">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name6" visible="false" layoutX="10.0" layoutY="192.0" promptText="Player6">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="name7" visible="false" layoutX="10.0" layoutY="200.0" promptText="Player7">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
             <VBox>
                <children>
                   <Region VBox.vgrow="ALWAYS" />
                   <Pane>
                      <children>
-                        <Button fx:id="play" mnemonicParsing="false" onAction="#startGame" text="Graj" />
+                        <Button mnemonicParsing="false" onAction="#startGame" text="Graj" />
                      </children>
                      <VBox.margin>
                         <Insets />
