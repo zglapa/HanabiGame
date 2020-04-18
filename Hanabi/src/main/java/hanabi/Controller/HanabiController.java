@@ -5,18 +5,13 @@ import hanabi.Model.Color;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -26,27 +21,17 @@ import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
 
-
+    @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane;
+    @FXML Pane numberHintPane, colorHintPane;
+    @FXML Pane endGamePane;
     @FXML FlowPane playerHands, discardPane, resultPane;
     @FXML Label moveHistory;
-    @FXML ComboBox<String> hintTypeChoice;
-    @FXML ComboBox<Color> colorChoice;
-    @FXML ComboBox<Integer> playerChoice, cardChoice, numberChoice;;
-    @FXML Label discardPile;
-    @FXML Label player1;
-    @FXML Label player2;
-    @FXML Label player3;
-    @FXML Label player4;
-    @FXML Label player5;
-    @FXML Label player6;
-    @FXML Label player7;
-    @FXML Label player8;
-    @FXML Label player9;
-    @FXML Label player10;
-    @FXML Button hintButton;
-    @FXML Button playButton;
-    @FXML Button discardButton;
-    @FXML TextField cardIndex;
+    @FXML Button hintButton, playButton, discardButton;
+    @FXML Button p1Hint, p2Hint, p3Hint,p4Hint,p5Hint,p6Hint, p7Hint;
+    @FXML Button colorButtonHint, numberButtonHint;
+    @FXML Button n1Hint, n2Hint,n3Hint,n4Hint,n5Hint;
+    @FXML Button c1Hint, c2Hint, c3Hint,c4Hint,c5Hint,c6Hint;
+    @FXML Button n1Play,n2Play,n3Play,n4Play,n5Play,n6Play;
     ArrayList<Rectangle> resultCards;
     ArrayList<ImagePattern> whites;
     ArrayList<ImagePattern> yellows;
@@ -56,15 +41,18 @@ public class HanabiController implements Initializable {
     ArrayList<ImagePattern> rainbows;
     ArrayList<ImagePattern> blanks;
     ArrayList<ArrayList<ImagePattern>> allColorLists;
+    ArrayList<Button> pHintButtons;
+    ArrayList<Button> nHintButtons;
+    ArrayList<Button> cHintButtons;
+    ArrayList<Button> nPlayButtons;
     ImagePattern blank;
+    int cardIx;
+    boolean isDiscard;
+    boolean endGame;
     Integer numberHint;
     Color colorHint;
     Player playerHint;
     String hintType;
-    Integer cardIx;
-    Integer cardValueChoice;
-    Integer playerIx;
-    Color colorIx;
     Board board;
     ArrayList<Label> players;
     ArrayList<ArrayList<Rectangle>> cards;
@@ -76,18 +64,8 @@ public class HanabiController implements Initializable {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        endGame = false;
         players = new ArrayList<>();
-        /*players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
-        players.add(player5);
-        players.add(player6);
-        players.add(player7);
-        players.add(player8);
-        players.add(player9);
-        players.add(player10);
-        */
         resultCards = new ArrayList<>();
         discardCards = new ArrayList<>();
         cards = new ArrayList<>();
@@ -95,71 +73,85 @@ public class HanabiController implements Initializable {
         int PLAYERAMOUNT = board.getPlayerAmount();
         int HANDSIZE = board.getHandSize();
         boolean WITHRAINBOWS = HanabiMain.setUpWindow.hasRainbows;
-        //addCardsToArrayList(PLAYERAMOUNT);
         addHands(PLAYERAMOUNT,HANDSIZE);
+        addButtonsToArrayLists();
+        for(int i = PLAYERAMOUNT; i < 7;++i){
+            pHintButtons.get(i).setVisible(false);
+        }
+        for(int i = HANDSIZE; i < 6; ++i){
+            nPlayButtons.get(i).setVisible(false);
+        }
+        hideHintButtons();
+        isDiscard = false;
+        playPane.setVisible(false);
         try {
             addResultCards(WITHRAINBOWS);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         updateHands();
-        //addDiscardCards();
         showYourTrueColors();
         cardIx = 0;
-        colorChoice.getItems().addAll(Color.values());
-        Integer [] arrayOfPlayersID = new Integer[board.getPlayerAmount()];
-        Integer [] arrayOfCardsID = new Integer[board.getHandSize()];
-        Integer [] arrayOfCardValues = new Integer[5];
 
-        for(int i = 0; i < board.getPlayerAmount(); ++i){
-            arrayOfPlayersID[i] = i;
-        }
-        System.out.println(board.getHandSize());
-        for(int i = 0; i < board.getHandSize(); ++i){
-
-            arrayOfCardsID[i] = i+1;
-        }
-        for(int i = 0; i < 5; ++i){
-            arrayOfCardValues[i] = i + 1;
-        }
-
-        playerChoice.getItems().addAll(arrayOfPlayersID);
-        cardChoice.getItems().addAll(arrayOfCardsID);
-        numberChoice.getItems().addAll(arrayOfCardValues);
-        hintTypeChoice.getItems().addAll("NUMBER", "COLOR");
         System.out.println("View is now loaded!");
     }
-    public void hintButtonClicked(ActionEvent actionEvent){
+    public void hintDone(){
         int index = board.getCurrentPlayerIndex();
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.HINT;
-        if(playerIx == null) playerIx = 0;
-        Player hintedPlayer = board.getPlayers().get(playerIx);
+        if(playerHint == null) playerHint = board.getPlayers().get(0);
+        Player hintedPlayer = playerHint;
         Hint hint;
         if(hintType == null) hintType = "NUMBER";
         if(hintType.equals("NUMBER")){
-            if(cardValueChoice == null) cardValueChoice=1;
-            hint = new Hint(hintedPlayer,cardValueChoice);
+            if(numberHint == null) numberHint=1;
+            hint = new Hint(hintedPlayer,numberHint);
         }
         else{
-            if(colorIx == null) colorIx = Color.values()[0];
-            hint = new Hint(hintedPlayer,colorIx);
+            if(colorHint == null) colorHint = Color.values()[0];
+            hint = new Hint(hintedPlayer,colorHint);
         }
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
         try{
             board.action(playerMove);
         } catch (GameEndException e) {
-            //endGameLabel.setText("Game over");
+            endGamePane.setVisible(true);
+            disableButtons();
+            endGame =true;
         }catch (NoHintsLeftException e){
             NoHints.display("Alert","No hints left");
         }
         updateHands();
+        hideHintButtons();
         updateHands(index);
-        blurMe((index+1)%board.getPlayerAmount());
+        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
         updateResultCards();
         updateMoveHistory();
     }
-    public void discardButtonClicked(ActionEvent actionEvent) {
+    public void playDone(){
+        int index = board.getCurrentPlayerIndex();
+        Player player = board.getPlayers().get(index);
+        MoveType movetype = MoveType.PLAY;
+        System.out.println(player);
+        System.out.println(movetype);
+        System.out.println(cardIx);
+        PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
+        try{
+            board.action(playerMove);
+        } catch (GameEndException | NoHintsLeftException e) {
+            endGamePane.setVisible(true);
+            disableButtons();
+            endGame = true;
+        }
+        updateHands();
+        updateHands(index);
+        playPane.setVisible(false);
+        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
+        updateResultCards();
+        updateMoveHistory();
+        System.out.println(board.getCurrentPlayerIndex());
+    }
+    public void discardDone(){
         int index = board.getCurrentPlayerIndex();
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.DISCARD;
@@ -167,37 +159,36 @@ public class HanabiController implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            //endGameLabel.setText("Game over");
+            endGamePane.setVisible(true);
+            disableButtons();
+            endGame = true;
         }
         updateHands();
         updateHands(index);
-        blurMe((index+1)%board.getPlayerAmount());
+        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
+        playPane.setVisible(false);
         updateResultCards();
         updateDiscardPileCards();
         updateMoveHistory();
         System.out.println(board.getCurrentPlayerIndex());
+    }
+    public void hintButtonClicked(ActionEvent actionEvent){
+        playPane.setVisible(false);
+        isDiscard=false;
+        hintPane.setVisible(true);
+        hintPlayerPane.setVisible(true);
 
+    }
+    public void discardButtonClicked(ActionEvent actionEvent) {
+        hideHintButtons();
+        playPane.setVisible(true);
+        isDiscard=true;
     }
 
     public void playButtonClicked(ActionEvent actionEvent) {
-        int index = board.getCurrentPlayerIndex();
-        Player player = board.getPlayers().get(index);
-        MoveType movetype = MoveType.PLAY;
-        System.out.println(player);
-        System.out.println(movetype);
-        System.out.println(cardIx.intValue());
-        PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
-        try{
-            board.action(playerMove);
-        } catch (GameEndException | NoHintsLeftException e) {
-            //endGameLabel.setText("Game over");
-        }
-        updateHands();
-        updateHands(index);
-        blurMe((index+1)%board.getPlayerAmount());
-        updateResultCards();
-        updateMoveHistory();
-        System.out.println(board.getCurrentPlayerIndex());
+        hideHintButtons();
+       playPane.setVisible(true);
+       isDiscard=false;
     }
 
     public void updateHands(){
@@ -271,25 +262,14 @@ public class HanabiController implements Initializable {
 
         }
     }
-    public void cardChosen(ActionEvent actionEvent) {
-        cardIx = cardChoice.getValue() - 1;
-    }
 
-    public void playerChosen(ActionEvent actionEvent) {
-        playerIx = playerChoice.getValue();
-    }
-
-    public void colorChosen(ActionEvent actionEvent) {
-        colorIx = colorChoice.getValue();
-    }
-
-    public void numberChosen(ActionEvent actionEvent) { cardValueChoice = numberChoice.getValue();
-    }
-
-    public void hintTypeChosen(ActionEvent actionEvent) { hintType = hintTypeChoice.getValue();
-    }
     public void addHands(int numberOfPlayers, int handSize){
         for(int i = 0;i < numberOfPlayers; ++i){
+            StackPane stackPane = new StackPane();
+            Rectangle box = new Rectangle();
+            box.setFill(javafx.scene.paint.Color.WHITE);
+            box.setOpacity(0.7);
+            box.setVisible(true);
             GridPane outerGrid = new GridPane();
             GridPane gridPane = new GridPane();
             outerGrid.setAlignment(Pos.CENTER);
@@ -305,15 +285,27 @@ public class HanabiController implements Initializable {
                 Rectangle newCard = new Rectangle();
                 newCard.arcHeightProperty().setValue(15);
                 newCard.arcWidthProperty().setValue(15);
-                newCard.widthProperty().setValue(45);
-                newCard.heightProperty().setValue(45);
+                newCard.widthProperty().setValue(40);
+                newCard.heightProperty().setValue(40);
                 cards.get(i).add(newCard);
                 gridPane.add(newCard,j,0);
             }
-            player.setPrefWidth(gridPane.getPrefWidth());
+            int height = 80;
+            int width = handSize*40+(handSize-1)*10;
+            player.setPrefWidth(width);
             outerGrid.add(player, 0,0);
             outerGrid.add(gridPane, 0, 1);
-            playerHands.getChildren().add(outerGrid);
+            System.out.println(width);
+            box.setHeight(height);
+            box.setWidth(width+5);
+            box.setArcHeight(20);
+            box.setArcWidth(20);
+            stackPane.getChildren().addAll(box,outerGrid);
+            stackPane.setPrefWidth(width + 5);
+            stackPane.setPrefHeight(height);
+            stackPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
+            stackPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            playerHands.getChildren().add(stackPane);
         }
     }
     public void addColors() throws URISyntaxException {
@@ -392,5 +384,100 @@ public class HanabiController implements Initializable {
             resultCards.add(newCard);
             resultPane.getChildren().add(newCard);
         }
+    }
+    public void disableButtons(){
+        hintButton.setDisable(true);
+        playButton.setDisable(true);
+        discardButton.setDisable(true);
+    }
+    public void addButtonsToArrayLists(){
+        pHintButtons = new ArrayList<>();
+        pHintButtons.add(p1Hint);
+        pHintButtons.add(p2Hint);
+        pHintButtons.add(p3Hint);
+        pHintButtons.add(p4Hint);
+        pHintButtons.add(p5Hint);
+        pHintButtons.add(p6Hint);
+        pHintButtons.add(p7Hint);
+
+        cHintButtons = new ArrayList<>();
+        cHintButtons.add(c1Hint);
+        cHintButtons.add(c2Hint);
+        cHintButtons.add(c3Hint);
+        cHintButtons.add(c4Hint);
+        cHintButtons.add(c5Hint);
+        cHintButtons.add(c6Hint);
+
+        nHintButtons = new ArrayList<>();
+        nHintButtons.add(n1Hint);
+        nHintButtons.add(n2Hint);
+        nHintButtons.add(n3Hint);
+        nHintButtons.add(n4Hint);
+        nHintButtons.add(n5Hint);
+
+        nPlayButtons = new ArrayList<>();
+        nPlayButtons.add(n1Play);
+        nPlayButtons.add(n2Play);
+        nPlayButtons.add(n3Play);
+        nPlayButtons.add(n4Play);
+        nPlayButtons.add(n5Play);
+        nPlayButtons.add(n6Play);
+
+    }
+    public void hideHintButtons(){
+        hintPlayerPane.setVisible(false);
+        colorHintPane.setVisible(false);
+        numberHintPane.setVisible(false);
+        hintTypePane.setVisible(false);
+        hintPane.setVisible(false);
+    }
+    public void playerHintClicked(ActionEvent actionEvent) {
+        int length = actionEvent.getSource().toString().length();
+        char playerID = actionEvent.getSource().toString().charAt(length - 2);
+        int playerIDInt = Character.getNumericValue(playerID);
+        System.out.println(playerIDInt);
+        playerHint = board.getPlayers().get(playerIDInt-1);
+        hintTypePane.setVisible(true);
+    }
+
+    public void hintTypeButtonClicked(ActionEvent actionEvent) {
+        int length = actionEvent.getSource().toString().length();
+        char hintID = actionEvent.getSource().toString().charAt(length-3);
+        System.out.println(hintID);
+        if(hintID == 'E') {
+            hintType = "NUMBER";
+            numberHintPane.setVisible(true);
+        }
+        else {
+            hintType = "COLOR";
+            colorHintPane.setVisible(true);
+        }
+    }
+
+    public void numberHintButtonClicked(ActionEvent actionEvent) {
+        int length = actionEvent.getSource().toString().length();
+        char numberID = actionEvent.getSource().toString().charAt(length-2);
+        int numberIDInt = Character.getNumericValue(numberID);
+        System.out.println(numberIDInt);
+        numberHint = numberIDInt;
+        hintDone();
+    }
+
+    public void colorHintButtonClicked(ActionEvent actionEvent) {
+        char colorID = actionEvent.getSource().toString().charAt(11);
+        int colorIDInt = Character.getNumericValue(colorID);
+        System.out.println(colorIDInt);
+        colorHint = Color.values()[colorIDInt-1];
+        hintDone();
+    }
+
+    public void cardPlayButtonClicked(ActionEvent actionEvent) {
+        int length = actionEvent.getSource().toString().length();
+        char numberID = actionEvent.getSource().toString().charAt(length-2);
+        int numberIDInt = Character.getNumericValue(numberID);
+        System.out.println(numberIDInt);
+        cardIx = numberIDInt - 1;
+        if(isDiscard) discardDone();
+        else playDone();
     }
 }

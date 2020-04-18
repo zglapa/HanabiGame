@@ -1,0 +1,21 @@
+.root{
+    -fx-background-color: linear-gradient(to top, #2c3e50,#2980b9, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#c1Hint{
+   -fx-background-color: white;
+}
+#c2Hint{
+    -fx-background-color: yellow;
+}
+#c3Hint{
+    -fx-background-color: red;
+}
+#c4Hint{
+    -fx-background-color: forestgreen;
+}
+#c5Hint{
+    -fx-background-color: blue;
+}
+#c6Hint{
+    -fx-background-color: linear-gradient(to left, red,orange,yellow,green,blue,blueviolet);
+}
