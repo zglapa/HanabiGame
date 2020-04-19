@@ -51,8 +51,8 @@ public class SetUpController implements Initializable {
         names.add(name5);
         names.add(name6);
         names.add(name7);
-        for(int i=0;i<7;++i)
-            names.get(i).setText("Player"+(i+1));
+        //for(int i=0;i<7;++i)
+            //names.get(i).setText("Player"+(i+1));
         initialHints.setText("8");
         limitHints.setText("8");
         initialLives.setText("3");
@@ -98,8 +98,12 @@ public class SetUpController implements Initializable {
         boolean rainbow= hasRainbows.isSelected();
         boolean random= randomOrder.isSelected();
         String[] finalNames=new String[players];
-        for(int i=0;i<players;++i)
-            finalNames[i]=names.get(i).getText();
+        for(int i=0;i<players;++i) {
+            finalNames[i] = names.get(i).getText();
+            if( finalNames[i].equals(new String("")) )
+                finalNames[i]="Player"+(i+1);
+        }
+
 
         int lives = stringInt(initialLives.getText());
         int hints = stringInt(initialHints.getText());
