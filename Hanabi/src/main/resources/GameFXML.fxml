@@ -62,9 +62,9 @@
                                     </HBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
+                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="450.0">
                                  <children>
-                                    <Pane fx:id="hintPlayerPane" prefHeight="100.0" prefWidth="450.0" visible="false">
+                                    <Pane fx:id="hintPlayerPane" prefHeight="54.0" prefWidth="450.0" visible="false">
                                        <children>
                                           <Label layoutY="27.0" text="Select player" textFill="WHITE">
                                              <font>
@@ -84,14 +84,14 @@
                                           </HBox>
                                        </children>
                                     </Pane>
-                                    <Pane fx:id="hintTypePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
+                                    <Pane fx:id="hintTypePane" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" visible="false">
                                        <children>
-                                          <Label layoutY="71.0" text="Select hint type" textFill="WHITE">
+                                          <Label layoutY="7.0" prefHeight="24.0" prefWidth="115.0" text="Select hint type" textFill="WHITE">
                                              <font>
                                                 <Font name="Serif Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER" layoutX="136.0" layoutY="64.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
+                                          <HBox alignment="CENTER" layoutX="136.0" layoutY="4.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
                                              <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="COLOR" />
                                              <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="NUMBER" />
                                           </HBox>

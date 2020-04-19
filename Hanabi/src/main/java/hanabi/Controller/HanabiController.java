@@ -96,6 +96,7 @@ public class HanabiController implements Initializable {
         showYourTrueColors();
         cardIx = 0;
         updateHintsAndLives();
+        nextPlayer(0);
         System.out.println("View is now loaded!");
     }
     public void hintDone(){
@@ -498,8 +499,11 @@ public class HanabiController implements Initializable {
         else playDone();
     }
     public void nextPlayer(int playerIndex){
+        int prevPlayerIndex = (playerIndex > 0)?playerIndex-1:board.getPlayerAmount()-1;
+        pHintButtons.get(prevPlayerIndex).setDisable(false);
         nextPlayerPane.setVisible(true);
         nextPlayerName.setText(board.getPlayers().get(playerIndex).getName());
+        pHintButtons.get(playerIndex).setDisable(true);
     }
 
     public void nextPlayerButtonClicked(ActionEvent actionEvent) {
