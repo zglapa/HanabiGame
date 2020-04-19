@@ -25,7 +25,7 @@
          <children>
             <VBox fillWidth="false" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Number of players:">
+                  <Label styleClass="Label" text="Number of players:">
                      <font>
                         <Font size="30.0" />
                      </font></Label>
@@ -43,7 +43,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Slider>
-                  <CheckBox fx:id="hasRainbows" mnemonicParsing="false" text="Rainbows">
+                  <CheckBox fx:id="hasRainbows" styleClass="CheckBox" mnemonicParsing="false" text="Rainbows">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -63,7 +63,7 @@
                         </Button>
                         <VBox fx:id="advancedSettings" fillWidth="false" visible="false">
                            <children>
-                              <Label text="Advanced settings:" textAlignment="CENTER">
+                              <Label styleClass="Label" text="Advanced settings:" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -71,7 +71,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Hand size:">
+                              <Label styleClass="Label" text="Hand size:">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -84,7 +84,7 @@
                                     <Insets top="5.0" />
                                  </padding>
                               </Slider>
-                              <CheckBox fx:id="randomOrder" mnemonicParsing="false" text="Random order of players">
+                              <CheckBox fx:id="randomOrder" styleClass="CheckBox" mnemonicParsing="false" text="Random order of players">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>

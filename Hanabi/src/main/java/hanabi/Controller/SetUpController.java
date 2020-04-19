@@ -75,9 +75,8 @@ public class SetUpController implements Initializable {
     }
 
     public void changeNames(MouseEvent mouseEvent) {
-        int players= ( (Double) numOfPlayers.getValue() ).intValue();
-        String[] random= Board.randomNames(players);
-        for(int i=0;i<players;++i)
+        String[] random= Board.randomNames(7);
+        for(int i=0;i<7;++i)
             names.get(i).setText(random[i]);
     }
 

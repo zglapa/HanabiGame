@@ -26,3 +26,9 @@
 .Slider .axis{
     -fx-tick-label-fill: WHITE;
 }
+.Label{
+    -fx-text-fill: WHITE;
+}
+.CheckBox{
+    -fx-text-fill: WHITE;
+}
