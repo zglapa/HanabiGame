@@ -35,6 +35,10 @@ public class SetUpController implements Initializable {
     @FXML TextField name6;
     @FXML TextField name7;
     ArrayList<TextField> names;
+    @FXML TextField initialHints;
+    @FXML TextField initialLives;
+    @FXML TextField limitHints;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,6 +53,9 @@ public class SetUpController implements Initializable {
         names.add(name7);
         for(int i=0;i<7;++i)
             names.get(i).setText("Player"+(i+1));
+        initialHints.setText("8");
+        limitHints.setText("8");
+        initialLives.setText("3");
     }
 
     public void adjustCards(MouseEvent mouseEvent) {
@@ -65,8 +72,13 @@ public class SetUpController implements Initializable {
     }
 
     public void showAdvanced(MouseEvent mouseEvent) {
-        advancedSettings.setVisible(true);
-        showAdvanced.setVisible(false);
+        if (showAdvanced.getText().equals("Show")) {
+            advancedSettings.setVisible(true);
+            showAdvanced.setText("Hide");
+        } else {
+            advancedSettings.setVisible(false);
+            showAdvanced.setText("Show");
+        }
     }
 
     public void hideAdvanced(MouseEvent mouseEvent) {
@@ -89,12 +101,54 @@ public class SetUpController implements Initializable {
         for(int i=0;i<players;++i)
             finalNames[i]=names.get(i).getText();
 
-        HanabiMain.setUpWindow.board = new Board(players, 40, 8, 8, cards, new Deck(true, rainbow, true),
+        int lives = stringInt(initialLives.getText());
+        int hints = stringInt(initialHints.getText());
+        int maxHints = stringInt(limitHints.getText());
+
+        if (hints < 0) {
+            AlertBox.display("Wrong input", "Initial hint amount must be an non-negative integer!");
+            return;
+        }
+        if (maxHints < 0) {
+            AlertBox.display("Wrong input", "Maximum hint amount must be an non-negative integer!");
+            return;
+        }
+        if (lives <= 0) {
+            AlertBox.display("Wrong input", "Lives amount must be an positive integer!");
+            return;
+        }
+
+        if (maxHints < hints) {
+            boolean result = ConfirmationBox.display("Max hints < hints",
+                    "Max hint amount is smaller than initial hint amount\n" +
+                            "While your hint amount is bigger than max hint amount\n" +
+                            "you won't get any hints for the discard action.\n" +
+                            "This may or may not be intended\n" +
+                            "Do you wish to proceed?"
+                    );
+            if (!result)
+                return;
+        }
+
+
+        HanabiMain.setUpWindow.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
                 random, finalNames);
         HanabiMain.setUpWindow.hasRainbows = rainbow;
         HanabiMain.setUpWindow.stage.close();
     }
 
 
-
+    private int stringInt(String s) {
+        if (s == null)
+            return -1;
+        int ans = 0;
+        for (int i = 0; i< s.length(); i++) {
+            if (s.charAt(i) > '9' || s.charAt(i) < '0') {
+                return -1;
+            }
+            ans*=10;
+            ans+=s.charAt(i)-'0';
+        }
+        return ans;
+    }
 }

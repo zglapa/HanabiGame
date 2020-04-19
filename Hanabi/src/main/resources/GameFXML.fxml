@@ -137,7 +137,7 @@
                         <Insets top="10.0" />
                      </StackPane.margin>
                   </Pane>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="398.0" StackPane.alignment="CENTER_LEFT">
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="444.0" StackPane.alignment="CENTER_LEFT">
                      <StackPane.margin>
                         <Insets left="10.0" />
                      </StackPane.margin>
@@ -160,7 +160,7 @@
                               <Font name="Purisa" size="68.0" />
                            </font>
                         </Label>
-                        <Label fx:id="numberHintsLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="21.0" prefHeight="131.0" prefWidth="161.0" textFill="WHITE">
+                        <Label fx:id="numberHintsLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="21.0" prefHeight="131.0" prefWidth="215.0" textFill="WHITE">
                            <font>
                               <Font name="Purisa" size="68.0" />
                            </font>

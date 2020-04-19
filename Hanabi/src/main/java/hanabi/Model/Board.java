@@ -135,7 +135,7 @@ public class Board {
 
             discardPile.add(cardDiscarded);
 
-            currentHints = (currentHints == maxHints) ? maxHints : currentHints+1;
+            currentHints = (currentHints >= maxHints) ? currentHints : currentHints+1;
             endMove(playerMove);
             return;
         }

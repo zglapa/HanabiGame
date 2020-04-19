@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -8,17 +9,18 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<SplitPane styleClass="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.SetUpController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.SetUpController">
    <stylesheets>
-      <URL value="@hanabi.css"/>
+      <URL value="@hanabi.css" />
    </stylesheets>
    <items>
       <HBox>
@@ -29,7 +31,7 @@
                      <font>
                         <Font size="30.0" />
                      </font></Label>
-                  <Slider fx:id="numOfPlayers" styleClass="Slider" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="111.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                  <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="111.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -43,7 +45,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Slider>
-                  <CheckBox fx:id="hasRainbows" styleClass="CheckBox" mnemonicParsing="false" text="Rainbows">
+                  <CheckBox fx:id="hasRainbows" mnemonicParsing="false" styleClass="CheckBox" text="Rainbows">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -54,23 +56,24 @@
                         <Font size="30.0" />
                      </font>
                   </CheckBox>
-                  <StackPane alignment="TOP_LEFT">
+                  <VBox prefHeight="489.0" prefWidth="497.0">
                      <children>
-                        <Button fx:id="showAdvanced" mnemonicParsing="false" onMouseClicked="#showAdvanced" text="Show advanced settings">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Button>
-                        <VBox fx:id="advancedSettings" fillWidth="false" visible="false">
+                        <HBox prefHeight="59.0" prefWidth="435.0">
                            <children>
-                              <Label styleClass="Label" text="Advanced settings:" textAlignment="CENTER">
+                              <Label prefHeight="59.0" prefWidth="336.0" styleClass="Label" text="Advanced Settings: ">
                                  <font>
-                                    <Font name="System Bold" size="40.0" />
+                                    <Font size="30.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
                               </Label>
+                              <Button fx:id="showAdvanced" mnemonicParsing="false" onMouseClicked="#showAdvanced" prefHeight="56.0" prefWidth="153.0" text="Show">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox fx:id="advancedSettings" fillWidth="false" prefHeight="400.0" prefWidth="497.0" visible="false">
+                           <children>
                               <Label styleClass="Label" text="Hand size:">
                                  <VBox.margin>
                                     <Insets top="20.0" />
@@ -79,12 +82,12 @@
                                     <Font size="30.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="numOfCards" styleClass="Slider" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                              <Slider fx:id="numOfCards" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
                                  <padding>
                                     <Insets top="5.0" />
                                  </padding>
                               </Slider>
-                              <CheckBox fx:id="randomOrder" styleClass="CheckBox" mnemonicParsing="false" text="Random order of players">
+                              <CheckBox fx:id="randomOrder" mnemonicParsing="false" styleClass="CheckBox" text="Randomize order of players">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -92,18 +95,53 @@
                                     <Font size="30.0" />
                                  </font>
                               </CheckBox>
-                              <Button mnemonicParsing="false" onMouseClicked="#hideAdvanced" text="Hide advanced settings">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="30.0" />
-                                 </VBox.margin>
-                              </Button>
+                              <GridPane prefHeight="145.0" prefWidth="268.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="201.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="53.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label styleClass="Label" text="Initial hints:">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="initialHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label styleClass="Label" text="Max hints:" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label styleClass="Label" text="Lives:" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="limitHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="initialLives" prefHeight="57.0" prefWidth="42.0" promptText="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
                            </children>
                         </VBox>
                      </children>
-                  </StackPane>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="200.0" right="10.0" top="120.0" />
