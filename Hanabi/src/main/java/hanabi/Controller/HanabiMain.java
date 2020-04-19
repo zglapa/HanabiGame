@@ -29,6 +29,8 @@ public class HanabiMain extends Application {
                 break;
             case 1: //play
                 setUpWindow.setUp();
+                if(setUpWindow.exit)
+                    break;
                 root = FXMLLoader.load(getClass().getResource("/GameFXML.fxml"));
                 stage.setTitle("Hanabi");
                 stage.setScene(new Scene(root, 1600, 900));

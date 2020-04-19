@@ -38,6 +38,7 @@ public class SetUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        HanabiMain.setUpWindow.stage.setOnCloseRequest(e->HanabiMain.setUpWindow.exit=true);
         names=new ArrayList<>();
         names.add(name1);
         names.add(name2);
@@ -94,6 +95,7 @@ public class SetUpController implements Initializable {
         HanabiMain.setUpWindow.hasRainbows = rainbow;
         HanabiMain.setUpWindow.stage.close();
     }
+
 
 
 }

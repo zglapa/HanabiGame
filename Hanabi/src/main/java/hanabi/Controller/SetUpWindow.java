@@ -12,6 +12,7 @@ public class SetUpWindow {
     public Board board;
     public Stage stage;
     public boolean hasRainbows;
+    public boolean exit=false;
     public void setUp() throws IOException {
         stage=new Stage();
         Parent setUpRoot;

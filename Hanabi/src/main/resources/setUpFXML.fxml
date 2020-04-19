@@ -29,7 +29,7 @@
                      <font>
                         <Font size="30.0" />
                      </font></Label>
-                  <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="111.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                  <Slider fx:id="numOfPlayers" styleClass="Slider" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="111.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -79,7 +79,7 @@
                                     <Font size="30.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="numOfCards" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
+                              <Slider fx:id="numOfCards" styleClass="Slider" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0">
                                  <padding>
                                     <Insets top="5.0" />
                                  </padding>
