@@ -37,7 +37,7 @@
       </GridPane>
    </left>
    <center>
-      <Label text="BABABI" BorderPane.alignment="CENTER">
+      <Label text="HANABI" BorderPane.alignment="CENTER">
          <font>
             <Font name="Chilanka Regular" size="256.0" />
          </font>
