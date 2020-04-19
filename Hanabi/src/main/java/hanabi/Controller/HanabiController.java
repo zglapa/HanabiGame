@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
 
+    @FXML StackPane noHintsPane;
     @FXML Label numberLivesLabel, numberHintsLabel;
     @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
     @FXML Pane numberHintPane, colorHintPane;
@@ -31,7 +33,7 @@ public class HanabiController implements Initializable {
     @FXML Button p1Hint, p2Hint, p3Hint,p4Hint,p5Hint,p6Hint, p7Hint;
     @FXML Button colorButtonHint, numberButtonHint;
     @FXML Button n1Hint, n2Hint,n3Hint,n4Hint,n5Hint;
-    @FXML Button c1Hint, c2Hint, c3Hint,c4Hint,c5Hint,c6Hint;
+    @FXML Button c1Hint, c2Hint, c3Hint,c4Hint,c5Hint;
     @FXML Button n1Play,n2Play,n3Play,n4Play,n5Play,n6Play;
     ArrayList<Rectangle> resultCards;
     ArrayList<ImagePattern> whites;
@@ -115,18 +117,20 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
         try{
             board.action(playerMove);
+            nextPlayer(board.getCurrentPlayerIndex());
         } catch (GameEndException e) {
             endGamePane.setVisible(true);
             disableButtons();
             endGame =true;
         }catch (NoHintsLeftException e){
-            NoHints.display("Alert","No hints left");
+            //NoHints.display("Alert","No hints left");
+            noHintsPane.setVisible(true);
         }
-        nextPlayer(board.getCurrentPlayerIndex());
+        //if(!endGame && board.getCurrentHints()!=0)nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         hideHintButtons();
         updateHands(index);
-        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
+        if(!endGame)blurMe(board.getCurrentPlayerIndex());
         updateResultCards();
         updateMoveHistory();
         updateHintsAndLives();
@@ -142,17 +146,18 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
+            nextPlayer(board.getCurrentPlayerIndex());
         } catch (GameEndException | NoHintsLeftException e) {
             endGamePane.setVisible(true);
             disableButtons();
             endGame = true;
         }
         if(discardPileSizeBefore < board.getDiscardPile().getDiscardPile().size()) updateDiscardPileCards();
-        nextPlayer(board.getCurrentPlayerIndex());
+        //if(!endGame)nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         updateHands(index);
         playPane.setVisible(false);
-        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
+        if(!endGame)blurMe(board.getCurrentPlayerIndex());
         updateResultCards();
         updateMoveHistory();
         updateHintsAndLives();
@@ -165,16 +170,18 @@ public class HanabiController implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
+            nextPlayer(board.getCurrentPlayerIndex());
+
         } catch (GameEndException | NoHintsLeftException e) {
             endGamePane.setVisible(true);
             disableButtons();
             endGame = true;
         }
         updateDiscardPileCards();
-        nextPlayer(board.getCurrentPlayerIndex());
+        //if(!endGame)nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         updateHands(index);
-        if(!endGame)blurMe((index+1)%board.getPlayerAmount());
+        if(!endGame)blurMe(board.getCurrentPlayerIndex());
         playPane.setVisible(false);
         updateResultCards();
         updateMoveHistory();
@@ -415,7 +422,6 @@ public class HanabiController implements Initializable {
         cHintButtons.add(c3Hint);
         cHintButtons.add(c4Hint);
         cHintButtons.add(c5Hint);
-        cHintButtons.add(c6Hint);
 
         nHintButtons = new ArrayList<>();
         nHintButtons.add(n1Hint);
@@ -508,5 +514,9 @@ public class HanabiController implements Initializable {
         StringBuilder str2 = new StringBuilder();
         str2.append(board.getCurrentLives());
         numberLivesLabel.setText(str2.toString());
+    }
+
+    public void hideNoHintsAlert(MouseEvent mouseEvent) {
+        noHintsPane.setVisible(false);
     }
 }

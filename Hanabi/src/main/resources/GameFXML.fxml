@@ -128,7 +128,6 @@
                                  <Button fx:id="c3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
                                  <Button fx:id="c4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
                                  <Button fx:id="c5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                                 <Button fx:id="c6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
                               </HBox>
                            </Pane>
                         </StackPane>
@@ -268,7 +267,28 @@
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
                                  <font>
-                                    <Font size="63.0" />
+                                    <Font name="Purisa Bold" size="63.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="noHintsPane" onMouseEntered="#hideNoHintsAlert" prefHeight="150.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="No hints left" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Purisa Bold" size="63.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />

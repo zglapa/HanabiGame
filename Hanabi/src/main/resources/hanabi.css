@@ -16,9 +16,7 @@
 #c5Hint{
     -fx-background-color: blue;
 }
-#c6Hint{
-    -fx-background-color: linear-gradient(to left, red,orange,yellow,green,blue,blueviolet);
-}
+
 .Slider{
     -fx-font-size: 30;
     stroke: none;
