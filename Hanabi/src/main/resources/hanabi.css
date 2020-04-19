@@ -21,4 +21,8 @@
 }
 .Slider{
     -fx-font-size: 30;
+    stroke: none;
+}
+.Slider .axis{
+    -fx-tick-label-fill: WHITE;
 }

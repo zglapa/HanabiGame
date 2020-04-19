@@ -29,7 +29,7 @@ public class Board {
     public ArrayList<PlayerMove> getPlayerMoveHistory() { return playerMoveHistory; }
     public ArrayList<Player> getPlayers() { return players; }
     public Integer getPlayerAmount() { return playerAmount; }
-    public int getCurrentLives() { return handSize; }
+    public int getCurrentLives() { return currentLives; }
     public int getCurrentHints() { return currentHints; }
     public int getMaxHints() { return maxHints; }
     public int getCurrentPlayerIndex() { return currentPlayerIndex; }
