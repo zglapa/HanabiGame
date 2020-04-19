@@ -2,6 +2,7 @@ package hanabi.Controller;
 
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
+import hanabi.Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +46,8 @@ public class SetUpController implements Initializable {
         names.add(name5);
         names.add(name6);
         names.add(name7);
+        for(int i=0;i<7;++i)
+            names.get(i).setText("Player"+(i+1));
     }
 
     public void adjustCards(MouseEvent mouseEvent) {
