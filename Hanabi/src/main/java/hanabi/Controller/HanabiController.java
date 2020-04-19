@@ -317,48 +317,48 @@ public class HanabiController implements Initializable {
         rainbows = new ArrayList<>();
         blanks = new ArrayList<>();
 
-        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White1.jpg").toURI().toString())));
-        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White2.jpg").toURI().toString())));
-        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White3.jpg").toURI().toString())));
-        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White4.jpg").toURI().toString())));
-        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White5.jpg").toURI().toString())));
+        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White1.jpg").toURI().toString()),0,0,1,1,true));
+        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White2.jpg").toURI().toString()),0,0,1,1,true));
+        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White3.jpg").toURI().toString()),0,0,1,1,true));
+        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White4.jpg").toURI().toString()),0,0,1,1,true));
+        whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White5.jpg").toURI().toString()),0,0,1,1,true));
 
-        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow1.jpg").toURI().toString())));
-        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow2.jpg").toURI().toString())));
-        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow3.jpg").toURI().toString())));
-        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow4.jpg").toURI().toString())));
-        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow5.jpg").toURI().toString())));
+        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow1.jpg").toURI().toString()),0,0,1,1,true));
+        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow2.jpg").toURI().toString()),0,0,1,1,true));
+        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow3.jpg").toURI().toString()),0,0,1,1,true));
+        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow4.jpg").toURI().toString()),0,0,1,1,true));
+        yellows.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow5.jpg").toURI().toString()),0,0,1,1,true));
 
-        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red1.jpg").toURI().toString())));
-        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red2.jpg").toURI().toString())));
-        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red3.jpg").toURI().toString())));
-        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red4.jpg").toURI().toString())));
-        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red5.jpg").toURI().toString())));
+        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red1.jpg").toURI().toString()),0,0,1,1,true));
+        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red2.jpg").toURI().toString()),0,0,1,1,true));
+        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red3.jpg").toURI().toString()),0,0,1,1,true));
+        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red4.jpg").toURI().toString()),0,0,1,1,true));
+        reds.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red5.jpg").toURI().toString()),0,0,1,1,true));
 
-        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green1.jpg").toURI().toString())));
-        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green2.jpg").toURI().toString())));
-        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green3.jpg").toURI().toString())));
-        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green4.jpg").toURI().toString())));
-        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green5.jpg").toURI().toString())));
+        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green1.jpg").toURI().toString()),0,0,1,1,true));
+        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green2.jpg").toURI().toString()),0,0,1,1,true));
+        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green3.jpg").toURI().toString()),0,0,1,1,true));
+        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green4.jpg").toURI().toString()),0,0,1,1,true));
+        greens.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green5.jpg").toURI().toString()),0,0,1,1,true));
 
-        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue1.jpg").toURI().toString())));
-        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue2.jpg").toURI().toString())));
-        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue3.jpg").toURI().toString())));
-        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue4.jpg").toURI().toString())));
-        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue5.jpg").toURI().toString())));
+        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue1.jpg").toURI().toString()),0,0,1,1,true));
+        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue2.jpg").toURI().toString()),0,0,1,1,true));
+        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue3.jpg").toURI().toString()),0,0,1,1,true));
+        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue4.jpg").toURI().toString()),0,0,1,1,true));
+        blues.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue5.jpg").toURI().toString()),0,0,1,1,true));
 
-        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB1.jpg").toURI().toString())));
-        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB2.jpg").toURI().toString())));
-        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB3.jpg").toURI().toString())));
-        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB4.jpg").toURI().toString())));
-        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB5.jpg").toURI().toString())));
+        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB1.jpg").toURI().toString()),0,0,1,1,true));
+        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB2.jpg").toURI().toString()),0,0,1,1,true));
+        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB3.jpg").toURI().toString()),0,0,1,1,true));
+        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB4.jpg").toURI().toString()),0,0,1,1,true));
+        rainbows.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB5.jpg").toURI().toString()),0,0,1,1,true));
 
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/White.jpg").toURI().toString())));
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow.jpg").toURI().toString())));
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red.jpg").toURI().toString())));
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green.jpg").toURI().toString())));
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue.jpg").toURI().toString())));
-        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB.jpg").toURI().toString())));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/White.jpg").toURI().toString()),0,0,1,1,true));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Yellow.jpg").toURI().toString()),0,0,1,1,true));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Red.jpg").toURI().toString()),0,0,1,1,true));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green.jpg").toURI().toString()),0,0,1,1,true));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue.jpg").toURI().toString()),0,0,1,1,true));
+        blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB.jpg").toURI().toString()),0,0,1,1,true));
 
         allColorLists = new ArrayList<>();
 
@@ -369,7 +369,7 @@ public class HanabiController implements Initializable {
         allColorLists.add(blues);
         allColorLists.add(rainbows);
 
-        blank = new ImagePattern(new Image(getClass().getResource("/Colors/Blank.jpg").toURI().toString()));
+        blank = new ImagePattern(new Image(getClass().getResource("/Colors/Blank.jpg").toURI().toString()),0,0,1,1,true);
     }
     public void addResultCards(boolean rainbowCard) throws URISyntaxException {
         int numOfResultCards = 5;
@@ -446,10 +446,12 @@ public class HanabiController implements Initializable {
         System.out.println(hintID);
         if(hintID == 'E') {
             hintType = "NUMBER";
+            colorHintPane.setVisible(false);
             numberHintPane.setVisible(true);
         }
         else {
             hintType = "COLOR";
+            numberHintPane.setVisible(false);
             colorHintPane.setVisible(true);
         }
     }
