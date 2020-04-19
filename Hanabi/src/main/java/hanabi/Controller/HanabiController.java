@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
 
+    @FXML Label numberLivesLabel, numberHintsLabel;
     @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
     @FXML Pane numberHintPane, colorHintPane;
     @FXML Pane endGamePane;
@@ -92,7 +93,7 @@ public class HanabiController implements Initializable {
         updateHands();
         showYourTrueColors();
         cardIx = 0;
-
+        updateHintsAndLives();
         System.out.println("View is now loaded!");
     }
     public void hintDone(){
@@ -128,6 +129,7 @@ public class HanabiController implements Initializable {
         if(!endGame)blurMe((index+1)%board.getPlayerAmount());
         updateResultCards();
         updateMoveHistory();
+        updateHintsAndLives();
     }
     public void playDone(){
         int index = board.getCurrentPlayerIndex();
@@ -153,6 +155,7 @@ public class HanabiController implements Initializable {
         if(!endGame)blurMe((index+1)%board.getPlayerAmount());
         updateResultCards();
         updateMoveHistory();
+        updateHintsAndLives();
         System.out.println(board.getCurrentPlayerIndex());
     }
     public void discardDone(){
@@ -176,6 +179,7 @@ public class HanabiController implements Initializable {
         updateResultCards();
         updateDiscardPileCards();
         updateMoveHistory();
+        updateHintsAndLives();
         System.out.println(board.getCurrentPlayerIndex());
     }
     public void hintButtonClicked(ActionEvent actionEvent){
@@ -495,5 +499,15 @@ public class HanabiController implements Initializable {
 
     public void nextPlayerButtonClicked(ActionEvent actionEvent) {
         nextPlayerPane.setVisible(false);
+    }
+    public void updateHintsAndLives(){
+        StringBuilder str = new StringBuilder();
+        str.append(board.getCurrentHints());
+        str.append('/');
+        str.append(board.getMaxHints());
+        numberHintsLabel.setText(str.toString());
+        StringBuilder str2 = new StringBuilder();
+        str2.append(board.getCurrentLives());
+        numberLivesLabel.setText(str2.toString());
     }
 }
