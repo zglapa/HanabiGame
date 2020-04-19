@@ -44,3 +44,11 @@
     -fx-font-family: 'Purisa Bold';
     -fx-font-size: 50px;
 }
+.Button {
+    -fx-font-family: 'Purisa Bold';
+    -fx-font-size: 24px;
+}
+.GameButton {
+    -fx-font-family: 'Purisa Bold';
+    -fx-font-size: 13px;
+}

@@ -34,9 +34,9 @@
                            <children>
                               <HBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="40.0" prefWidth="400.0" spacing="20.0">
                                  <children>
-                                    <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="80.0" text="PLAY" />
-                                    <Button fx:id="hintButton" alignment="CENTER" mnemonicParsing="false" onAction="#hintButtonClicked" prefWidth="80.0" text="HINT" />
-                                    <Button fx:id="discardButton" alignment="CENTER" mnemonicParsing="false" onAction="#discardButtonClicked" prefWidth="80.0" text="DISCARD" textAlignment="CENTER" />
+                                    <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="90.0" styleClass="GameButton" text="PLAY" />
+                                    <Button fx:id="hintButton" alignment="CENTER" mnemonicParsing="false" onAction="#hintButtonClicked" prefWidth="90.0" styleClass="GameButton" text="HINT" />
+                                    <Button fx:id="discardButton" alignment="CENTER" mnemonicParsing="false" onAction="#discardButtonClicked" prefWidth="90.0" styleClass="GameButton" text="DISCARD" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                            </children>
@@ -45,7 +45,7 @@
                            <children>
                               <Pane fx:id="playPane" maxWidth="-Infinity" prefHeight="70.0" prefWidth="450.0" visible="false">
                                  <children>
-                                    <Label layoutY="6.0" text="Select card" textFill="WHITE">
+                                    <Label layoutY="6.0" styleClass="GameButton" text="Select card" textFill="WHITE">
                                        <font>
                                           <Font name="Serif Bold" size="13.0" />
                                        </font>
@@ -61,12 +61,15 @@
                                        </children>
                                     </HBox>
                                  </children>
+                                 <StackPane.margin>
+                                    <Insets top="21.0" />
+                                 </StackPane.margin>
                               </Pane>
                               <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
                                  <children>
                                     <Pane fx:id="hintPlayerPane" prefHeight="100.0" prefWidth="450.0" visible="false">
                                        <children>
-                                          <Label layoutY="27.0" text="Select player" textFill="WHITE">
+                                          <Label layoutY="27.0" styleClass="GameButton" text="Select player" textFill="WHITE">
                                              <font>
                                                 <Font name="Serif Bold" size="13.0" />
                                              </font>
@@ -81,19 +84,22 @@
                                                 <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
                                                 <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
                                              </children>
+                                             <padding>
+                                                <Insets left="7.0" />
+                                             </padding>
                                           </HBox>
                                        </children>
                                     </Pane>
                                     <Pane fx:id="hintTypePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
                                        <children>
-                                          <Label layoutY="71.0" text="Select hint type" textFill="WHITE">
+                                          <Label layoutY="71.0" styleClass="GameButton" text="Select hint type" textFill="WHITE">
                                              <font>
                                                 <Font name="Serif Bold" size="13.0" />
                                              </font>
                                           </Label>
                                           <HBox alignment="CENTER" layoutX="136.0" layoutY="64.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
-                                             <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="COLOR" />
-                                             <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="NUMBER" />
+                                             <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" styleClass="GameButton" text="COLOR" />
+                                             <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" styleClass="GameButton" text="NUMBER" />
                                           </HBox>
                                        </children>
                                     </Pane>
@@ -103,7 +109,7 @@
                         </StackPane>
                         <StackPane layoutX="175.0" layoutY="157.0" prefHeight="50.0" prefWidth="450.0">
                            <Pane fx:id="numberHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
-                              <Label layoutY="17.0" text="Select number" textFill="WHITE">
+                              <Label layoutY="17.0" styleClass="GameButton" text="Select number" textFill="WHITE">
                                  <font>
                                     <Font name="Serif Bold" size="13.0" />
                                  </font>
@@ -117,7 +123,7 @@
                               </HBox>
                            </Pane>
                            <Pane fx:id="colorHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
-                              <Label layoutY="17.0" text="Select color" textFill="WHITE">
+                              <Label layoutY="17.0" styleClass="GameButton" text="Select color" textFill="WHITE">
                                  <font>
                                     <Font name="Serif Bold" size="13.0" />
                                  </font>

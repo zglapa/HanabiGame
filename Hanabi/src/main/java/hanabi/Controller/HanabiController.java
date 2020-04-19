@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -287,6 +289,7 @@ public class HanabiController implements Initializable {
             gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
             gridPane.setAlignment(Pos.CENTER);
             Label player = new Label();
+            player.setFont(Font.font("Purisa Bold",20));
             player.setAlignment(Pos.CENTER);
             players.add(player);
             cards.add(new ArrayList<Rectangle>());
@@ -299,7 +302,7 @@ public class HanabiController implements Initializable {
                 cards.get(i).add(newCard);
                 gridPane.add(newCard,j,0);
             }
-            int height = 80;
+            int height = 100;
             int width = handSize*40+(handSize-1)*10;
             player.setPrefWidth(width);
             outerGrid.add(player, 0,0);
