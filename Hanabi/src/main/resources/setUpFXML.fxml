@@ -192,7 +192,7 @@
                   <Region VBox.vgrow="ALWAYS" />
                   <Pane>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#startGame" text="Graj">
+                        <Button mnemonicParsing="false" onAction="#startGame" text="PLAY">
                            <font>
                               <Font size="40.0" />
                            </font></Button>
