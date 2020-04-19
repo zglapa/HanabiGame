@@ -21,11 +21,11 @@ import java.util.ResourceBundle;
 
 public class HanabiController implements Initializable {
 
-    @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane;
+    @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
     @FXML Pane numberHintPane, colorHintPane;
     @FXML Pane endGamePane;
     @FXML FlowPane playerHands, discardPane, resultPane;
-    @FXML Label moveHistory;
+    @FXML Label moveHistory, nextPlayerName;
     @FXML Button hintButton, playButton, discardButton;
     @FXML Button p1Hint, p2Hint, p3Hint,p4Hint,p5Hint,p6Hint, p7Hint;
     @FXML Button colorButtonHint, numberButtonHint;
@@ -121,6 +121,7 @@ public class HanabiController implements Initializable {
         }catch (NoHintsLeftException e){
             NoHints.display("Alert","No hints left");
         }
+        nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         hideHintButtons();
         updateHands(index);
@@ -132,6 +133,7 @@ public class HanabiController implements Initializable {
         int index = board.getCurrentPlayerIndex();
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.PLAY;
+        int discardPileSizeBefore = board.getDiscardPile().getDiscardPile().size();
         System.out.println(player);
         System.out.println(movetype);
         System.out.println(cardIx);
@@ -143,6 +145,8 @@ public class HanabiController implements Initializable {
             disableButtons();
             endGame = true;
         }
+        if(discardPileSizeBefore < board.getDiscardPile().getDiscardPile().size()) updateDiscardPileCards();
+        nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         updateHands(index);
         playPane.setVisible(false);
@@ -163,6 +167,8 @@ public class HanabiController implements Initializable {
             disableButtons();
             endGame = true;
         }
+        updateDiscardPileCards();
+        nextPlayer(board.getCurrentPlayerIndex());
         updateHands();
         updateHands(index);
         if(!endGame)blurMe((index+1)%board.getPlayerAmount());
@@ -481,5 +487,13 @@ public class HanabiController implements Initializable {
         cardIx = numberIDInt - 1;
         if(isDiscard) discardDone();
         else playDone();
+    }
+    public void nextPlayer(int playerIndex){
+        nextPlayerPane.setVisible(true);
+        nextPlayerName.setText(board.getPlayers().get(playerIndex).getName());
+    }
+
+    public void nextPlayerButtonClicked(ActionEvent actionEvent) {
+        nextPlayerPane.setVisible(false);
     }
 }

@@ -15,249 +15,281 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.HanabiController">
-   <stylesheets>
-      <URL value="@hanabi.css" />
-   </stylesheets>
-   <bottom>
-      <StackPane prefWidth="800.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="10.0" />
-         </BorderPane.margin>
-         <children>
-            <Pane maxWidth="-Infinity" prefHeight="250.0" prefWidth="800.0" StackPane.alignment="TOP_CENTER">
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.HanabiController">
+   <children>
+      <BorderPane styleClass="root">
+         <stylesheets>
+            <URL value="@hanabi.css" />
+         </stylesheets>
+         <bottom>
+            <StackPane prefWidth="800.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
                <children>
-                  <Pane layoutX="200.0" prefHeight="40.0" prefWidth="400.0">
+                  <Pane maxWidth="-Infinity" prefHeight="250.0" prefWidth="800.0" StackPane.alignment="TOP_CENTER">
                      <children>
-                        <HBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="40.0" prefWidth="400.0" spacing="20.0">
+                        <Pane layoutX="200.0" prefHeight="40.0" prefWidth="400.0">
                            <children>
-                              <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="80.0" text="PLAY" />
-                              <Button fx:id="hintButton" alignment="CENTER" mnemonicParsing="false" onAction="#hintButtonClicked" prefWidth="80.0" text="HINT" />
-                              <Button fx:id="discardButton" alignment="CENTER" mnemonicParsing="false" onAction="#discardButtonClicked" prefWidth="80.0" text="DISCARD" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </Pane>
-                  <StackPane layoutX="165.0" layoutY="57.0" prefHeight="70.0" prefWidth="470.0">
-                     <children>
-                        <Pane fx:id="playPane" maxWidth="-Infinity" prefHeight="70.0" prefWidth="450.0" visible="false">
-                           <children>
-                              <Label layoutY="6.0" text="Select card" textFill="WHITE">
-                                 <font>
-                                    <Font name="Serif Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER" layoutX="120.0" layoutY="-11.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                              <HBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="40.0" prefWidth="400.0" spacing="20.0">
                                  <children>
-                                    <Button fx:id="n1Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
-                                    <Button fx:id="n2Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
-                                    <Button fx:id="n3Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
-                                    <Button fx:id="n4Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
-                                    <Button fx:id="n5Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
-                                    <Button fx:id="n6Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
+                                    <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="80.0" text="PLAY" />
+                                    <Button fx:id="hintButton" alignment="CENTER" mnemonicParsing="false" onAction="#hintButtonClicked" prefWidth="80.0" text="HINT" />
+                                    <Button fx:id="discardButton" alignment="CENTER" mnemonicParsing="false" onAction="#discardButtonClicked" prefWidth="80.0" text="DISCARD" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                            </children>
                         </Pane>
-                        <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
+                        <StackPane layoutX="165.0" layoutY="57.0" prefHeight="70.0" prefWidth="470.0">
                            <children>
-                              <Pane fx:id="hintPlayerPane" prefHeight="100.0" prefWidth="450.0" visible="false">
+                              <Pane fx:id="playPane" maxWidth="-Infinity" prefHeight="70.0" prefWidth="450.0" visible="false">
                                  <children>
-                                    <Label layoutY="27.0" text="Select player" textFill="WHITE">
+                                    <Label layoutY="6.0" text="Select card" textFill="WHITE">
                                        <font>
                                           <Font name="Serif Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <HBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                    <HBox alignment="CENTER" layoutX="120.0" layoutY="-11.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
                                        <children>
-                                          <Button fx:id="p1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
-                                          <Button fx:id="p2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
-                                          <Button fx:id="p3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
-                                          <Button fx:id="p4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
-                                          <Button fx:id="p5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
-                                          <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
-                                          <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
+                                          <Button fx:id="n1Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                          <Button fx:id="n2Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                          <Button fx:id="n3Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                          <Button fx:id="n4Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                          <Button fx:id="n5Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                                          <Button fx:id="n6Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
                                        </children>
                                     </HBox>
                                  </children>
                               </Pane>
-                              <Pane fx:id="hintTypePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
+                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
                                  <children>
-                                    <Label layoutY="71.0" text="Select hint type" textFill="WHITE">
-                                       <font>
-                                          <Font name="Serif Bold" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox alignment="CENTER" layoutX="136.0" layoutY="64.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
-                                       <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="COLOR" />
-                                       <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="NUMBER" />
-                                    </HBox>
+                                    <Pane fx:id="hintPlayerPane" prefHeight="100.0" prefWidth="450.0" visible="false">
+                                       <children>
+                                          <Label layoutY="27.0" text="Select player" textFill="WHITE">
+                                             <font>
+                                                <Font name="Serif Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                             <children>
+                                                <Button fx:id="p1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                                <Button fx:id="p2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                                <Button fx:id="p3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                                <Button fx:id="p4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                                <Button fx:id="p5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                                                <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
+                                                <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="hintTypePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="450.0" visible="false">
+                                       <children>
+                                          <Label layoutY="71.0" text="Select hint type" textFill="WHITE">
+                                             <font>
+                                                <Font name="Serif Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" layoutX="136.0" layoutY="64.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
+                                             <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="COLOR" />
+                                             <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="NUMBER" />
+                                          </HBox>
+                                       </children>
+                                    </Pane>
                                  </children>
                               </Pane>
                            </children>
-                        </Pane>
+                        </StackPane>
+                        <StackPane layoutX="175.0" layoutY="157.0" prefHeight="50.0" prefWidth="450.0">
+                           <Pane fx:id="numberHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
+                              <Label layoutY="17.0" text="Select number" textFill="WHITE">
+                                 <font>
+                                    <Font name="Serif Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" layoutX="136.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                 <Button fx:id="n1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                 <Button fx:id="n2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                 <Button fx:id="n3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                 <Button fx:id="n4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                 <Button fx:id="n5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                              </HBox>
+                           </Pane>
+                           <Pane fx:id="colorHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
+                              <Label layoutY="17.0" text="Select color" textFill="WHITE">
+                                 <font>
+                                    <Font name="Serif Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" layoutX="120.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                 <Button fx:id="c1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                              </HBox>
+                           </Pane>
+                        </StackPane>
                      </children>
-                  </StackPane>
-                  <StackPane layoutX="175.0" layoutY="157.0" prefHeight="50.0" prefWidth="450.0">
-                     <Pane fx:id="numberHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
-                        <Label layoutY="17.0" text="Select number" textFill="WHITE">
-                           <font>
-                              <Font name="Serif Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" layoutX="136.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
-                           <Button fx:id="n1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
-                           <Button fx:id="n2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
-                           <Button fx:id="n3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
-                           <Button fx:id="n4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
-                           <Button fx:id="n5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
-                        </HBox>
-                     </Pane>
-                     <Pane fx:id="colorHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
-                        <Label layoutY="17.0" text="Select color" textFill="WHITE">
-                           <font>
-                              <Font name="Serif Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" layoutX="120.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
-                           <Button fx:id="c1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                           <Button fx:id="c2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                           <Button fx:id="c3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                           <Button fx:id="c4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                           <Button fx:id="c5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                           <Button fx:id="c6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
-                        </HBox>
-                     </Pane>
-                  </StackPane>
-               </children>
-               <StackPane.margin>
-                  <Insets top="10.0" />
-               </StackPane.margin>
-            </Pane>
-         </children>
-      </StackPane>
-   </bottom>
-   <right>
-      <StackPane maxHeight="250.0" BorderPane.alignment="TOP_CENTER">
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-         <children>
-            <Pane prefHeight="200.0" prefWidth="385.0">
-               <children>
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="385.0" />
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" height="64.0" stroke="BLACK" strokeType="INSIDE" width="385.0">
-                     <fill>
-                        <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#7489e8" />
-                              <Stop color="#7489e8" offset="0.007407407407407408" />
-                              <Stop color="#240d5e" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Rectangle>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="12.0" prefHeight="33.0" prefWidth="251.0" text="Move history" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Purisa Bold" size="21.0" />
-                     </font>
-                  </Label>
-                  <ScrollPane hbarPolicy="NEVER" layoutX="3.0" layoutY="84.0" maxHeight="-Infinity" maxWidth="380.0" minHeight="250.0" minWidth="380.0" prefHeight="250.0" prefWidth="380.0" vbarPolicy="ALWAYS">
-                     <content>
-                        <Label fx:id="moveHistory" alignment="CENTER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" textAlignment="CENTER" wrapText="true" />
-                     </content>
-                  </ScrollPane>
-               </children>
-            </Pane>
-         </children>
-      </StackPane>
-   </right>
-   <center>
-      <StackPane maxHeight="380.0" maxWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
-         <children>
-            <Pane prefHeight="380.0" prefWidth="200.0" StackPane.alignment="CENTER">
-               <children>
-                  <Rectangle arcHeight="200.0" arcWidth="200.0" height="380.0" layoutX="25.0" stroke="#110000" strokeType="INSIDE" strokeWidth="4.0" width="750.0">
-                     <fill>
-                        <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#7489e8" />
-                              <Stop color="#7489e8" offset="0.007407407407407408" />
-                              <Stop color="#240d5e" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Rectangle>
-               </children>
-            </Pane>
-            <FlowPane fx:id="resultPane" alignment="CENTER" columnHalignment="CENTER" hgap="25.0" maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="700.0" prefHeight="300.0" prefWidth="800.0" prefWrapLength="800.0" visible="true" StackPane.alignment="CENTER" />
-            <StackPane fx:id="endGamePane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
-               <children>
-                  <Pane prefHeight="200.0" prefWidth="700.0">
-                     <children>
-                        <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
-                     </children>
+                     <StackPane.margin>
+                        <Insets top="10.0" />
+                     </StackPane.margin>
                   </Pane>
-                  <Pane prefWidth="700.0">
+               </children>
+            </StackPane>
+         </bottom>
+         <right>
+            <StackPane maxHeight="250.0" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+                  <Insets left="20.0" right="10.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="385.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="385.0" />
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" height="64.0" stroke="BLACK" strokeType="INSIDE" width="385.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="12.0" prefHeight="33.0" prefWidth="251.0" text="Move history" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="63.0" />
+                              <Font name="Purisa Bold" size="21.0" />
                            </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
                         </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="3.0" layoutY="84.0" maxHeight="-Infinity" maxWidth="380.0" minHeight="250.0" minWidth="380.0" prefHeight="250.0" prefWidth="380.0" vbarPolicy="ALWAYS">
+                           <content>
+                              <Label fx:id="moveHistory" alignment="CENTER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" textAlignment="CENTER" wrapText="true" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </Pane>
                </children>
             </StackPane>
-         </children>
-      </StackPane>
-   </center>
-   <left>
-      <StackPane maxHeight="-Infinity" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="350.0" BorderPane.alignment="TOP_CENTER">
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-         <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+         </right>
+         <center>
+            <StackPane maxHeight="380.0" maxWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
                <children>
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" layoutX="14.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="325.0" />
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" height="69.0" layoutX="13.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="325.0">
-                     <fill>
-                        <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#7489e8" />
-                              <Stop color="#7489e8" offset="0.007407407407407408" />
-                              <Stop color="#240d5e" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Rectangle>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="13.0" prefHeight="33.0" prefWidth="250.0" text="Discard pile" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Purisa Bold" size="21.0" />
-                     </font>
-                  </Label>
-                  <ScrollPane hbarPolicy="NEVER" layoutX="15.0" layoutY="84.0" maxHeight="250.0" maxWidth="320.0" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="320.0">
-                     <content>
-                        <FlowPane fx:id="discardPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" prefWrapLength="320.0" vgap="10.0" />
-                     </content>
-                  </ScrollPane>
+                  <Pane prefHeight="380.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Rectangle arcHeight="200.0" arcWidth="200.0" height="380.0" layoutX="25.0" stroke="#110000" strokeType="INSIDE" strokeWidth="4.0" width="750.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                     </children>
+                  </Pane>
+                  <FlowPane fx:id="resultPane" alignment="CENTER" columnHalignment="CENTER" hgap="25.0" maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="700.0" prefHeight="300.0" prefWidth="800.0" prefWrapLength="800.0" visible="true" StackPane.alignment="CENTER" />
+                  <StackPane fx:id="endGamePane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="700.0">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefWidth="700.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="63.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
                </children>
-            </Pane>
+            </StackPane>
+         </center>
+         <left>
+            <StackPane maxHeight="-Infinity" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="350.0" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+                  <Insets left="10.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" layoutX="14.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="325.0" />
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" height="69.0" layoutX="13.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="325.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="13.0" prefHeight="33.0" prefWidth="250.0" text="Discard pile" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="15.0" layoutY="84.0" maxHeight="250.0" maxWidth="320.0" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="320.0">
+                           <content>
+                              <FlowPane fx:id="discardPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" prefWrapLength="320.0" vgap="10.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </left>
+         <top>
+            <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="1300.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" top="10.0" />
+               </BorderPane.margin>
+            </FlowPane>
+         </top>
+      </BorderPane>
+      <Pane fx:id="nextPlayerPane" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="900.0" stroke="BLACK" strokeType="INSIDE" width="1600.0" >
+               <fill>
+                  <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#7489e8" />
+                        <Stop color="#7489e8" offset="0.007407407407407408" />
+                        <Stop color="#240d5e" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Button alignment="CENTER" layoutX="693.0" layoutY="441.0" mnemonicParsing="false" onAction="#nextPlayerButtonClicked" prefHeight="53.0" prefWidth="232.0" text="CONTINUE">
+               <font>
+                  <Font name="Purisa Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="nextPlayerName" alignment="CENTER" layoutX="618.0" layoutY="287.0" prefHeight="125.0" prefWidth="379.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Purisa Bold" size="35.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
          </children>
-      </StackPane>
-   </left>
-   <top>
-      <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="1300.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="30.0" top="10.0" />
-         </BorderPane.margin>
-      </FlowPane>
-   </top>
-</BorderPane>
+      </Pane>
+   </children>
+</StackPane>
