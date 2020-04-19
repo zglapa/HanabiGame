@@ -177,7 +177,6 @@ public class HanabiController implements Initializable {
         if(!endGame)blurMe((index+1)%board.getPlayerAmount());
         playPane.setVisible(false);
         updateResultCards();
-        updateDiscardPileCards();
         updateMoveHistory();
         updateHintsAndLives();
         System.out.println(board.getCurrentPlayerIndex());
