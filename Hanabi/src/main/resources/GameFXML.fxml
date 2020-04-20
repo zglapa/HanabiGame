@@ -61,6 +61,9 @@
                                        </children>
                                     </HBox>
                                  </children>
+                                 <StackPane.margin>
+                                    <Insets top="21.0" />
+                                 </StackPane.margin>
                               </Pane>
                               <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="450.0">
                                  <children>
@@ -81,6 +84,9 @@
                                                 <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
                                                 <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
                                              </children>
+                                             <padding>
+                                                <Insets left="7.0" />
+                                             </padding>
                                           </HBox>
                                        </children>
                                     </Pane>
