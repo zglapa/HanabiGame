@@ -142,6 +142,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                         boolean finalUpdateDiscard = updateDiscard;
                         int playerIndex = (board.getCurrentPlayerIndex() > 0) ? board.getCurrentPlayerIndex()-1:board.getPlayerAmount()-1;
                         updateGUI(playerIndex,moveType,updateDiscard);
+                        blurMe();
                         if(board.getCurrentPlayerIndex() == csc.playerID-1) enableButtons();
                     });
                 }
@@ -207,7 +208,8 @@ public class FixedHanabiControllerOnline implements Initializable {
         cardIx = 0;
         updateHintsAndLives();
         pHintButtons.get(csc.playerID-1).setDisable(true);
-        nextPlayer(null);
+        updateGUI(csc.playerID-1, null,false);
+        blurMe();
         if(csc.playerID-1==board.getCurrentPlayerIndex()) enableButtons();
         startReceivingBoards();
         System.out.println("View is now loaded!");
@@ -304,6 +306,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         for(int i = 0; i < board.getHandSize(); ++i){
             cards.get(csc.playerID-1).get(i).setFill(blank);
         }
+        System.out.println(csc.playerID + " just blurred");
     }
     public void updateHands(int index){
         if(board.getDeck().getSize() == 0){
@@ -323,11 +326,9 @@ public class FixedHanabiControllerOnline implements Initializable {
         }
     }
     public void showYourTrueColors(){
-        blurMe();
-        for(int index = 1; index < board.getPlayerAmount() ; ++index){
+        for(int index = 0; index < board.getPlayerAmount() ; ++index){
             updateHands(index);
         }
-
     }
     public void updateMoveHistory(){
         moveHistory.setText(board.getStringPlayerMoveHistory());
@@ -601,7 +602,6 @@ public class FixedHanabiControllerOnline implements Initializable {
             playPane.setVisible(false);
             updateDiscardPileCards();
         }
-        blurMe();
         disableButtons();
     }
     public void nextPlayer(MoveType moveType){

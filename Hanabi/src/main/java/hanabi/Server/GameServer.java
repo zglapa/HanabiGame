@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameServer {
+    private int NUMBEROFPLAYERS = 3;
     private ServerSocket serverSocket;
     private AtomicInteger numOfPlayers;
     private static int PORT = 9999;
@@ -30,10 +31,10 @@ public class GameServer {
     public void acceptConnections(){
         try{
             System.out.println("[waiting for connections]");
-            while(numOfPlayers.get() < 4){
+            while(numOfPlayers.get() < NUMBEROFPLAYERS){
                 Socket client = serverSocket.accept();
-                System.out.println("Hello Player " + numOfPlayers.incrementAndGet());
-                ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.get());
+                //System.out.println("Hello Player " + numOfPlayers.incrementAndGet());
+                ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.incrementAndGet());
                 players.add(ssc);
                 System.out.println("[new thread created]");
                 Thread t = new Thread(ssc);
@@ -41,8 +42,8 @@ public class GameServer {
                 System.out.println("[ready for another connection]");
             }
             System.out.println("All players are in");
-            String[] players = {"Player1", "Player2", "Player3", "Player4"};
-            Board board = new Board(4,3,8,8,4,null,false,players);
+            String[] players = {"Player1", "Player2", "Player3"};
+            Board board = new Board(NUMBEROFPLAYERS,3,8,8,4,null,false,players);
             sendToAll(board);
         }catch (IOException ex){
             ex.printStackTrace();
@@ -76,7 +77,7 @@ public class GameServer {
             try {
                 sendToAll("Waiting for players");
 
-                while (numOfPlayers.get() < 4) {
+                while (numOfPlayers.get() < NUMBEROFPLAYERS) {
                     Thread.onSpinWait();
                 }
                 while(true){
