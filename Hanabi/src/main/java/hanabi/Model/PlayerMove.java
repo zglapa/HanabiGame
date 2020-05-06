@@ -1,6 +1,8 @@
 package hanabi.Model;
 
-public final class PlayerMove {
+import java.io.Serializable;
+
+public final class PlayerMove implements Serializable {
     private MoveType moveType;
     private Card card;
     private Hint hint;

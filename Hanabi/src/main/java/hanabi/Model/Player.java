@@ -1,9 +1,10 @@
 package hanabi.Model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
     private String name;
     private LinkedList<Card> cards;
     Player(String name,LinkedList<Card> startingCards) {

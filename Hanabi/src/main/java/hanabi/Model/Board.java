@@ -1,9 +1,10 @@
 //Aleksander Katan
 package hanabi.Model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Board {
+public class Board implements Serializable {
     HashMap<Color, Integer> result;
     Deck deck;
     HashSet<Color> inGameColors;

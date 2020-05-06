@@ -1,8 +1,9 @@
 package hanabi.Model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public final class Deck {
+public final class Deck implements Serializable {
     private ArrayList <Card> cards;
 
     private void addAllColors(int x, boolean rainbow) {

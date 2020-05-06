@@ -1,8 +1,9 @@
 package hanabi.Model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class DiscardPile {
+public class DiscardPile implements Serializable {
     LinkedList<Card> pile;
     int pileSize;
     DiscardPile(){

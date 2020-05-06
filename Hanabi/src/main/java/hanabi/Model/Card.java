@@ -1,6 +1,8 @@
 package hanabi.Model;
 
-public class Card implements Comparable<Card>{
+import java.io.Serializable;
+
+public class Card implements Comparable<Card>, Serializable {
     private Color color;
     private int value;
 

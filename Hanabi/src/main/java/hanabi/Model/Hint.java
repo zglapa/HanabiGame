@@ -1,9 +1,10 @@
 //Aleksander Katan
 package hanabi.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Hint {
+public final class Hint implements Serializable {
     private Color cardColor;
     private Integer cardValue;
     private Player hinted;
