@@ -114,7 +114,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         public ClientSideConnection(){
             System.out.println("Client");
             try{
-                socket = new Socket("localhost", 9999);
+                socket = new Socket("25.149.158.182", 9999);
                 System.out.println("Connected to server");
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.flush();
@@ -140,7 +140,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                         boolean updateDiscard = false;
                         if(board.getDiscardPile().getDiscardPile().size() != discardCards.size()) updateDiscard = true;
                         boolean finalUpdateDiscard = updateDiscard;
-                        updateGUI(0,moveType,updateDiscard);
+                        int playerIndex = (board.getCurrentPlayerIndex() > 0) ? board.getCurrentPlayerIndex()-1:board.getPlayerAmount()-1;
+                        updateGUI(playerIndex,moveType,updateDiscard);
                         if(board.getCurrentPlayerIndex() == csc.playerID-1) enableButtons();
                     });
                 }

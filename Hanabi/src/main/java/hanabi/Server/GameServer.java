@@ -9,16 +9,17 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameServer {
     private ServerSocket serverSocket;
-    private volatile int numOfPlayers;
+    private AtomicInteger numOfPlayers;
     private static int PORT = 9999;
     private static ArrayList<ServerSideConnection> players;
     private static Board board= null;
     public GameServer(){
         System.out.println("[server started]");
-        numOfPlayers=0;
+        numOfPlayers= new AtomicInteger(0);
         try{
             serverSocket = new ServerSocket(PORT);
         }catch(IOException ex){
@@ -29,11 +30,10 @@ public class GameServer {
     public void acceptConnections(){
         try{
             System.out.println("[waiting for connections]");
-            while(numOfPlayers < 4){
+            while(numOfPlayers.get() < 4){
                 Socket client = serverSocket.accept();
-                numOfPlayers++;
-                System.out.println("Hello Player " + numOfPlayers);
-                ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers);
+                System.out.println("Hello Player " + numOfPlayers.incrementAndGet());
+                ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.get());
                 players.add(ssc);
                 System.out.println("[new thread created]");
                 Thread t = new Thread(ssc);
@@ -76,7 +76,7 @@ public class GameServer {
             try {
                 sendToAll("Waiting for players");
 
-                while (numOfPlayers < 4) {
+                while (numOfPlayers.get() < 4) {
                     Thread.onSpinWait();
                 }
                 while(true){
