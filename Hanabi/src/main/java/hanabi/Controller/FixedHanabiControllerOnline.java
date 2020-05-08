@@ -114,7 +114,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         public ClientSideConnection(){
             System.out.println("Client");
             try{
-                socket = new Socket("25.149.158.182", 9999);
+                socket = new Socket("localhost", 9999);
                 System.out.println("Connected to server");
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.flush();
