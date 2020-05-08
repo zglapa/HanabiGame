@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameServer {
-    private int NUMBEROFPLAYERS = 7;
+    private int NUMBEROFPLAYERS = 2;
     private ServerSocket serverSocket;
     private AtomicInteger numOfPlayers;
     private static int PORT = 9999;

@@ -1,5 +1,5 @@
 package hanabi.Model;
 
 public enum Color {
-    W, Y, R, G, B, RAINBOW
+    WHITE, YELLOW, RED, GREEN, BLUE, RAINBOW
 }

@@ -7,15 +7,14 @@ public final class PlayerMove implements Serializable {
     private Card card;
     private Hint hint;
     private Player currentPlayer;
-    public PlayerMove(Player currentPlayer, MoveType moveType, Card card) {
-        this.currentPlayer = currentPlayer;
-        this.card = card;
-        this.moveType = moveType;
-    }
+    private int cardIndex;
+    private Boolean correctPlay;
+
     public PlayerMove(Player currentPlayer, MoveType moveType, int cardIndex) {
         this.currentPlayer = currentPlayer;
         this.card = currentPlayer.getHand().get(cardIndex);
         this.moveType = moveType;
+        this.cardIndex = cardIndex+1;
     }
     public PlayerMove(Player currentPlayer, MoveType moveType, Hint hint){
         this.currentPlayer = currentPlayer;
@@ -34,19 +33,28 @@ public final class PlayerMove implements Serializable {
         if(this.moveType != MoveType.HINT) throw new NoHintMoveException();
         return this.hint;
     }
+
+    public void setCorrectPlay(boolean a) { correctPlay = a; }
     //@Override
     public String toString(boolean isCurrentPlayer){
         if(moveType == MoveType.HINT){
-            if (!isCurrentPlayer)
-                return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toString();
-            else
-                return currentPlayer.toString() + " | " + moveType.name() + " | " + hint.toStringHidden();
+            if (isCurrentPlayer)
+                return new String(new StringBuilder().append(currentPlayer.toString()).append("\n").append(hint.toStringHidden()));
+            return new String(new StringBuilder().append(currentPlayer.toString()).append("\n").append(hint.toString()));
         }
-        else{
-            return currentPlayer.toString() + " | " + moveType.name() + " | " + card.toString();
+        else {
+            StringBuilder ans = new StringBuilder().append(currentPlayer.toString()).append("\n")
+                    .append(moveType.name()).append(" from position ").append(cardIndex).append("\n")
+                    .append(card.toString());
+            if (moveType == MoveType.PLAY && correctPlay != null) {
+                ans.append('\n');
+                if (correctPlay)
+                    ans.append("CORRECT");
+                else ans.append("WRONG");
+            }
+            return new String(ans);
         }
     }
-
 }
 
 class NoCardMoveException extends Exception{

@@ -37,6 +37,7 @@ public class Board implements Serializable {
     public int getHandSize() { return handSize; }
     public int getTurnsUntilEnd() { return (turnsUntilEnd < 0) ? -1 : turnsUntilEnd; }
     public int getRewardedForPlaying() { return rewardedForPlaying; }
+    public int getRemainingCardsAmount() { return deck.getSize(); }
 
 
     public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, String... names) {
@@ -165,9 +166,11 @@ public class Board implements Serializable {
                 result.put(cardPlayed.getColor(), cardPlayed.getValue());
                 if (cardPlayed.getValue() == rewardedForPlaying)
                     currentHints = (currentHints >= maxHints) ? maxHints : currentHints+1;
+                playerMove.setCorrectPlay(true);
             } else {
                 currentLives--;
                 discardPile.add(cardPlayed);
+                playerMove.setCorrectPlay(false);
             }
 
             endMove(playerMove);
@@ -320,6 +323,25 @@ public class Board implements Serializable {
 
             ans.append("\n");
         }
+        return new String(ans);
+    }
+
+    public String getStringPlayerMoveHistory(int whosBlurred) {
+        StringBuilder ans = new StringBuilder();
+
+        for (int i = playerMoveHistory.size()-1; i>=0; i--) {
+            PlayerMove move = playerMoveHistory.get(i);
+
+            try {
+                if (move.getHint().getHinted() == players.get(whosBlurred))
+                    ans.append(move.toString(true));
+                else ans.append(move.toString(false));
+            } catch (NoHintMoveException e) {
+                ans.append(move.toString(false));
+            }
+            ans.append("\n\n");
+        }
+
         return new String(ans);
     }
 }

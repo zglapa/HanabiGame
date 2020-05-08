@@ -331,8 +331,9 @@ public class FixedHanabiControllerOnline implements Initializable {
         }
     }
     public void updateMoveHistory(){
-        moveHistory.setText(board.getStringPlayerMoveHistory());
+        moveHistory.setText(board.getStringPlayerMoveHistory(csc.playerID-1));
     }
+
     public void updateResultCards(){
         for(int i = 0; i< resultCards.size(); ++i){
             int cardValue = board.getResult().get(Color.values()[i]);

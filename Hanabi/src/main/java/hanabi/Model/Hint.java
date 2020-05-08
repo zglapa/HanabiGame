@@ -59,7 +59,7 @@ public final class Hint implements Serializable {
             ans.append(cardValue);
         ans.append(" to ");
         ans.append(hinted.getName());
-        ans.append(" ");
+        ans.append("\n");
         ans.append(hand);
 
         return new String(ans);
@@ -73,7 +73,7 @@ public final class Hint implements Serializable {
             ans.append(cardValue);
         ans.append(" to ");
         ans.append(hinted.getName());
-        ans.append(" ");
+        ans.append("\n");
 
         if (isHintTypeColor()) {
             ans.append("[");
