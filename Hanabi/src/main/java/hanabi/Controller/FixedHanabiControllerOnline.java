@@ -34,6 +34,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
     @FXML Pane numberHintPane, colorHintPane;
     @FXML Pane endGamePane;
+    @FXML Label connectionLost;
     @FXML FlowPane playerHands, discardPane, resultPane;
     @FXML Label moveHistory, nextPlayerName;
     @FXML Button hintButton, playButton, discardButton;
@@ -82,6 +83,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+                endGame();
+                connectionLost.setVisible(true);
             }
         }
         public void sendMoveType(MoveType moveType){
@@ -90,6 +93,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+                endGame();
+                connectionLost.setVisible(true);
             }
         }
         public MoveType receiveMoveType(){
@@ -98,6 +103,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 moveType = (MoveType)in.readObject();
             } catch (IOException | ClassNotFoundException  | ClassCastException e) {
                 e.printStackTrace();
+                endGame();
+                connectionLost.setVisible(true);
             }
             return moveType;
         }
@@ -108,6 +115,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 System.out.println("received board");
             } catch (IOException | ClassNotFoundException | ClassCastException e) {
                 e.printStackTrace();
+                endGame();
+                connectionLost.setVisible(true);
             }
             return b;
         }
@@ -122,6 +131,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 playerID = in.readInt();
             }catch (IOException ex){
                 ex.printStackTrace();
+                endGame();
+                connectionLost.setVisible(true);
             }
         }
     }
@@ -129,11 +140,19 @@ public class FixedHanabiControllerOnline implements Initializable {
         csc = new ClientSideConnection();
     }
 
+    public void endGame() {
+        if (!endGame) {
+            endGamePane.setVisible(true);
+            disableButtons();
+            endGame =true;
+        }
+    }
+
     public void startReceivingBoards(){
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true){
+                while(!endGame){
                     board = csc.receiveBoard();
                     MoveType moveType = csc.receiveMoveType();
                     Platform.runLater(() ->{
@@ -170,6 +189,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                     csc.socket.close();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
+                    endGame();
                 }
             }
         }
@@ -236,9 +256,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             board.action(playerMove);
             nextPlayer(movetype);
         } catch (GameEndException e) {
-            endGamePane.setVisible(true);
-            disableButtons();
-            endGame =true;
+            endGame();
         }catch (NoHintsLeftException e){
             //NoHints.display("Alert","No hints left");
             noHintsPane.setVisible(true);

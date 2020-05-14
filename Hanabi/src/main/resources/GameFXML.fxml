@@ -16,6 +16,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+
+
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
    <children>
       <BorderPane styleClass="root">
@@ -274,6 +276,14 @@
                               <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
                                  <font>
                                     <Font name="Purisa Bold" size="63.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="199.0" layoutY="210.0" maxHeight="315.0" maxWidth="550.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="400.0" text="[connection lost]" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="48.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
