@@ -1,6 +1,7 @@
 package hanabi.Server;
 
 import hanabi.Model.Board;
+import hanabi.Model.Deck;
 import hanabi.Model.MoveType;
 
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+
+
 
 public class GameServer {
     private int NUMBEROFPLAYERS = 2;
@@ -43,7 +46,7 @@ public class GameServer {
             }
             System.out.println("All players are in");
             String[] players = Board.randomNames(NUMBEROFPLAYERS);
-            Board board = new Board(NUMBEROFPLAYERS,3,8,8,4,null,false,players);
+            Board board = new Board(NUMBEROFPLAYERS,3,8,8,4,new Deck(true, true, true),false,players);
             sendToAll(board);
         }catch (IOException ex){
             ex.printStackTrace();

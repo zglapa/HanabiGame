@@ -1,6 +1,8 @@
 //Aleksander Katan
 package hanabi.Model;
 
+import hanabi.Controller.AlertBox;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -109,6 +111,35 @@ public class Board implements Serializable {
         if (playerMove.getType() == MoveType.HINT) {
             if (currentHints > 0) {
                 currentHints--;
+                Hint hint;
+                LinkedList<Card> cards;
+                try {
+                    hint = playerMove.getHint();
+                    cards = hint.getHinted().getHand();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    endMove(playerMove);
+                    return;
+                }
+
+                if (hint.isHintTypeColor()) {
+                    Color color = Color.RAINBOW;
+                    try {
+                        color = hint.getCardColor();
+                    } catch (Exception ignored) {};
+
+                    for (Card card : cards)
+                        card.publicCardInfo.setColor(color, color.equals(card.getColor()) || card.getColor()==Color.RAINBOW);
+                } else {
+                    int number = 0;
+                    try {
+                        number = hint.getCardValue();
+                    } catch (Exception ignored) {ignored.printStackTrace();};
+
+                    for (Card card : cards)
+                        card.publicCardInfo.setNumber(number, card.getValue()==number);
+                }
+                //AlertBox.display("new hand status", hint.getHinted().getHand().toString());
                 endMove(playerMove);
                 return;
             }
@@ -183,6 +214,7 @@ public class Board implements Serializable {
         turnsUntilEnd--;
         currentPlayerIndex = (currentPlayerIndex+1)%playerAmount;
         playerMoveHistory.add(playerMove);
+
         if (hasGameEnded())
             throw new GameEndException();
     }

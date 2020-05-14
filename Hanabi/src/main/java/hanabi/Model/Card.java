@@ -5,17 +5,19 @@ import java.io.Serializable;
 public class Card implements Comparable<Card>, Serializable {
     private Color color;
     private int value;
+    public PublicCardInfo publicCardInfo;
 
-    Card(Color color, int value) {
+    public Card(Color color, int value) {
         this.color = color;
         this.value = value;
+        publicCardInfo = new PublicCardInfo();
     }
 
     public Color getColor() { return color; }
     public int getValue() { return value; }
     @Override
     public String toString(){
-        return color.name() + " " + value;
+        return color.name() + " " + value;// + '\n' + publicCardInfo + '\n';
     }
 
     @Override
