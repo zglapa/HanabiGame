@@ -231,7 +231,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         //board= HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
         int HANDSIZE = board.getHandSize();
-        boolean WITHRAINBOWS = false;
+        boolean WITHRAINBOWS = board.getInGameColors().contains(Color.RAINBOW);
         addHands(PLAYERAMOUNT,HANDSIZE);
         addButtonsToArrayLists();
         for(int i = PLAYERAMOUNT; i < 7;++i){
