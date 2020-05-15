@@ -23,4 +23,3 @@ public class FixedMainOnline extends Application {
         stage.show();
     }
 }
-

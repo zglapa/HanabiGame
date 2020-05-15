@@ -60,6 +60,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Button> cHintButtons;
     ArrayList<Button> nPlayButtons;
     ArrayList<ArrayList<Tooltip>> tooltipsCardInfo;
+    ArrayList<Rectangle> playerBackgrounds;
     ImagePattern blank;
     int cardIx;
     boolean isDiscard;
@@ -192,7 +193,6 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-        tooltipsCardInfo = new ArrayList<>();
         setUpBoard = HanabiMain.gameCreationWindow.board;
         this.connectToServer();
         Object o = null;
@@ -228,6 +228,8 @@ public class FixedHanabiControllerOnline implements Initializable {
         resultCards = new ArrayList<>();
         discardCards = new ArrayList<>();
         cards = new ArrayList<>();
+        tooltipsCardInfo = new ArrayList<>();
+        playerBackgrounds = new ArrayList<>();
         //board= HanabiMain.setUpWindow.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
         int HANDSIZE = board.getHandSize();
@@ -250,6 +252,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         }
         updateHands();
         updateCardInfoTooltips();
+        updateMoveHistory();
         showYourTrueColors();
         cardIx = 0;
         updateHintsAndLives();
@@ -368,6 +371,15 @@ public class FixedHanabiControllerOnline implements Initializable {
             cards.get(index).get(i).setFill(colorPattern);
         }
     }
+    public void updatePlayerBackgrounds() {
+        for (int i = 0; i< board.getPlayerAmount(); i++) {
+            if (i == board.getCurrentPlayerIndex())
+                playerBackgrounds.get(i).setFill(javafx.scene.paint.Color.GREEN);
+            else
+                playerBackgrounds.get(i).setFill(javafx.scene.paint.Color.WHITE);
+        }
+    }
+
     public void showYourTrueColors(){
         for(int index = 0; index < board.getPlayerAmount() ; ++index){
             updateHands(index);
@@ -429,6 +441,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             box.setFill(javafx.scene.paint.Color.WHITE);
             box.setOpacity(0.7);
             box.setVisible(true);
+            playerBackgrounds.add(box);
             GridPane outerGrid = new GridPane();
             GridPane gridPane = new GridPane();
             outerGrid.setAlignment(Pos.CENTER);
@@ -678,6 +691,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         if(playerIndex<0)playerIndex=0;
         updateHands();
         updateCardInfoTooltips();
+        updatePlayerBackgrounds();
         updateHands(playerIndex);
         updateResultCards();
         updateMoveHistory();

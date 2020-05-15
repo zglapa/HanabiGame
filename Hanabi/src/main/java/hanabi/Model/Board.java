@@ -361,6 +361,10 @@ public class Board implements Serializable {
     public String getStringPlayerMoveHistory(int whosBlurred) {
         StringBuilder ans = new StringBuilder();
 
+        ans.append("Remaining deck size: ");
+        ans.append(deck.getSize());
+        ans.append("\n\n");
+
         for (int i = playerMoveHistory.size()-1; i>=0; i--) {
             PlayerMove move = playerMoveHistory.get(i);
 
