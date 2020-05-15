@@ -5,3 +5,4 @@ module hanabi {
     exports hanabi.Controller;
     opens hanabi.Controller;
 }
+

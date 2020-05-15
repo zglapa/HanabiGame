@@ -46,7 +46,7 @@ public class GameServer {
             }
             System.out.println("All players are in");
             String[] players = Board.randomNames(NUMBEROFPLAYERS);
-            Board board = new Board(NUMBEROFPLAYERS,3,8,8,4,new Deck(true, true, true),false,players);
+            Board board = new Board(NUMBEROFPLAYERS,1,8,8,4,new Deck(true, true, true),false,players);
             sendToAll(board);
         }catch (IOException ex){
             ex.printStackTrace();

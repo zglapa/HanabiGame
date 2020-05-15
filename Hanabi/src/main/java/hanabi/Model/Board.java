@@ -232,7 +232,7 @@ public class Board implements Serializable {
         return temp==2;
     }
 
-    private boolean hasGameEnded() {
+    public boolean hasGameEnded() {
         if (turnsUntilEnd == 0) {
             //System.out.println("turns");
             return true;

@@ -139,15 +139,14 @@ public class FixedHanabiControllerOnline implements Initializable {
     public void connectToServer(){
         csc = new ClientSideConnection();
     }
-
     public void endGame() {
         if (!endGame) {
             endGamePane.setVisible(true);
             disableButtons();
-            endGame =true;
+            revealAllHands();
+            endGame = true;
         }
     }
-
     public void startReceivingBoards(){
         Thread t = new Thread(new Runnable() {
             @Override
@@ -161,8 +160,13 @@ public class FixedHanabiControllerOnline implements Initializable {
                         boolean finalUpdateDiscard = updateDiscard;
                         int playerIndex = (board.getCurrentPlayerIndex() > 0) ? board.getCurrentPlayerIndex()-1:board.getPlayerAmount()-1;
                         updateGUI(playerIndex,moveType,updateDiscard);
-                        blurMe();
-                        if(board.getCurrentPlayerIndex() == csc.playerID-1) enableButtons();
+                        if(board.hasGameEnded()){
+                            endGame();
+                        }
+                        else {
+                            blurMe();
+                            if (board.getCurrentPlayerIndex() == csc.playerID - 1) enableButtons();
+                        }
                     });
                 }
             }
@@ -198,6 +202,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        connectionLost.setVisible(false);
         endGame = false;
         players = new ArrayList<>();
         resultCards = new ArrayList<>();
@@ -254,13 +259,13 @@ public class FixedHanabiControllerOnline implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype,hint);
         try{
             board.action(playerMove);
-            nextPlayer(movetype);
         } catch (GameEndException e) {
             endGame();
         }catch (NoHintsLeftException e){
             //NoHints.display("Alert","No hints left");
             noHintsPane.setVisible(true);
         }
+        nextPlayer(null);
     }
     public void playDone(){
         int index = board.getCurrentPlayerIndex();
@@ -273,13 +278,10 @@ public class FixedHanabiControllerOnline implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
-            nextPlayer(movetype);
-
         } catch (GameEndException | NoHintsLeftException e) {
-            endGamePane.setVisible(true);
-            disableButtons();
-            endGame = true;
+            endGame();
         }
+        nextPlayer(movetype);
         System.out.println(board.getCurrentPlayerIndex());
     }
     public void discardDone(){
@@ -289,13 +291,10 @@ public class FixedHanabiControllerOnline implements Initializable {
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
-            nextPlayer(movetype);
-
         } catch (GameEndException | NoHintsLeftException e) {
-            endGamePane.setVisible(true);
-            disableButtons();
-            endGame = true;
+            endGame();
         }
+        nextPlayer(movetype);
         System.out.println(board.getCurrentPlayerIndex());
     }
     public void hintButtonClicked(ActionEvent actionEvent){
@@ -325,6 +324,11 @@ public class FixedHanabiControllerOnline implements Initializable {
             cards.get(csc.playerID-1).get(i).setFill(blank);
         }
         System.out.println(csc.playerID + " just blurred");
+    }
+    public void revealAllHands(){
+        for(int i = 0; i < board.getPlayerAmount(); ++i){
+            updateHands(i);
+        }
     }
     public void updateHands(int index){
         if(board.getDeck().getSize() == 0){
