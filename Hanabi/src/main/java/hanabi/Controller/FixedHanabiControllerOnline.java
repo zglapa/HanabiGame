@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -16,10 +17,12 @@ import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -56,6 +59,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Button> nHintButtons;
     ArrayList<Button> cHintButtons;
     ArrayList<Button> nPlayButtons;
+    ArrayList<ArrayList<Tooltip>> tooltipsCardInfo;
     ImagePattern blank;
     int cardIx;
     boolean isDiscard;
@@ -68,7 +72,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Label> players;
     ArrayList<ArrayList<Rectangle>> cards;
     ArrayList<Rectangle> discardCards;
-
+    Board setUpBoard;
+    String PlayerName;
     //Client connections
     private ClientSideConnection csc;
     private class ClientSideConnection{
@@ -129,6 +134,13 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
                 in = new ObjectInputStream(socket.getInputStream());
                 playerID = in.readInt();
+                PlayerName = "Player" + String.valueOf(playerID);
+                if(playerID == 1){
+                    out.writeObject(setUpBoard);
+                    out.flush();
+                }
+                out.writeObject(PlayerName);
+                out.flush();
             }catch (IOException ex){
                 ex.printStackTrace();
                 endGame();
@@ -143,6 +155,8 @@ public class FixedHanabiControllerOnline implements Initializable {
         if (!endGame) {
             endGamePane.setVisible(true);
             disableButtons();
+            hideHintButtons();
+            playPane.setVisible(false);
             revealAllHands();
             endGame = true;
         }
@@ -165,6 +179,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                         }
                         else {
                             blurMe();
+                            playPane.setVisible(false);
+                            hideHintButtons();
                             if (board.getCurrentPlayerIndex() == csc.playerID - 1) enableButtons();
                         }
                     });
@@ -175,6 +191,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
+        tooltipsCardInfo = new ArrayList<>();
+        setUpBoard = HanabiMain.gameCreationWindow.board;
         this.connectToServer();
         Object o = null;
         board = null;
@@ -184,10 +202,11 @@ public class FixedHanabiControllerOnline implements Initializable {
                 board = (Board)o;
 
                 System.out.println("board caught");
+            }catch (ClassCastException | OptionalDataException e){
+                System.out.println(o);
             }catch (IOException | ClassNotFoundException ex){
                 ex.printStackTrace();
-            }catch (ClassCastException e){
-                System.out.println(o);
+
             }catch (Exception e){
                 try {
                     csc.socket.close();
@@ -229,6 +248,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             e.printStackTrace();
         }
         updateHands();
+        updateCardInfoTooltips();
         showYourTrueColors();
         cardIx = 0;
         updateHintsAndLives();
@@ -389,6 +409,18 @@ public class FixedHanabiControllerOnline implements Initializable {
             System.out.println(discardCards.size());
         }
     }
+    public void updateCardInfoTooltips() {
+        for (int i = 0; i< board.getPlayerAmount(); i++) {
+            for (int j = 0; j<board.getHandSize(); j++) {
+                if (j > board.getPlayers().get(i).getHand().size()) {
+                    tooltipsCardInfo.get(i).get(j).setShowDelay(new Duration(378462836));
+                } else {
+                    tooltipsCardInfo.get(i).get(j).setText(board.getPlayers().get(i).getHand().get(j).publicCardInfo.toString());
+                }
+            }
+        }
+    }
+
     public void addHands(int numberOfPlayers, int handSize){
         for(int i = 0;i < numberOfPlayers; ++i){
             StackPane stackPane = new StackPane();
@@ -408,7 +440,36 @@ public class FixedHanabiControllerOnline implements Initializable {
             player.setAlignment(Pos.CENTER);
             players.add(player);
             cards.add(new ArrayList<Rectangle>());
+
+
+            GridPane gridTooltips = new GridPane(); //card info
+            gridTooltips.setHgap(10);
+            gridTooltips.setMaxWidth(Region.USE_COMPUTED_SIZE);
+            gridTooltips.setAlignment(Pos.CENTER);
+            Rectangle rec = new Rectangle();
+            rec.setHeight(40);
+            rec.setWidth(40);
+            rec.setVisible(false);
+            gridTooltips.add(rec, 0, 0);
+            tooltipsCardInfo.add(new ArrayList<>());
+
             for(int j = 0; j <handSize; ++j){
+                Button button = new Button();
+                button.setMaxHeight(40);
+                button.setMinHeight(40);
+                button.setMaxWidth(40);
+                button.setMinWidth(40);
+                button.setVisible(true);
+                gridTooltips.add(button, j, 1);
+                Tooltip tooltip = new Tooltip("emptyTooltip");
+                tooltip.setStyle("-fx-font-size: 20");
+                tooltip.setShowDelay(new Duration(500));
+                tooltipsCardInfo.get(i).add(tooltip);
+
+                button.setTooltip(tooltip);
+                button.setOpacity(0);
+
+
                 Rectangle newCard = new Rectangle();
                 newCard.arcHeightProperty().setValue(15);
                 newCard.arcWidthProperty().setValue(15);
@@ -432,7 +493,10 @@ public class FixedHanabiControllerOnline implements Initializable {
             stackPane.setPrefHeight(height);
             stackPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
             stackPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
-            playerHands.getChildren().add(stackPane);
+
+            stackPane.getChildren().add(gridTooltips);
+
+            playerHands.getChildren().addAll(stackPane);
         }
     }
     public void addColors() throws URISyntaxException {
@@ -612,6 +676,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     public void updateGUI(int playerIndex, MoveType moveType, boolean foulPlay){
         if(playerIndex<0)playerIndex=0;
         updateHands();
+        updateCardInfoTooltips();
         updateHands(playerIndex);
         updateResultCards();
         updateMoveHistory();

@@ -27,11 +27,19 @@ public class HanabiMain extends Application {
         mainMenuWindow.setUp();
         switch (MainMenuWindow.action) {
             case 0: //forced exit
-            case 2: //settings
+            case 2: //multiplayer
+                gameCreationWindow.run();;
+                if(gameCreationWindow.exit)
+                    break;
+                root = FXMLLoader.load(getClass().getResource("/GameFXML.fxml"));
+                stage.setTitle("Hanabi");
+                stage.setScene(new Scene(root, 1600, 900));
+                stage.show();
+                break;
             case 3: //exit
                 exit();
                 break;
-            case 1: //play
+            case 1: //hotseat
                 setUpWindow.setUp();
                 if(setUpWindow.exit)
                     break;

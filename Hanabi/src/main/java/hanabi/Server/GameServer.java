@@ -15,12 +15,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class GameServer {
-    private int NUMBEROFPLAYERS = 2;
+    private static Board BOARD;
+    private int NUMBEROFPLAYERS = 7;
     private ServerSocket serverSocket;
     private AtomicInteger numOfPlayers;
     private static int PORT = 9999;
     private static ArrayList<ServerSideConnection> players;
-    private static Board board= null;
     public GameServer(){
         System.out.println("[server started]");
         numOfPlayers= new AtomicInteger(0);
@@ -36,18 +36,16 @@ public class GameServer {
             System.out.println("[waiting for connections]");
             while(numOfPlayers.get() < NUMBEROFPLAYERS){
                 Socket client = serverSocket.accept();
-                //System.out.println("Hello Player " + numOfPlayers.incrementAndGet());
                 ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.incrementAndGet());
                 players.add(ssc);
                 System.out.println("[new thread created]");
                 Thread t = new Thread(ssc);
                 t.start();
                 System.out.println("[ready for another connection]");
+                if(BOARD != null) NUMBEROFPLAYERS = BOARD.getPlayerAmount();
             }
             System.out.println("All players are in");
-            String[] players = Board.randomNames(NUMBEROFPLAYERS);
-            Board board = new Board(NUMBEROFPLAYERS,1,8,8,4,new Deck(true, true, true),false,players);
-            sendToAll(board);
+            sendToAll(BOARD);
         }catch (IOException ex){
             ex.printStackTrace();
         }
@@ -59,18 +57,26 @@ public class GameServer {
         private ObjectInputStream in;
         private ObjectOutputStream out;
         private int playerID;
+        private String playerName;
 
         public ServerSideConnection(Socket s, ArrayList<ServerSideConnection> playrs, int playerID){
             socket = s;
             connections = playrs;
             this.playerID = playerID;
-            System.out.println("xxx");
             try {
                 out = new ObjectOutputStream(s.getOutputStream());
                 out.flush();
                 in = new ObjectInputStream(s.getInputStream());
-                out.writeInt(playerID);
-            }catch(IOException ex){
+                out.writeInt(playerID);                out.flush();
+
+                if(playerID == 1){
+                    BOARD = (Board)in.readObject();
+                }
+                this.playerName = (String) in.readObject();
+                System.out.println(this.playerName + " " + this.playerID);
+                BOARD.getPlayers().get(playerID-1).changeName(playerName);
+                System.out.println(BOARD.toString());
+            }catch(IOException | ClassNotFoundException ex){
                 ex.printStackTrace();
             }
             System.out.println("done");
@@ -78,20 +84,20 @@ public class GameServer {
         @Override
         public void run() {
             try {
-                sendToAll("Waiting for players");
+                //sendToAll("Waiting for players");
 
                 while (numOfPlayers.get() < NUMBEROFPLAYERS) {
                     Thread.onSpinWait();
                 }
                 while(true){
-                    board = (Board) in.readObject();
-                    sendToAll(board);
+                    BOARD = (Board) in.readObject();
+                    sendToAll(BOARD);
                     MoveType moveType = (MoveType) in.readObject();
                     sendToAll(moveType);
                 }
 
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (IOException | ClassNotFoundException ignored) {
+                System.out.println("[Connection terminated]");
             }
 
         }

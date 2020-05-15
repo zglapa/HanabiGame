@@ -15,6 +15,7 @@ public class Player implements Serializable {
     public LinkedList <Card> getHand() {return cards;}
     public int getCurrentHandSize() {return cards.size();}
     public String getName() { return name;}
+    public void changeName(String name){this.name = name;}
     public void playOrDiscard(Card played, Card drawn) {
         cards.remove(played); // it may not work
         if (drawn != null)
