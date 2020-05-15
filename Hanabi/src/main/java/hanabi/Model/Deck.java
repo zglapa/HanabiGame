@@ -40,6 +40,8 @@ public final class Deck implements Serializable {
                     addAllColors(j, false);
             addAllColors(1, false);
             addAllColors(5, false);
+            for (Card card : cards)
+                card.publicCardInfo.setColor(Color.RAINBOW, false);
         }
 
         if(shuffle)

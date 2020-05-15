@@ -79,17 +79,8 @@ public class PublicCardInfo implements Serializable {
         } catch (NoPublicInfoException e) {
             ans.append("Possible numbers:").append('\n');
             for (int i = 1; i<=5; i++) {
-                ans.append(i);
-                ans.append(" - ");
-                switch (publicNumber.get(i).ordinal()) {
-                    case 0: // no
-                        ans.append("not");
-                        break;
-                    case 1:
-                        ans.append("possible");
-                        break;
-                }
-                ans.append('\n');
+                if (publicNumber.get(i) == CardStatus.MAYBE)
+                    ans.append(i).append(" ");
             }
         }
         ans.append('\n');
@@ -108,17 +99,8 @@ public class PublicCardInfo implements Serializable {
                 for (Color c : Color.values()) {
                     if (c == Color.RAINBOW)
                         continue;
-                    ans.append(c);
-                    ans.append(" - ");
-                    switch (publicColor.get(c).ordinal()) {
-                        case 0: // no
-                            ans.append("not");
-                            break;
-                        case 1:
-                            ans.append("possible");
-                            break;
-                    }
-                    ans.append('\n');
+                    if (publicColor.get(c) == CardStatus.MAYBE)
+                        ans.append(c).append("  ");
                 }
             }
         } else {
@@ -126,22 +108,24 @@ public class PublicCardInfo implements Serializable {
                 ans.append("The color is known: ");
                 ans.append(col);
             } else {
-                ans.append("Possible colors:").append('\n');
+                ans.append("Possible colors:");
+                ans.append('\n');
+                boolean known = false;
                 for (Color c : Color.values()) {
-                    ans.append(c);
-                    ans.append(" - ");
-                    switch (publicColor.get(c).ordinal()) {
-                        case 0: // no
-                            ans.append("not");
-                            break;
-                        case 1:
-                            ans.append("possible");
-                            break;
-                        case 2:
-                            ans.append("yes");
-                            break;
+                    if (publicColor.get(c) == CardStatus.YES)
+                        known = true;
+                }
+                if (known) {
+                    for (Color c : Color.values()) {
+                        if (publicColor.get(c) == CardStatus.YES)
+                            ans.append(c).append("  ");
                     }
-                    ans.append('\n');
+                    ans.append(Color.RAINBOW);
+                } else {
+                    for (Color c : Color.values()) {
+                        if (publicColor.get(c) != CardStatus.NO)
+                            ans.append(c).append("  ");
+                    }
                 }
             }
         }
