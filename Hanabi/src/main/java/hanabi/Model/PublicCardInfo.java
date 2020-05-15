@@ -57,7 +57,7 @@ public class PublicCardInfo implements Serializable {
             if (publicColor.get(color) == CardStatus.YES)
                 return color;
 
-        throw new RuntimeException();
+        throw new NoPublicInfoException();
     }
 
     public Integer getPublicNumber() throws NoPublicInfoException {
@@ -70,7 +70,82 @@ public class PublicCardInfo implements Serializable {
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder();
-        ans.append(publicNumber).append('\n').append(publicColor).append('\n');
+        ans.append("Information known to all players:").append('\n');
+        int value = 0;
+        try {
+            value = getPublicNumber();
+            ans.append("The number is known: ");
+            ans.append(value);
+        } catch (NoPublicInfoException e) {
+            ans.append("Possible numbers:").append('\n');
+            for (int i = 1; i<=5; i++) {
+                ans.append(i);
+                ans.append(" - ");
+                switch (publicNumber.get(i).ordinal()) {
+                    case 0: // no
+                        ans.append("not");
+                        break;
+                    case 1:
+                        ans.append("possible");
+                        break;
+                }
+                ans.append('\n');
+            }
+        }
+        ans.append('\n');
+        Color col = null;
+
+        try {
+            col = getPublicColor();
+        } catch (NoPublicInfoException ignored) {}
+
+        if (publicColor.get(Color.RAINBOW) == CardStatus.NO) {
+            if (col != null) {
+                ans.append("The color is known: ");
+                ans.append(col);
+            } else {
+                ans.append("Possible colors:").append('\n');
+                for (Color c : Color.values()) {
+                    if (c == Color.RAINBOW)
+                        continue;
+                    ans.append(c);
+                    ans.append(" - ");
+                    switch (publicColor.get(c).ordinal()) {
+                        case 0: // no
+                            ans.append("not");
+                            break;
+                        case 1:
+                            ans.append("possible");
+                            break;
+                    }
+                    ans.append('\n');
+                }
+            }
+        } else {
+            if (col == Color.RAINBOW) {
+                ans.append("The color is known: ");
+                ans.append(col);
+            } else {
+                ans.append("Possible colors:").append('\n');
+                for (Color c : Color.values()) {
+                    ans.append(c);
+                    ans.append(" - ");
+                    switch (publicColor.get(c).ordinal()) {
+                        case 0: // no
+                            ans.append("not");
+                            break;
+                        case 1:
+                            ans.append("possible");
+                            break;
+                        case 2:
+                            ans.append("yes");
+                            break;
+                    }
+                    ans.append('\n');
+                }
+            }
+        }
+
         return new String(ans);
     }
 }
