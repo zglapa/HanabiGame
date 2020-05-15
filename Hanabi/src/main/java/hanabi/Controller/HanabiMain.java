@@ -14,12 +14,14 @@ public class HanabiMain extends Application {
     Parent root;
     public static SetUpWindow setUpWindow=new SetUpWindow();
     public static MainMenuWindow mainMenuWindow = new MainMenuWindow();
+    public static GameCreationWindow gameCreationWindow = new GameCreationWindow();
 
     public static void main(String[] args){
         launch(args);
     }
     @Override
     public void start(Stage stage) throws Exception {
+        //gameCreationWindow.run();
         mainMenuWindow.setUp();
         switch (MainMenuWindow.action) {
             case 0: //forced exit
