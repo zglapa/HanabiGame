@@ -20,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -68,7 +69,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Label> players;
     ArrayList<ArrayList<Rectangle>> cards;
     ArrayList<Rectangle> discardCards;
-
+    Board setUpBoard;
+    String PlayerName;
     //Client connections
     private ClientSideConnection csc;
     private class ClientSideConnection{
@@ -129,6 +131,13 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
                 in = new ObjectInputStream(socket.getInputStream());
                 playerID = in.readInt();
+                PlayerName = "Player" + String.valueOf(playerID);
+                if(playerID == 1){
+                    out.writeObject(setUpBoard);
+                    out.flush();
+                }
+                out.writeObject(PlayerName);
+                out.flush();
             }catch (IOException ex){
                 ex.printStackTrace();
                 endGame();
@@ -143,6 +152,8 @@ public class FixedHanabiControllerOnline implements Initializable {
         if (!endGame) {
             endGamePane.setVisible(true);
             disableButtons();
+            hideHintButtons();
+            playPane.setVisible(false);
             revealAllHands();
             endGame = true;
         }
@@ -165,6 +176,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                         }
                         else {
                             blurMe();
+                            playPane.setVisible(false);
+                            hideHintButtons();
                             if (board.getCurrentPlayerIndex() == csc.playerID - 1) enableButtons();
                         }
                     });
@@ -175,6 +188,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
+        setUpBoard = HanabiMain.gameCreationWindow.board;
         this.connectToServer();
         Object o = null;
         board = null;
@@ -184,10 +198,11 @@ public class FixedHanabiControllerOnline implements Initializable {
                 board = (Board)o;
 
                 System.out.println("board caught");
+            }catch (ClassCastException | OptionalDataException e){
+                System.out.println(o);
             }catch (IOException | ClassNotFoundException ex){
                 ex.printStackTrace();
-            }catch (ClassCastException e){
-                System.out.println(o);
+
             }catch (Exception e){
                 try {
                     csc.socket.close();
