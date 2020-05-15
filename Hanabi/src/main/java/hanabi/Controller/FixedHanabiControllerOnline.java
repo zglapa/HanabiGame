@@ -134,13 +134,14 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
                 in = new ObjectInputStream(socket.getInputStream());
                 playerID = in.readInt();
-                PlayerName = "Player" + String.valueOf(playerID);
                 if(playerID == 1){
                     out.writeObject(setUpBoard);
                     out.flush();
+                }else{
+                    PlayerName = HanabiMain.gameJoiningWindow.name;
+                    out.writeObject(PlayerName);
+                    out.flush();
                 }
-                out.writeObject(PlayerName);
-                out.flush();
             }catch (IOException ex){
                 ex.printStackTrace();
                 endGame();

@@ -72,9 +72,12 @@ public class GameServer {
                 if(playerID == 1){
                     BOARD = (Board)in.readObject();
                 }
-                this.playerName = (String) in.readObject();
+                else{
+                    this.playerName = (String) in.readObject();
+                    BOARD.getPlayers().get(playerID-1).changeName(playerName);
+
+                }
                 System.out.println(this.playerName + " " + this.playerID);
-                BOARD.getPlayers().get(playerID-1).changeName(playerName);
                 System.out.println(BOARD.toString());
             }catch(IOException | ClassNotFoundException ex){
                 ex.printStackTrace();
