@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="900.0" prefWidth="1600.0" styleClass="root" fx:controller="hanabi.Controller.GameJoiningController">
+    <VBox minWidth="520.0">
+        <TextField fx:id="name1" styleClass="Button" promptText="Name">
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+            <font>
+                <Font size="30.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="ID" styleClass="Button" layoutX="10.0" layoutY="36.0" promptText="Serwer ID adress">
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+            <font>
+                <Font size="30.0" />
+            </font>
+        </TextField>
+        <Button mnemonicParsing="false" styleClass="Button" onAction="#startGame" text="PLAY">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Button>
+    </VBox>
+
+
+</AnchorPane>
