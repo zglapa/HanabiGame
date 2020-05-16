@@ -64,6 +64,9 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Button> nPlayButtons;
     ArrayList<ArrayList<Tooltip>> tooltipsCardInfo;
     ArrayList<Rectangle> playerBackgrounds;
+    @FXML Label lastPlayDismiss;
+    @FXML Label lastPlayLabel;
+    @FXML StackPane lastPlayPane;
     ImagePattern blank;
     int cardIx;
     boolean isDiscard;
@@ -708,6 +711,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         if(playerIndex<0)playerIndex=0;
         updateHands();
         updateCardInfoTooltips();
+        updateAndShowLastHintPane();
         updatePlayerBackgrounds();
         updateHands(playerIndex);
         updateResultCards();
@@ -744,5 +748,22 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     public void hideNoHintsAlert(MouseEvent mouseEvent) {
         noHintsPane.setVisible(false);
+    }
+
+    public void hideLastHintPane(MouseEvent mouseEvent) {
+        lastPlayPane.setVisible(false);
+        lastPlayDismiss.setVisible(false);
+    }
+
+    public void updateAndShowLastHintPane() {
+        lastPlayLabel.setText(board.getLastPlay());
+        if (!lastPlayLabel.getText().equals(""))
+            lastPlayPane.setVisible(true);
+        else {
+            if (lastPlayLabel.getText().length() > 35)
+                lastPlayLabel.setStyle("-fx-font-size: 12; -fx-font-weight: bold");
+            else
+                lastPlayLabel.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
+        }
     }
 }

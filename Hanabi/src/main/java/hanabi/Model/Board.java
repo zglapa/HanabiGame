@@ -380,5 +380,56 @@ public class Board implements Serializable {
 
         return new String(ans);
     }
+
+    public String getLastPlay() {
+        if (playerMoveHistory.size() == 0)
+            return "";
+        StringBuilder ans = new StringBuilder();
+        PlayerMove move = playerMoveHistory.get(playerMoveHistory.size()-1);
+        ans.append(move.getPlayer().getName());
+        switch (move.getType().ordinal()) {
+            case 0: //discard
+                ans.append(" discarded ");
+                Card card0 = null;
+                try {
+                    card0 = move.getCard();
+                } catch (NoCardMoveException ignored) {}
+                ans.append(card0);
+                break;
+            case 1: //play
+                ans.append(" played ");
+                Card card1 = null;
+                try {
+                    card1 = move.getCard();
+                } catch (NoCardMoveException ignored) {}
+                ans.append(card1);
+                break;
+            case 2: //hint
+                ans.append(" hinted ");
+                Hint hint = null;
+                try {
+                    hint = move.getHint();
+                } catch (Exception ignored) {}
+                assert hint != null;
+
+                if (hint.isHintTypeColor()) {
+                    ans.append("color ");
+                    try {
+                        ans.append(hint.getCardColor());
+                    } catch (Exception ignored) {}
+                } else {
+                    ans.append("number ");
+                    try {
+                        ans.append(hint.getCardValue());
+                    } catch (Exception ignored) {}
+                }
+
+                ans.append(" to ");
+                ans.append(hint.getHinted().getName());
+
+                break;
+        }
+        return new String(ans);
+    }
 }
 

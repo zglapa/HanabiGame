@@ -16,8 +16,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
    <children>
       <BorderPane styleClass="root">
@@ -297,19 +295,56 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
                            <children>
-                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="700.0" />
                            </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="No hints left" textAlignment="CENTER">
                                  <font>
-                                    <Font name="Purisa Bold" size="63.0" />
+                                    <Font name="System Bold" size="63.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="lastPlayPane" onMouseClicked="#hideLastHintPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <StackPane prefHeight="383.0" prefWidth="805.0">
+                                 <children>
+                                    <Label fx:id="lastPlayLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" maxHeight="315.0" maxWidth="802.0" minHeight="200.0" minWidth="500.0" prefHeight="289.0" prefWidth="802.0" text="no last play" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutY="179.0" prefHeight="203.0" prefWidth="798.0">
+                                 <children>
+                                    <Label fx:id="lastPlayDismiss" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" maxHeight="346.0" maxWidth="805.0" minHeight="70.0" minWidth="500.0" prefHeight="70.0" prefWidth="798.0" text="click to dismiss" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                 </children>
+                              </StackPane>
                            </children>
                         </Pane>
                      </children>
