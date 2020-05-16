@@ -157,7 +157,7 @@
                                                 <Font size="30.0" />
                                             </font>
                                         </TextField>
-                                        <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generete random name">
+                                        <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generate random name">
                                             <font>
                                                 <Font size="30.0" />
                                             </font>
