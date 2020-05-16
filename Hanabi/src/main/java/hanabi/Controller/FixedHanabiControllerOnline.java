@@ -139,7 +139,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                     out.writeObject(setUpBoard);
                     out.flush();
                 }else{
-                    PlayerName = HanabiMain.gameJoiningWindow.name;
+                    PlayerName = HanabiMain.gameInformation.playerName;
                     out.writeObject(PlayerName);
                     out.flush();
                 }
@@ -193,7 +193,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-        setUpBoard = HanabiMain.gameCreationWindow.board;
+        setUpBoard = HanabiMain.gameInformation.board;
         this.connectToServer();
         Object o = null;
         board = null;

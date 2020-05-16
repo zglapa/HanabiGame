@@ -42,7 +42,6 @@ public class SetUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HanabiMain.setUpWindow.stage.setOnCloseRequest(e->HanabiMain.setUpWindow.exit=true);
         names=new ArrayList<>();
         names.add(name1);
         names.add(name2);
@@ -135,10 +134,10 @@ public class SetUpController implements Initializable {
         }
 
 
-        HanabiMain.setUpWindow.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
+        HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
                 random, finalNames);
-        HanabiMain.setUpWindow.hasRainbows = rainbow;
-        HanabiMain.setUpWindow.stage.close();
+        HanabiMain.gameInformation.hasRainbows = rainbow;
+        HanabiMain.gameInformation.settingsStage.close();
     }
 
 

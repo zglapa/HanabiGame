@@ -11,13 +11,13 @@ import java.io.IOException;
 
 public class GameCreationWindow {
     public Board board;
-    public Stage stage;
     public boolean hasRainbows;
-    public boolean exit=false;
-    void run() throws IOException {
-        stage=new Stage();
+    public static void run() throws IOException {
         Parent setUpRoot;
-        setUpRoot = FXMLLoader.load(getClass().getResource("/GameCreationFXML.fxml"));
+        setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameCreationFXML.fxml"));
+        Stage stage=new Stage();
+        HanabiMain.gameInformation.settingsStage = stage;
+        stage.setOnCloseRequest(e->HanabiMain.gameInformation.exit=true);
         stage.setTitle("Create Game");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
         stage.showAndWait();

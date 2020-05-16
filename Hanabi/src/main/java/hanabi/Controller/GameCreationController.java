@@ -41,7 +41,6 @@ public class GameCreationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HanabiMain.gameCreationWindow.stage.setOnCloseRequest(e->HanabiMain.gameCreationWindow.exit=true);
         names=new ArrayList<>();
         names.add(name1);
         names.add(name2);
@@ -131,10 +130,10 @@ public class GameCreationController implements Initializable {
         }
 
 
-        HanabiMain.gameCreationWindow.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
+        HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
                 random, finalNames);
-        HanabiMain.gameCreationWindow.hasRainbows = rainbow;
-        HanabiMain.gameCreationWindow.stage.close();
+        HanabiMain.gameInformation.hasRainbows = rainbow;
+        HanabiMain.gameInformation.settingsStage.close();
     }
 
 

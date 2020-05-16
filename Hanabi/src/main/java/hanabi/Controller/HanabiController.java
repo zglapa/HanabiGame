@@ -74,10 +74,10 @@ public class HanabiController implements Initializable {
         resultCards = new ArrayList<>();
         discardCards = new ArrayList<>();
         cards = new ArrayList<>();
-        board= HanabiMain.setUpWindow.board;
+        board= HanabiMain.gameInformation.board;
         int PLAYERAMOUNT = board.getPlayerAmount();
         int HANDSIZE = board.getHandSize();
-        boolean WITHRAINBOWS = HanabiMain.setUpWindow.hasRainbows;
+        boolean WITHRAINBOWS = HanabiMain.gameInformation.hasRainbows;
         addHands(PLAYERAMOUNT,HANDSIZE);
         addButtonsToArrayLists();
         for(int i = PLAYERAMOUNT; i < 7;++i){
