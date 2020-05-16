@@ -14,8 +14,8 @@
 
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.MultiplayerModeController">
    <children>
-      <Rectangle fx:id="image" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="900.0" stroke="BLACK" strokeType="INSIDE" width="1600.0" />
-      <BorderPane maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" styleClass="root">
+      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="900.0" stroke="BLACK" strokeType="INSIDE" width="1600.0" />
+      <BorderPane maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0">
          <stylesheets>
             <URL value="@hanabi.css" />
          </stylesheets>
