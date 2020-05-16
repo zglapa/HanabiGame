@@ -23,16 +23,10 @@ public class GameCreationController implements Initializable {
     @FXML CheckBox hasRainbows;
     @FXML Button randomNames;
     @FXML VBox advancedSettings;
-
+    @FXML TextField ID;
     @FXML Button showAdvanced;
     @FXML VBox namesBox;
     @FXML TextField name1;
-    @FXML TextField name2;
-    @FXML TextField name3;
-    @FXML TextField name4;
-    @FXML TextField name5;
-    @FXML TextField name6;
-    @FXML TextField name7;
     ArrayList<TextField> names;
     @FXML TextField initialHints;
     @FXML TextField initialLives;
@@ -43,12 +37,6 @@ public class GameCreationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         names=new ArrayList<>();
         names.add(name1);
-        names.add(name2);
-        names.add(name3);
-        names.add(name4);
-        names.add(name5);
-        names.add(name6);
-        names.add(name7);
         //for(int i=0;i<7;++i)
         //names.get(i).setText("Player"+(i+1));
         initialHints.setText("8");
@@ -82,8 +70,8 @@ public class GameCreationController implements Initializable {
     }
 
     public void changeNames(MouseEvent mouseEvent) {
-        String[] random= Board.randomNames(7);
-        for(int i=0;i<7;++i)
+        String[] random= Board.randomNames(1);
+        for(int i=0;i<1;++i)
             names.get(i).setText(random[i]);
     }
 
@@ -132,6 +120,7 @@ public class GameCreationController implements Initializable {
 
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
                 random, finalNames);
+        HanabiMain.gameInformation.serverID = ID.getText();
         HanabiMain.gameInformation.hasRainbows = rainbow;
         HanabiMain.gameInformation.settingsStage.close();
     }

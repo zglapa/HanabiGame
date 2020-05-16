@@ -25,7 +25,7 @@
     <items>
         <VBox alignment="TOP_CENTER">
             <children>
-                <Label alignment="TOP_LEFT" text="Game Setup" styleClass="Header">
+                <Label alignment="TOP_LEFT" styleClass="Header" text="Game Setup">
                     <VBox.margin>
                         <Insets top="50.0" />
                     </VBox.margin>
@@ -70,7 +70,7 @@
                                             <children>
                                                 <Label prefHeight="59.0" prefWidth="336.0" styleClass="Label" text="Advanced Settings: ">
                                                 </Label>
-                                                <Button fx:id="showAdvanced" styleClass="Button" mnemonicParsing="false" onMouseClicked="#showAdvanced" prefHeight="56.0" prefWidth="153.0" text="Show">
+                                                <Button fx:id="showAdvanced" mnemonicParsing="false" onMouseClicked="#showAdvanced" prefHeight="56.0" prefWidth="153.0" styleClass="Button" text="Show">
                                                     <font>
                                                         <Font size="30.0" />
                                                     </font>
@@ -142,65 +142,35 @@
                         </VBox>
                         <VBox minWidth="520.0">
                             <children>
-                                <Button fx:id="randomNames" styleClass="Button" mnemonicParsing="false" onMouseClicked="#changeNames" text="Random Name">
+                                <Label styleClass="Label" text="Your nick:">
                                     <font>
-                                        <Font size="30.0" />
+                                        <Font name="Purisa Bold" size="28.0" />
                                     </font>
-                                    <VBox.margin>
-                                        <Insets left="10.0" />
-                                    </VBox.margin>
-                                </Button>
+                                </Label>
                                 <VBox fx:id="namesBox">
                                     <children>
-                                        <TextField fx:id="name1" styleClass="Button" promptText="Your Name">
+                                        <TextField fx:id="name1" promptText="Your Name" styleClass="Button">
                                             <VBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                             </VBox.margin>
                                             <font>
                                                 <Font size="30.0" />
                                             </font>
                                         </TextField>
-                                        <TextField fx:id="name2" styleClass="Button" layoutX="10.0" layoutY="36.0" promptText="Player2" visible="false">
+                                        <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generete random name">
+                                            <font>
+                                                <Font size="30.0" />
+                                            </font>
+                                        </Button>
+                                        <Label styleClass="Label" text="Adress IP of a server:">
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>
                                             <font>
-                                                <Font size="30.0" />
+                                                <Font name="Purisa Bold" size="28.0" />
                                             </font>
-                                        </TextField>
-                                        <TextField fx:id="name3" styleClass="Button" layoutX="10.0" layoutY="36.0" promptText="Player3" visible="false">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </TextField>
-                                        <TextField fx:id="name4" styleClass="Button" layoutX="10.0" layoutY="88.0" promptText="Player4" visible="false">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </TextField>
-                                        <TextField fx:id="name5" styleClass="Button" layoutX="10.0" layoutY="140.0" promptText="Player5" visible="false">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </TextField>
-                                        <TextField fx:id="name6" styleClass="Button" layoutX="10.0" layoutY="192.0" promptText="Player6" visible="false">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font size="30.0" />
-                                            </font>
-                                        </TextField>
-                                        <TextField fx:id="name7" styleClass="Button" layoutX="10.0" layoutY="200.0" promptText="Player7" visible="false">
+                                        </Label>
+                                        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" promptText="Serwer IP adress" styleClass="Button">
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>
@@ -223,7 +193,7 @@
                                 <Region VBox.vgrow="ALWAYS" />
                                 <Pane>
                                     <children>
-                                        <Button mnemonicParsing="false" styleClass="Button" onAction="#startGame" text="PLAY">
+                                        <Button mnemonicParsing="false" onAction="#startGame" styleClass="Button" text="PLAY">
                                             <font>
                                                 <Font size="40.0" />
                                             </font>
