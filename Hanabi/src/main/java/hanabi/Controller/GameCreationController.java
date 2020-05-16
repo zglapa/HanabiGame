@@ -81,10 +81,9 @@ public class GameCreationController implements Initializable {
         boolean rainbow= hasRainbows.isSelected();
         boolean random= false;
         String[] finalNames=new String[players];
+        finalNames[0] = ( names.get(0).getText().equals(""))?"Player 1":names.get(0).getText();
         for(int i=0;i<players;++i) {
-            finalNames[i] = names.get(i).getText();
-            if( finalNames[i].equals(new String("")) )
-                finalNames[i]="Player"+(i+1);
+            finalNames[i]="Player"+(i+1);
         }
 
 
