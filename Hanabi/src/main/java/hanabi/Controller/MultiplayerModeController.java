@@ -28,21 +28,21 @@ public class MultiplayerModeController implements Initializable {
     @FXML Button joinButton;
     @FXML Button exitButton;
     @FXML
-    Rectangle image;
+    Rectangle background;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            image.setFill(new ImagePattern(new Image(getClass().getResource("/textures/fireworkssss.png").toURI().toString()),0,0,1,1,true));
+        /*try {
+            background.setFill(new ImagePattern(new Image(getClass().getResource("/textures/fireworks_background.png").toURI().toString()),0,0,1,1,true));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
+*/
         //image.setVisible(false);
     }
 
     public void handleCreate(ActionEvent actionEvent) {
         MultiplayerModeWindow.action=1;
-       HanabiMain.multiplayerModeWindow.stage.close();
+        HanabiMain.multiplayerModeWindow.stage.close();
     }
 
     public void handleJoin(ActionEvent actionEvent) {
