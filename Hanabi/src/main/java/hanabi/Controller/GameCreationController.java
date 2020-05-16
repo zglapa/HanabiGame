@@ -27,7 +27,6 @@ public class GameCreationController implements Initializable {
     @FXML Button showAdvanced;
     @FXML VBox namesBox;
     @FXML TextField name1;
-    ArrayList<TextField> names;
     @FXML TextField initialHints;
     @FXML TextField initialLives;
     @FXML TextField limitHints;
@@ -35,8 +34,6 @@ public class GameCreationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        names=new ArrayList<>();
-        names.add(name1);
         //for(int i=0;i<7;++i)
         //names.get(i).setText("Player"+(i+1));
         initialHints.setText("8");
@@ -70,9 +67,7 @@ public class GameCreationController implements Initializable {
     }
 
     public void changeNames(MouseEvent mouseEvent) {
-        String[] random= Board.randomNames(1);
-        for(int i=0;i<1;++i)
-            names.get(i).setText(random[i]);
+        name1.setText( Board.randomNames(1)[1] );
     }
 
     public void startGame(ActionEvent actionEvent) {
@@ -81,7 +76,7 @@ public class GameCreationController implements Initializable {
         boolean rainbow= hasRainbows.isSelected();
         boolean random= false;
         String[] finalNames=new String[players];
-        finalNames[0] = ( names.get(0).getText().equals(""))?"Player 1":names.get(0).getText();
+        finalNames[0] = ( name1.getText().equals(""))?"Player 1":name1.getText();
         for(int i=0;i<players;++i) {
             finalNames[i]="Player"+(i+1);
         }
