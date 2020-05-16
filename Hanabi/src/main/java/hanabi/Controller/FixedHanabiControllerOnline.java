@@ -26,9 +26,12 @@ import java.io.OptionalDataException;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+
+import static com.sun.javafx.application.PlatformImpl.exit;
 
 public class FixedHanabiControllerOnline implements Initializable {
 
@@ -75,6 +78,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<Rectangle> discardCards;
     Board setUpBoard;
     String PlayerName;
+    String SERVERIP;
+    Boolean forceExit;
     //Client connections
     private ClientSideConnection csc;
     private class ClientSideConnection{
@@ -128,21 +133,25 @@ public class FixedHanabiControllerOnline implements Initializable {
         }
         public ClientSideConnection(){
             System.out.println("Client");
-            try{
-                socket = new Socket("localhost", 9999);
+            try {
+                socket = new Socket(SERVERIP, 9999);
+
                 System.out.println("Connected to server");
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.flush();
                 in = new ObjectInputStream(socket.getInputStream());
                 playerID = in.readInt();
-                if(playerID == 1){
+                if (playerID == 1) {
                     out.writeObject(setUpBoard);
                     out.flush();
-                }else{
+                } else {
                     PlayerName = HanabiMain.gameInformation.playerName;
                     out.writeObject(PlayerName);
                     out.flush();
                 }
+            } catch(UnknownHostException u){
+                    System.out.println("[Error connecting to " + SERVERIP + " : Unknown host]" );
+                    forceExit = true;
             }catch (IOException ex){
                 ex.printStackTrace();
                 endGame();
@@ -193,75 +202,83 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
+        forceExit = false;
         setUpBoard = HanabiMain.gameInformation.board;
+        SERVERIP = HanabiMain.gameInformation.serverID;
         this.connectToServer();
         Object o = null;
         board = null;
-        while(board == null){
-            try{
-                o = csc.in.readObject();
-                board = (Board)o;
+        if(!forceExit){
+            while(board == null){
+                try{
+                    o = csc.in.readObject();
+                    board = (Board)o;
 
-                System.out.println("board caught");
-            }catch (ClassCastException | OptionalDataException e){
-                System.out.println(o);
-            }catch (IOException | ClassNotFoundException ex){
-                ex.printStackTrace();
+                    System.out.println("board caught");
+                }catch (ClassCastException | OptionalDataException e){
+                    System.out.println(o);
+                }catch (IOException | ClassNotFoundException ex){
+                    ex.printStackTrace();
 
-            }catch (Exception e){
-                try {
-                    csc.socket.close();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                    endGame();
+                }catch (Exception e){
+                    try {
+                        csc.socket.close();
+                    }
+                    catch (IOException ioException) {
+                        ioException.printStackTrace();
+                        endGame();
+                    }
                 }
             }
+            try {
+                addColors();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            connectionLost.setVisible(false);
+            endGame = false;
+            players = new ArrayList<>();
+            resultCards = new ArrayList<>();
+            discardCards = new ArrayList<>();
+            cards = new ArrayList<>();
+            tooltipsCardInfo = new ArrayList<>();
+            playerBackgrounds = new ArrayList<>();
+            //board= HanabiMain.setUpWindow.board;
+            int PLAYERAMOUNT = board.getPlayerAmount();
+            int HANDSIZE = board.getHandSize();
+            boolean WITHRAINBOWS = board.getInGameColors().contains(Color.RAINBOW);
+            addHands(PLAYERAMOUNT,HANDSIZE);
+            addButtonsToArrayLists();
+            for(int i = PLAYERAMOUNT; i < 7;++i){
+                pHintButtons.get(i).setVisible(false);
+            }
+            for(int i = HANDSIZE; i < 6; ++i){
+                nPlayButtons.get(i).setVisible(false);
+            }
+            hideHintButtons();
+            isDiscard = false;
+            playPane.setVisible(false);
+            try {
+                addResultCards(WITHRAINBOWS);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            updateHands();
+            updateCardInfoTooltips();
+            updateMoveHistory();
+            showYourTrueColors();
+            cardIx = 0;
+            updateHintsAndLives();
+            pHintButtons.get(csc.playerID-1).setDisable(true);
+            updateGUI(csc.playerID-1, null,false);
+            blurMe();
+            if(csc.playerID-1==board.getCurrentPlayerIndex()) enableButtons();
+            startReceivingBoards();
+            System.out.println("View is now loaded!");
+        }else {
+            Platform.exit();
         }
-        try {
-            addColors();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        connectionLost.setVisible(false);
-        endGame = false;
-        players = new ArrayList<>();
-        resultCards = new ArrayList<>();
-        discardCards = new ArrayList<>();
-        cards = new ArrayList<>();
-        tooltipsCardInfo = new ArrayList<>();
-        playerBackgrounds = new ArrayList<>();
-        //board= HanabiMain.setUpWindow.board;
-        int PLAYERAMOUNT = board.getPlayerAmount();
-        int HANDSIZE = board.getHandSize();
-        boolean WITHRAINBOWS = board.getInGameColors().contains(Color.RAINBOW);
-        addHands(PLAYERAMOUNT,HANDSIZE);
-        addButtonsToArrayLists();
-        for(int i = PLAYERAMOUNT; i < 7;++i){
-            pHintButtons.get(i).setVisible(false);
-        }
-        for(int i = HANDSIZE; i < 6; ++i){
-            nPlayButtons.get(i).setVisible(false);
-        }
-        hideHintButtons();
-        isDiscard = false;
-        playPane.setVisible(false);
-        try {
-            addResultCards(WITHRAINBOWS);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        updateHands();
-        updateCardInfoTooltips();
-        updateMoveHistory();
-        showYourTrueColors();
-        cardIx = 0;
-        updateHintsAndLives();
-        pHintButtons.get(csc.playerID-1).setDisable(true);
-        updateGUI(csc.playerID-1, null,false);
-        blurMe();
-        if(csc.playerID-1==board.getCurrentPlayerIndex()) enableButtons();
-        startReceivingBoards();
-        System.out.println("View is now loaded!");
+
     }
 
     public void hintDone(){
@@ -374,7 +391,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     public void updatePlayerBackgrounds() {
         for (int i = 0; i< board.getPlayerAmount(); i++) {
             if (i == board.getCurrentPlayerIndex())
-                playerBackgrounds.get(i).setFill(javafx.scene.paint.Color.GREEN);
+                playerBackgrounds.get(i).setFill(javafx.scene.paint.Color.LIGHTGREEN);
             else
                 playerBackgrounds.get(i).setFill(javafx.scene.paint.Color.WHITE);
         }
