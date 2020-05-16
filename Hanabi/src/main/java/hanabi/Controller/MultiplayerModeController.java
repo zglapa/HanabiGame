@@ -3,6 +3,7 @@ package hanabi.Controller;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
 import hanabi.Model.Player;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,13 +31,13 @@ public class MultiplayerModeController implements Initializable {
     Rectangle image;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*try {
-            image.setFill(new ImagePattern(new Image(getClass().getResource("/textures/hanabifireworks.png").toURI().toString()),0,0,1,1,true));
+        try {
+            image.setFill(new ImagePattern(new Image(getClass().getResource("/textures/fireworkssss.png").toURI().toString()),0,0,1,1,true));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-         */
-        image.setVisible(false);
+
+        //image.setVisible(false);
     }
 
     public void handleCreate(ActionEvent actionEvent) {
