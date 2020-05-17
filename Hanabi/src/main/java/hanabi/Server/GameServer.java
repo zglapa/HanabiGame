@@ -88,6 +88,7 @@ public class GameServer {
                 }
                 while(true){
                     BOARD = (Board) in.readObject();
+                    System.out.println("[received board from " + playerName + "]");
                     sendToAll(BOARD);
                     MoveType moveType = (MoveType) in.readObject();
                     sendToAll(moveType);
