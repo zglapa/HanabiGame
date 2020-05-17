@@ -54,6 +54,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<ImagePattern> reds;
     ArrayList<ImagePattern> rainbows;
     ArrayList<ImagePattern> blanks;
+    ArrayList<ImagePattern> numbers;
     ArrayList<ArrayList<ImagePattern>> allColorLists;
     ArrayList<Button> pHintButtons;
     ArrayList<Button> nHintButtons;
@@ -362,6 +363,34 @@ public class FixedHanabiControllerOnline implements Initializable {
         for(int i = 0; i < board.getHandSize(); ++i){
             cards.get(csc.playerID-1).get(i).setFill(blank);
         }
+        for (int i = 0; i< board.getPlayers().get(csc.playerID-1).getHand().size(); i++) {
+            ImagePattern pattern = null;
+            Color color = null;
+            Integer number = null;
+            try {
+                color = board.getPlayers().get(csc.playerID-1).getHand().get(i).publicCardInfo.getPublicColor();
+            } catch (NoPublicInfoException ignored) {}
+            try {
+                number = board.getPlayers().get(csc.playerID-1).getHand().get(i).publicCardInfo.getPublicNumber();
+            } catch (NoPublicInfoException ignored) {}
+
+            if (color == null && number != null) {
+                pattern = numbers.get(number-1);
+            }
+            if (color != null && number == null) {
+                pattern = blanks.get(color.ordinal());
+            }
+            if (number != null  && color != null) {
+                pattern = whites.get(number-1);
+                if(color==Color.values()[1]) pattern = yellows.get(number-1);
+                else if(color==Color.values()[2]) pattern = reds.get(number-1);
+                else if(color==Color.values()[3]) pattern = greens.get(number-1);
+                else if(color==Color.values()[4]) pattern = blues.get(number-1);
+                else if(color==Color.values()[5]) pattern = rainbows.get(number-1);
+            }
+            if (pattern != null) cards.get(csc.playerID-1).get(i).setFill(pattern);
+        }
+
         //System.out.println(csc.playerID + " just blurred");
     }
     public void revealAllHands(){
@@ -536,6 +565,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         blues = new ArrayList<>();
         rainbows = new ArrayList<>();
         blanks = new ArrayList<>();
+        numbers = new ArrayList<>();
 
         whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White1.jpg").toURI().toString()),0,0,1,1,true));
         whites.add(new ImagePattern(new Image(getClass().getResource("/Colors/White2.jpg").toURI().toString()),0,0,1,1,true));
@@ -579,6 +609,12 @@ public class FixedHanabiControllerOnline implements Initializable {
         blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Green.jpg").toURI().toString()),0,0,1,1,true));
         blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blue.jpg").toURI().toString()),0,0,1,1,true));
         blanks.add(new ImagePattern(new Image(getClass().getResource("/Colors/RB.jpg").toURI().toString()),0,0,1,1,true));
+
+        numbers.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blank1.png").toURI().toString()), 0, 0, 1, 1, true));
+        numbers.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blank2.png").toURI().toString()), 0, 0, 1, 1, true));
+        numbers.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blank3.png").toURI().toString()), 0, 0, 1, 1, true));
+        numbers.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blank4.png").toURI().toString()), 0, 0, 1, 1, true));
+        numbers.add(new ImagePattern(new Image(getClass().getResource("/Colors/Blank5.png").toURI().toString()), 0, 0, 1, 1, true));
 
         allColorLists = new ArrayList<>();
 
