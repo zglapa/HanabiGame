@@ -32,7 +32,7 @@ public class MultiplayerModeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            background.setFill(new ImagePattern(new Image(getClass().getResource("/textures/image0.png").toURI().toString()),0,0,1,1,true));
+            background.setFill(new ImagePattern(new Image(getClass().getResource("/textures/hanabi_background.png").toURI().toString()),0,0,1,1,true));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
