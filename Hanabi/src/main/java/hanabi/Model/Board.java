@@ -160,9 +160,11 @@ public class Board implements Serializable {
                 topDeck = deck.pop();
             } catch (EmptyDeckException e) {
                 topDeck = null;
-                if (turnsUntilEnd < 0)
-                    turnsUntilEnd = playerAmount;
             }
+
+            if (deck.getSize() == 0)
+                if (turnsUntilEnd < 0)
+                    turnsUntilEnd = playerAmount+1;
 
             playerMove.getPlayer().playOrDiscard(cardDiscarded, topDeck);
 
@@ -187,9 +189,11 @@ public class Board implements Serializable {
                 topDeck = deck.pop();
             } catch (EmptyDeckException e) {
                 topDeck = null;
-                if (turnsUntilEnd < 0)
-                    turnsUntilEnd = playerAmount;
             }
+
+            if (deck.getSize() == 0)
+                if (turnsUntilEnd < 0)
+                    turnsUntilEnd = playerAmount+1;
 
             playerMove.getPlayer().playOrDiscard(cardPlayed, topDeck);
 
