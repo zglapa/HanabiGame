@@ -60,6 +60,16 @@ public final class Deck implements Serializable {
         }
     }
 
+    public Deck(String s) { //smol deck
+        cards = new ArrayList<>();
+        for (int i = 0; i < 1; ++i)
+            for (int j = 1; j <= 3; ++j)
+                addAllColors(j, false);
+        for (Card card : cards)
+            card.publicCardInfo.setColor(Color.RAINBOW, false);
+        Collections.shuffle(cards);
+    }
+
     public Deck() {
         this(true, false, false);
     }
