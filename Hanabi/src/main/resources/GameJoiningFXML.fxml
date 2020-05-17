@@ -3,38 +3,37 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="900.0" prefWidth="1600.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.GameJoiningController">
     <stylesheets>
         <URL value="@hanabi.css" />
     </stylesheets>
     <VBox alignment="CENTER" fillWidth="false" layoutX="44.0" prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="57.0" prefWidth="400.0" spacing="10.0">
+         <children>
+              <TextField fx:id="name1" minWidth="325.0" prefHeight="53.0" prefWidth="366.0" promptText="Name" styleClass="Button">
+                  <font>
+                      <Font size="30.0" />
+                  </font>
+              </TextField>
+              <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" prefHeight="51.0" prefWidth="46.0" styleClass="Button" text="?">
+                  <font>
+                      <Font size="30.0" />
+                  </font>
+              </Button>
+         </children>
+      </HBox>
         <Label styleClass="Label" text="Your nick:">
             <font>
                 <Font name="Purisa Bold" size="28.0" />
             </font>
         </Label>
-        <TextField fx:id="name1" promptText="Name" styleClass="Button" minWidth="400">
-            <VBox.margin>
-                <Insets top="20.0" />
-            </VBox.margin>
-            <font>
-                <Font size="30.0" />
-            </font>
-        </TextField>
-        <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generate random name">
-            <font>
-                <Font size="30.0" />
-            </font>
-            <VBox.margin>
-                <Insets top="20.0" />
-            </VBox.margin>
-        </Button>
         <Label styleClass="Label" text="Adress IP of a server:">
             <VBox.margin>
                 <Insets top="20.0" />
@@ -43,7 +42,7 @@
                 <Font name="Purisa Bold" size="28.0" />
             </font>
         </Label>
-        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" promptText="Serwer IP adress" styleClass="Button" minWidth="400">
+        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" minWidth="400" promptText="Serwer IP adress" styleClass="Button">
             <VBox.margin>
                 <Insets top="20.0" />
             </VBox.margin>
