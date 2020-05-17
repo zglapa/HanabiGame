@@ -81,11 +81,14 @@ public class GameCreationController implements Initializable {
             finalNames[i]="Player"+(i+1);
         }
 
-
         int lives = stringInt(initialLives.getText());
         int hints = stringInt(initialHints.getText());
         int maxHints = stringInt(limitHints.getText());
 
+        if(finalNames[0].length()>20) {
+            AlertBox.display("Wrong input", "Name must not exceed 20 characters!");
+            return;
+        }
         if (hints < 0) {
             AlertBox.display("Wrong input", "Initial hint amount must be an non-negative integer!");
             return;
@@ -114,6 +117,7 @@ public class GameCreationController implements Initializable {
 
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
                 random, finalNames);
+        HanabiMain.gameInformation.playerName = finalNames[0];
         HanabiMain.gameInformation.serverID = ID.getText();
         HanabiMain.gameInformation.hasRainbows = rainbow;
         HanabiMain.gameInformation.settingsStage.close();
