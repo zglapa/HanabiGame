@@ -375,7 +375,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         }
     }
     public void updateHands(int index){
-        if(board.getDeck().getSize() == 0){
+        if(board.getHandSize() > board.getPlayers().get(index).getHand().size()){
             cards.get(index).get(board.getHandSize()-1).setVisible(false);
         }
         for(int i = 0; i < board.getPlayers().get(index).getHand().size(); ++i){
@@ -445,7 +445,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     public void updateCardInfoTooltips() {
         for (int i = 0; i< board.getPlayerAmount(); i++) {
             for (int j = 0; j<board.getHandSize(); j++) {
-                if (j > board.getPlayers().get(i).getHand().size()) {
+                if (j >= board.getPlayers().get(i).getHand().size()) {
                     tooltipsCardInfo.get(i).get(j).setShowDelay(new Duration(378462836));
                 } else {
                     tooltipsCardInfo.get(i).get(j).setText(board.getPlayers().get(i).getHand().get(j).publicCardInfo.toString());
