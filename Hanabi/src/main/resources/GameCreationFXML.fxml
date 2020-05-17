@@ -149,7 +149,7 @@
                                 </Label>
                                 <VBox fx:id="namesBox">
                                     <children>
-                                        <TextField fx:id="name1" promptText="Your Name" styleClass="Button">
+                                        <TextField fx:id="name1" promptText="Name" styleClass="Button">
                                             <VBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                             </VBox.margin>

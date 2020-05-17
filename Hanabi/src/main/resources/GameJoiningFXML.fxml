@@ -19,7 +19,7 @@
                 <Font name="Purisa Bold" size="28.0" />
             </font>
         </Label>
-        <TextField fx:id="name1" promptText="Name" styleClass="Button">
+        <TextField fx:id="name1" promptText="Name" styleClass="Button" minWidth="400">
             <VBox.margin>
                 <Insets top="20.0" />
             </VBox.margin>
@@ -27,6 +27,14 @@
                 <Font size="30.0" />
             </font>
         </TextField>
+        <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generate random name">
+            <font>
+                <Font size="30.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </Button>
         <Label styleClass="Label" text="Adress IP of a server:">
             <VBox.margin>
                 <Insets top="20.0" />
@@ -35,7 +43,7 @@
                 <Font name="Purisa Bold" size="28.0" />
             </font>
         </Label>
-        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" promptText="Serwer IP adress" styleClass="Button">
+        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" promptText="Serwer IP adress" styleClass="Button" minWidth="400">
             <VBox.margin>
                 <Insets top="20.0" />
             </VBox.margin>
@@ -48,7 +56,7 @@
                 <Font size="40.0" />
             </font>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="50.0" />
          </VBox.margin>
         </Button>
     </VBox>
