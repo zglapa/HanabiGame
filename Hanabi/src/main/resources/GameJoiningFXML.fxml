@@ -15,6 +15,11 @@
         <URL value="@hanabi.css" />
     </stylesheets>
     <VBox alignment="CENTER" fillWidth="false" layoutX="44.0" prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label styleClass="Label" text="Your nick:">
+            <font>
+                <Font name="Purisa Bold" size="28.0" />
+            </font>
+        </Label>
       <HBox prefHeight="57.0" prefWidth="400.0" spacing="10.0">
          <children>
               <TextField fx:id="name1" minWidth="325.0" prefHeight="53.0" prefWidth="366.0" promptText="Name" styleClass="Button">
@@ -29,11 +34,6 @@
               </Button>
          </children>
       </HBox>
-        <Label styleClass="Label" text="Your nick:">
-            <font>
-                <Font name="Purisa Bold" size="28.0" />
-            </font>
-        </Label>
         <Label styleClass="Label" text="Adress IP of a server:">
             <VBox.margin>
                 <Insets top="20.0" />
