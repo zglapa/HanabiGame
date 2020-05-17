@@ -19,10 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
+import java.io.*;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -215,7 +212,6 @@ public class FixedHanabiControllerOnline implements Initializable {
                 try{
                     o = csc.in.readObject();
                     board = (Board)o;
-
                     System.out.println("[received board]");
                 }catch (ClassCastException | OptionalDataException e){
                     System.out.println(o);
