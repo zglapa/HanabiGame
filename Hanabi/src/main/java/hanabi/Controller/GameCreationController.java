@@ -67,7 +67,7 @@ public class GameCreationController implements Initializable {
     }
 
     public void changeNames(MouseEvent mouseEvent) {
-        name1.setText( Board.randomNames(1)[1] );
+        name1.setText( Board.randomNames(1)[0] );
     }
 
     public void startGame(ActionEvent actionEvent) {
@@ -77,7 +77,7 @@ public class GameCreationController implements Initializable {
         boolean random= false;
         String[] finalNames=new String[players];
         finalNames[0] = ( name1.getText().equals(""))?"Player 1":name1.getText();
-        for(int i=0;i<players;++i) {
+        for(int i=1;i<players;++i) {
             finalNames[i]="Player"+(i+1);
         }
 
