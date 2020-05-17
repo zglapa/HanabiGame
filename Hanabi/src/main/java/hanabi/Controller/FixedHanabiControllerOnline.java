@@ -126,7 +126,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             Board b = null;
             try{
                 b = (Board) in.readObject();
-                System.out.println("received board");
+                System.out.println("[received board]");
             } catch (IOException | ClassNotFoundException | ClassCastException e) {
                 e.printStackTrace();
                 endGame();
@@ -135,11 +135,10 @@ public class FixedHanabiControllerOnline implements Initializable {
             return b;
         }
         public ClientSideConnection(){
-            System.out.println("Client");
             try {
                 socket = new Socket(SERVERIP, 9999);
 
-                System.out.println("Connected to server");
+                System.out.println("[connected to server]");
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.flush();
                 in = new ObjectInputStream(socket.getInputStream());
@@ -147,13 +146,12 @@ public class FixedHanabiControllerOnline implements Initializable {
                 if (playerID == 1) {
                     out.writeObject(setUpBoard);
                     out.flush();
-                } else {
-                    PlayerName = HanabiMain.gameInformation.playerName;
-                    out.writeObject(PlayerName);
-                    out.flush();
                 }
+                PlayerName = HanabiMain.gameInformation.playerName;
+                out.writeObject(PlayerName);
+                out.flush();
             } catch(UnknownHostException u){
-                    System.out.println("[Error connecting to " + SERVERIP + " : Unknown host]" );
+                    System.out.println("[error connecting to " + SERVERIP + " : Unknown host]" );
                     forceExit = true;
             }catch (IOException ex){
                 ex.printStackTrace();
@@ -173,6 +171,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             playPane.setVisible(false);
             revealAllHands();
             endGame = true;
+            System.out.println("[game has ended]");
         }
     }
     public void startReceivingBoards(){
@@ -217,7 +216,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                     o = csc.in.readObject();
                     board = (Board)o;
 
-                    System.out.println("board caught");
+                    System.out.println("[received board]");
                 }catch (ClassCastException | OptionalDataException e){
                     System.out.println(o);
                 }catch (IOException | ClassNotFoundException ex){
@@ -277,7 +276,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             blurMe();
             if(csc.playerID-1==board.getCurrentPlayerIndex()) enableButtons();
             startReceivingBoards();
-            System.out.println("View is now loaded!");
+            System.out.println("[game is starting...]");
         }else {
             Platform.exit();
         }
@@ -316,9 +315,9 @@ public class FixedHanabiControllerOnline implements Initializable {
         Player player = board.getPlayers().get(index);
         MoveType movetype = MoveType.PLAY;
         int discardPileSizeBefore = board.getDiscardPile().getDiscardPile().size();
-        System.out.println(player);
-        System.out.println(movetype);
-        System.out.println(cardIx);
+        //System.out.println(player);
+        //System.out.println(movetype);
+        //System.out.println(cardIx);
         PlayerMove playerMove = new PlayerMove(player,movetype, cardIx);
         try{
             board.action(playerMove);
@@ -326,7 +325,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             endGame();
         }
         nextPlayer(movetype);
-        System.out.println(board.getCurrentPlayerIndex());
+        //System.out.println(board.getCurrentPlayerIndex());
     }
     public void discardDone(){
         int index = board.getCurrentPlayerIndex();
@@ -339,7 +338,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             endGame();
         }
         nextPlayer(movetype);
-        System.out.println(board.getCurrentPlayerIndex());
+        //System.out.println(board.getCurrentPlayerIndex());
     }
     public void hintButtonClicked(ActionEvent actionEvent){
         playPane.setVisible(false);
@@ -367,7 +366,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         for(int i = 0; i < board.getHandSize(); ++i){
             cards.get(csc.playerID-1).get(i).setFill(blank);
         }
-        System.out.println(csc.playerID + " just blurred");
+        //System.out.println(csc.playerID + " just blurred");
     }
     public void revealAllHands(){
         for(int i = 0; i < board.getPlayerAmount(); ++i){
@@ -439,7 +438,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             else if(color==Color.values()[5]) colorPattern = rainbows.get(cardValue-1);
             discardCards.get(i).setFill(colorPattern);
             discardCards.get(i).setVisible(true);
-            System.out.println(discardCards.size());
+            //System.out.println(discardCards.size());
         }
     }
     public void updateCardInfoTooltips() {
@@ -517,7 +516,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             player.setPrefWidth(width);
             outerGrid.add(player, 0,0);
             outerGrid.add(gridPane, 0, 1);
-            System.out.println(width);
+            //System.out.println(width);
             box.setHeight(height);
             box.setWidth(width+5);
             box.setArcHeight(20);
@@ -664,14 +663,14 @@ public class FixedHanabiControllerOnline implements Initializable {
         int length = actionEvent.getSource().toString().length();
         char playerID = actionEvent.getSource().toString().charAt(length - 2);
         int playerIDInt = Character.getNumericValue(playerID);
-        System.out.println(playerIDInt);
+        //System.out.println(playerIDInt);
         playerHint = board.getPlayers().get(playerIDInt-1);
         hintTypePane.setVisible(true);
     }
     public void hintTypeButtonClicked(ActionEvent actionEvent) {
         int length = actionEvent.getSource().toString().length();
         char hintID = actionEvent.getSource().toString().charAt(length-3);
-        System.out.println(hintID);
+        //System.out.println(hintID);
         if(hintID == 'E') {
             hintType = "NUMBER";
             colorHintPane.setVisible(false);
@@ -687,14 +686,14 @@ public class FixedHanabiControllerOnline implements Initializable {
         int length = actionEvent.getSource().toString().length();
         char numberID = actionEvent.getSource().toString().charAt(length-2);
         int numberIDInt = Character.getNumericValue(numberID);
-        System.out.println(numberIDInt);
+        //System.out.println(numberIDInt);
         numberHint = numberIDInt;
         hintDone();
     }
     public void colorHintButtonClicked(ActionEvent actionEvent) {
         char colorID = actionEvent.getSource().toString().charAt(11);
         int colorIDInt = Character.getNumericValue(colorID);
-        System.out.println(colorIDInt);
+        //System.out.println(colorIDInt);
         colorHint = Color.values()[colorIDInt-1];
         hintDone();
     }
@@ -702,7 +701,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         int length = actionEvent.getSource().toString().length();
         char numberID = actionEvent.getSource().toString().charAt(length-2);
         int numberIDInt = Character.getNumericValue(numberID);
-        System.out.println(numberIDInt);
+        //System.out.println(numberIDInt);
         cardIx = numberIDInt - 1;
         if(isDiscard) discardDone();
         else playDone();

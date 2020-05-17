@@ -44,7 +44,7 @@ public class GameServer {
                 System.out.println("[ready for another connection]");
                 if(BOARD != null) NUMBEROFPLAYERS = BOARD.getPlayerAmount();
             }
-            System.out.println("All players are in");
+            System.out.println("[all players joined]");
             sendToAll(BOARD);
         }catch (IOException ex){
             ex.printStackTrace();
@@ -67,28 +67,22 @@ public class GameServer {
                 out = new ObjectOutputStream(s.getOutputStream());
                 out.flush();
                 in = new ObjectInputStream(s.getInputStream());
-                out.writeInt(playerID);                out.flush();
-
+                out.writeInt(playerID);
+                out.flush();
                 if(playerID == 1){
                     BOARD = (Board)in.readObject();
+                    System.out.println("[board set by player 1 : " + playerName + "]");
                 }
-                else{
-                    this.playerName = (String) in.readObject();
-                    BOARD.getPlayers().get(playerID-1).changeName(playerName);
-
-                }
-                System.out.println(this.playerName + " " + this.playerID);
-                System.out.println(BOARD.toString());
+                this.playerName = (String) in.readObject();
+                BOARD.getPlayers().get(playerID-1).changeName(playerName);
             }catch(IOException | ClassNotFoundException ex){
                 ex.printStackTrace();
             }
-            System.out.println("done");
+            System.out.println("[player " + this.playerID + " : " + playerName + " joined]" );
         }
         @Override
         public void run() {
             try {
-                //sendToAll("Waiting for players");
-
                 while (numOfPlayers.get() < NUMBEROFPLAYERS) {
                     Thread.onSpinWait();
                 }
@@ -100,7 +94,7 @@ public class GameServer {
                 }
 
             } catch (IOException | ClassNotFoundException ignored) {
-                System.out.println("[Connection terminated]");
+                System.out.println("[connection terminated : " + playerName + "]");
             }
 
         }

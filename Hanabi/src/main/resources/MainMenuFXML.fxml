@@ -32,26 +32,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button id="playButton" fx:id="playButton" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="150.0" prefWidth="280.0" text="HOTSEAT" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
+                  <Button styleClass="menuButton" id="playButton" fx:id="playButton"  maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="150.0" prefWidth="280.0" text="HOTSEAT" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="settingsButton" fx:id="settingsButton" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handleSettingsButton" prefHeight="150.0" prefWidth="280.0" text="MULTIPLAYER" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
+                  <Button styleClass="menuButton" id="settingsButton" fx:id="settingsButton"  maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handleSettingsButton" prefHeight="150.0" prefWidth="280.0" text="MULTIPLAYER" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="exitButton" fx:id="exitButton" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="150.0" prefWidth="280.0" text="EXIT" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
+                  <Button  styleClass="menuButton" id="exitButton" fx:id="exitButton"  maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="150.0" prefWidth="280.0" text="EXIT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
