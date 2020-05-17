@@ -31,12 +31,12 @@ public class MultiplayerModeController implements Initializable {
     Rectangle background;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*try {
-            background.setFill(new ImagePattern(new Image(getClass().getResource("/textures/fireworks_background.png").toURI().toString()),0,0,1,1,true));
+        try {
+            background.setFill(new ImagePattern(new Image(getClass().getResource("/textures/image0.png").toURI().toString()),0,0,1,1,true));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-*/
+
         //image.setVisible(false);
     }
 
