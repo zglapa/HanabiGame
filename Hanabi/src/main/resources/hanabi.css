@@ -50,3 +50,9 @@
     -fx-font-family: 'Purisa Bold';
     -fx-font-size: 13px;
 }
+
+.menuButton {
+    -fx-font-family: Purisa;
+    -fx-font-weight: bold;
+    -fx-font-size: 26px;
+}
