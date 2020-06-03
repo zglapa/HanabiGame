@@ -30,6 +30,7 @@ public class GameCreationController implements Initializable {
     @FXML TextField initialHints;
     @FXML TextField initialLives;
     @FXML TextField limitHints;
+    @FXML CheckBox handManagement;
 
 
     @Override
@@ -39,7 +40,13 @@ public class GameCreationController implements Initializable {
         initialHints.setText("8");
         limitHints.setText("8");
         initialLives.setText("3");
+        handManagement.setTooltip(new Tooltip(
+                "Selecting this will make players' hands automatically react to all hints.\n" +
+                        "For new players this may be counterintuitive, however we still recommend trying it.\n" +
+                        "*WARNING* this setting applies globally for all players!"
+        ));
     }
+
 
     public void adjustCards(MouseEvent mouseEvent) {
         double players=numOfPlayers.getValue();
@@ -75,6 +82,7 @@ public class GameCreationController implements Initializable {
         int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= hasRainbows.isSelected();
         boolean random= false;
+        boolean handMan = handManagement.isSelected();
         String[] finalNames=new String[players];
         finalNames[0] = ( name1.getText().equals(""))?Board.randomNames(1)[0]:name1.getText();
         for(int i=1;i<players;++i) {
@@ -116,7 +124,7 @@ public class GameCreationController implements Initializable {
 
 
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
-                random, finalNames);
+                random, handMan, finalNames);
         HanabiMain.gameInformation.playerName = finalNames[0];
         HanabiMain.gameInformation.serverID = ID.getText();
         HanabiMain.gameInformation.hasRainbows = rainbow;

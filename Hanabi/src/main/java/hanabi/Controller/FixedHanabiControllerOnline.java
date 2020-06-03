@@ -2,6 +2,7 @@ package hanabi.Controller;
 import hanabi.Model.*;
 import hanabi.Model.Board;
 import hanabi.Model.Color;
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -413,6 +414,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             else if(color==Color.values()[4])colorPattern = blues.get(cardValue-1);
             else if(color==Color.values()[5]) colorPattern = rainbows.get(cardValue-1);
             cards.get(index).get(i).setFill(colorPattern);
+            cards.get(index).get(i).setRotate(board.getPlayers().get(index).getHand().get(i).getRotated() ? -15 : 0);
         }
     }
     public void updatePlayerBackgrounds() {
@@ -744,7 +746,8 @@ public class FixedHanabiControllerOnline implements Initializable {
         updateCardInfoTooltips();
         updateAndShowLastHintPane();
         updatePlayerBackgrounds();
-        updateHands(playerIndex);
+        for (int i = 0; i< board.getPlayerAmount(); i++) //temporary, to be optimised
+            updateHands(i);
         updateResultCards();
         updateMoveHistory();
         updateHintsAndLives();

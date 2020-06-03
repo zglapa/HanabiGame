@@ -131,6 +131,14 @@
                                                         </TextField>
                                                     </children>
                                                 </GridPane>
+                                    <CheckBox fx:id="handManagement" mnemonicParsing="false" styleClass="CheckBox" text="Smart hand management">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Purisa" size="28.0" />
+                                       </font>
+                                    </CheckBox>
                                             </children>
                                         </VBox>
                                     </children>

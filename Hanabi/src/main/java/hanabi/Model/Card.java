@@ -6,11 +6,13 @@ public class Card implements Comparable<Card>, Serializable {
     private Color color;
     private int value;
     public PublicCardInfo publicCardInfo;
+    public boolean rotated;
 
     public Card(Color color, int value) {
         this.color = color;
         this.value = value;
         publicCardInfo = new PublicCardInfo();
+        rotated = false;
     }
 
     public Color getColor() { return color; }
@@ -19,6 +21,8 @@ public class Card implements Comparable<Card>, Serializable {
     public String toString(){
         return color.name() + " " + value;// + '\n' + publicCardInfo + '\n';
     }
+    public void setRotated() {rotated = true;}
+    public boolean getRotated() {return rotated;}
 
     @Override
     public int compareTo(Card card) {

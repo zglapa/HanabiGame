@@ -26,6 +26,7 @@ public class Board implements Serializable {
     static ArrayList<String> randomNames;
     static int worthlessImps;
     static Random random;
+    boolean smartHandManagement;
 
     static {
         random = new Random();
@@ -105,7 +106,7 @@ public class Board implements Serializable {
     public int getRemainingCardsAmount() { return deck.getSize(); }
 
 
-    public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, String... names) {
+    public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, boolean smartHandManagement, String... names) {
         //if replacement is null then the deck is ordinary 50 cards, if handsize is 0, it's automatically calculated
         result = new HashMap<>();
         for (Color name : Color.values()) {
@@ -130,6 +131,7 @@ public class Board implements Serializable {
         currentHints = hints;
         this.maxHints = maxHints;
         currentPlayerIndex = 0;
+        this.smartHandManagement = smartHandManagement;
 
         if (handSize <= 0) {
             if (playerAmount < 4)
@@ -158,7 +160,7 @@ public class Board implements Serializable {
                     System.out.println(e);
                 }
             }
-            players.add(new Player(name, hand));
+            players.add(new Player(name, hand, smartHandManagement));
         }
 
         if (shufflePlayers)
@@ -166,7 +168,7 @@ public class Board implements Serializable {
     }
 
     public Board(int playerAmount, String... names) {
-        this(playerAmount, 3, 8, 8, 0, null, true, names);
+        this(playerAmount, 3, 8, 8, 0, null, true, false, names);
     }
 
 
@@ -193,6 +195,8 @@ public class Board implements Serializable {
 
                     for (Card card : cards)
                         card.publicCardInfo.setColor(color, color.equals(card.getColor()) || card.getColor()==Color.RAINBOW);
+                    if (smartHandManagement)
+                        hint.getHinted().manageAround(color);
                 } else {
                     int number = 0;
                     try {
@@ -201,8 +205,11 @@ public class Board implements Serializable {
 
                     for (Card card : cards)
                         card.publicCardInfo.setNumber(number, card.getValue()==number);
+                    if (smartHandManagement)
+                        hint.getHinted().manageAround(number);
                 }
                 //AlertBox.display("new hand status", hint.getHinted().getHand().toString());
+
                 endMove(playerMove);
                 return;
             }

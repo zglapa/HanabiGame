@@ -38,7 +38,7 @@ public class SetUpController implements Initializable {
     @FXML TextField initialHints;
     @FXML TextField initialLives;
     @FXML TextField limitHints;
-
+    @FXML CheckBox handManagement;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +55,9 @@ public class SetUpController implements Initializable {
         initialHints.setText("8");
         limitHints.setText("8");
         initialLives.setText("3");
+        handManagement.setTooltip(new Tooltip(
+                "Selecting this will make players' hands automatically react to all hints. For new players this may be counterintuitive, however we still recommend trying it."
+        ));
     }
 
     public void adjustCards(MouseEvent mouseEvent) {
@@ -96,6 +99,7 @@ public class SetUpController implements Initializable {
         int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= hasRainbows.isSelected();
         boolean random= randomOrder.isSelected();
+        boolean handMan = handManagement.isSelected();
         String[] finalNames=new String[players];
         for(int i=0;i<players;++i) {
             finalNames[i] = names.get(i).getText();
@@ -135,7 +139,7 @@ public class SetUpController implements Initializable {
 
 
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, new Deck(true, rainbow, true),
-                random, finalNames);
+                random, handMan, finalNames);
         HanabiMain.gameInformation.hasRainbows = rainbow;
         HanabiMain.gameInformation.settingsStage.close();
     }
