@@ -2,6 +2,7 @@ package hanabi.Controller;
 import hanabi.Model.*;
 import hanabi.Model.Board;
 import hanabi.Model.Color;
+import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -82,6 +83,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     String PlayerName;
     String SERVERIP;
     Boolean forceExit;
+    ArrayList<ArrayList<RotateTransition>> cardRotateTransitions;
+    int hintedPlayerIndex;
     //Client connections
     private ClientSideConnection csc;
     private class ClientSideConnection{
@@ -265,6 +268,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             }
             updateHands();
             updateCardInfoTooltips();
+            updateRotateTransitions();
             updateMoveHistory();
             showYourTrueColors();
             cardIx = 0;
@@ -478,6 +482,73 @@ public class FixedHanabiControllerOnline implements Initializable {
                 }
             }
         }
+    }
+
+    public void updateRotateTransitions() {
+        cardRotateTransitions = new ArrayList<>();
+        for (int i = 0; i< board.getPlayerAmount(); i++) {
+            ArrayList<RotateTransition> al = new ArrayList<>();
+            for (int j = 0; j< board.getHandSize(); j++) {
+                RotateTransition cardRotateTransition = new RotateTransition(Duration.seconds(2), cards.get(i).get(j));
+                cardRotateTransition.setCycleCount(9999);
+                cardRotateTransition.setFromAngle(15);
+                cardRotateTransition.setToAngle(-15);
+                cardRotateTransition.setAutoReverse(true);
+                al.add(cardRotateTransition);
+            }
+            cardRotateTransitions.add(al);
+        }
+
+        for (int i = 0; i<nPlayButtons.size(); i++) {
+            int finalI = i;
+            nPlayButtons.get(i).setOnMouseEntered(event -> cardRotateTransitions.get(csc.playerID-1).get(finalI).play());
+            nPlayButtons.get(i).setOnMouseExited(event -> {
+                cardRotateTransitions.get(csc.playerID-1).get(finalI).stop();
+                updateHands(csc.playerID-1);
+                blurMe();
+            });
+        }
+
+        for (int i = 0; i<nHintButtons.size(); i++) {
+            int finalI = i+1;
+            nHintButtons.get(i).setOnMouseEntered(event -> {
+                for (int j = 0; j< board.getPlayers().get(hintedPlayerIndex).getHand().size(); j++) {
+                    if (board.getPlayers().get(hintedPlayerIndex).getHand().get(j).getValue() == finalI)
+                        cardRotateTransitions.get(hintedPlayerIndex).get(j).play();
+                }
+            });
+            nHintButtons.get(i).setOnMouseExited(event -> {
+                for (int j = 0; j< board.getPlayers().get(hintedPlayerIndex).getHand().size(); j++)
+                    if (cardRotateTransitions.get(hintedPlayerIndex).get(j).statusProperty().isEqualTo(Animation.Status.RUNNING).get())
+                        cardRotateTransitions.get(hintedPlayerIndex).get(j).stop();
+
+                updateHands(hintedPlayerIndex);
+            });
+        }
+
+        for (int i = 0; i< cHintButtons.size(); i++) {
+            Color color = Color.getReverseOrdinal(i);
+            if (color == null || color == Color.RAINBOW)
+                continue;
+
+            cHintButtons.get(i).setOnMouseEntered(event -> {
+                for (int j = 0; j< board.getPlayers().get(hintedPlayerIndex).getHand().size(); j++) {
+                    if (board.getPlayers().get(hintedPlayerIndex).getHand().get(j).getColor() == color
+                            || board.getPlayers().get(hintedPlayerIndex).getHand().get(j).getColor() == Color.RAINBOW)
+                        cardRotateTransitions.get(hintedPlayerIndex).get(j).play();
+                    System.out.println("BYLEM TU");
+                }
+            });
+            cHintButtons.get(i).setOnMouseExited(event -> {
+                for (int j = 0; j< board.getPlayers().get(hintedPlayerIndex).getHand().size(); j++) {
+                    if (cardRotateTransitions.get(hintedPlayerIndex).get(j).statusProperty().isEqualTo(Animation.Status.RUNNING).get())
+                        cardRotateTransitions.get(hintedPlayerIndex).get(j).stop();
+                }
+
+                updateHands(hintedPlayerIndex);
+            });
+        }
+
     }
 
     public void addHands(int numberOfPlayers, int handSize){
@@ -699,6 +770,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         int playerIDInt = Character.getNumericValue(playerID);
         //System.out.println(playerIDInt);
         playerHint = board.getPlayers().get(playerIDInt-1);
+        hintedPlayerIndex = playerIDInt-1;
         hintTypePane.setVisible(true);
     }
     public void hintTypeButtonClicked(ActionEvent actionEvent) {

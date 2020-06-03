@@ -42,7 +42,7 @@ public class GameCreationController implements Initializable {
         initialLives.setText("3");
         handManagement.setTooltip(new Tooltip(
                 "Selecting this will make players' hands automatically react to all hints.\n" +
-                        "For new players this may be counterintuitive, however we still recommend trying it.\n" +
+                        "For new players this may seem counterintuitive, however we still recommend trying it.\n" +
                         "*WARNING* this setting applies globally for all players!"
         ));
     }

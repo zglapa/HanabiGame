@@ -381,6 +381,13 @@ public class Board implements Serializable {
         return new String(ans);
     }
 
+    public int getPlayerIndex(Player p) {
+        for (int i = 0; i< players.size(); i++)
+            if (p==players.get(i))
+                return i;
+        return -1;
+    }
+
     public String getStringPlayerMoveHistory(int whosBlurred) {
         StringBuilder ans = new StringBuilder();
 
