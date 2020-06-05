@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class SetUpController implements Initializable {
     @FXML TextField initialLives;
     @FXML TextField limitHints;
     @FXML CheckBox handManagement;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -158,4 +161,5 @@ public class SetUpController implements Initializable {
         }
         return ans;
     }
+
 }

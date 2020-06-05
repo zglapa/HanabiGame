@@ -1,7 +1,11 @@
 package hanabi.Model;
 
+import javafx.scene.control.Label;
+
 import java.io.Serializable;
 import java.util.*;
+
+import static java.lang.Integer.parseInt;
 
 public final class Deck implements Serializable {
     private ArrayList <Card> cards;
@@ -100,6 +104,31 @@ public final class Deck implements Serializable {
         cards.remove(cards.size()-1);
         return ans;
     }
+
+    public static Deck createDeck(ArrayList<ArrayList<Label>> labels, boolean rainbows, int minimum) throws NotEnoughCardsException {
+        int ans = 0;
+        for (int i = 0; i< 5; i++) {
+            for (int j = 0; j< (rainbows?6:5); j++) {
+                ans += parseInt(labels.get(i).get(j).getText());
+            }
+        }
+        if (ans<minimum)
+            throw new NotEnoughCardsException();
+
+        ArrayList<Card> cards = new ArrayList<>();
+        for (int i = 0; i< 5; i++) {
+            for (int j = 0; j< (rainbows?6:5); j++) {
+                Color col = Color.getReverseOrdinal(j);
+                int num = i+1;
+
+                for (int k = parseInt(labels.get(i).get(j).getText()); k>0; k--) {
+                    cards.add(new Card(col, num));
+                }
+            }
+        }
+        return new Deck(cards, true);
+    }
+
 }
 
 class EmptyDeckException extends Exception {}
