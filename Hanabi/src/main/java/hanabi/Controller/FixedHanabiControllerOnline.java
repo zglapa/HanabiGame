@@ -33,7 +33,8 @@ import java.util.ResourceBundle;
 import static com.sun.javafx.application.PlatformImpl.exit;
 
 public class FixedHanabiControllerOnline implements Initializable {
-
+    @FXML Label deckSize;
+    @FXML Rectangle deckPicture;
     @FXML StackPane noHintsPane;
     @FXML Label numberLivesLabel, numberHintsLabel;
     @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
@@ -238,6 +239,11 @@ public class FixedHanabiControllerOnline implements Initializable {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
+            try {
+                deckPicture.setFill(new ImagePattern(new Image(getClass().getResource("/textures/deck.jpg").toURI().toString()),0,0,1,1,true));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
             connectionLost.setVisible(false);
             endGame = false;
             players = new ArrayList<>();
@@ -437,6 +443,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     }
     public void updateMoveHistory(){
         moveHistory.setText(board.getStringPlayerMoveHistory(csc.playerID-1));
+        deckSize.setText(""+board.getDeck().getSize());
     }
 
     public void updateResultCards(){

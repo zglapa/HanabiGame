@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
+<StackPane prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
    <children>
       <BorderPane styleClass="root">
          <stylesheets>
@@ -172,9 +172,9 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="398.0" StackPane.alignment="CENTER_RIGHT">
+                  <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Circle fx:id="playCircle" layoutX="85.0" layoutY="100.0" radius="50.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0">
+                        <Circle fx:id="playCircle" radius="50.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0">
                            <fill>
                               <RadialGradient centerX="0.50561797752809" centerY="0.5" focusDistance="-0.023809523809523725" radius="1.0">
                                  <stops>
@@ -187,21 +187,24 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <Label alignment="TOP_CENTER" layoutX="137.0" layoutY="21.0" prefHeight="131.0" prefWidth="61.0" text="x" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="TOP_CENTER" text="x" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Purisa" size="68.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="numberLivesLabel" alignment="TOP_LEFT" layoutX="201.0" layoutY="21.0" textFill="WHITE">
+                        <Label fx:id="numberLivesLabel" alignment="TOP_LEFT" prefWidth="80.0" textFill="WHITE">
                            <font>
                               <Font name="Purisa" size="68.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="20.0" />
+                           </HBox.margin>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Pane>
+                  </HBox>
                </children>
             </StackPane>
          </bottom>
@@ -388,11 +391,35 @@
             </StackPane>
          </left>
          <top>
-            <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="1300.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="30.0" top="10.0" />
                </BorderPane.margin>
-            </FlowPane>
+               <children>
+                  <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets left="230.0" />
+                     </HBox.margin>
+                  </FlowPane>
+                  <Rectangle fx:id="deckPicture" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Label text="x" textFill="white">
+                     <font>
+                        <Font name="Purisa" size="68.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="deckSize" prefHeight="129.0" prefWidth="80.0" text="50" textFill="white">
+                     <font>
+                        <Font name="Purisa" size="68.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </top>
       </BorderPane>
       <Pane fx:id="nextPlayerPane" visible="false">
