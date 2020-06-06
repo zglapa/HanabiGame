@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,11 +56,14 @@ public class GameCreationController implements Initializable {
         initialHints.setText("8");
         limitHints.setText("8");
         initialLives.setText("3");
-        handManagement.setTooltip(new Tooltip(
+        Tooltip tooltip = new Tooltip(
                 "Selecting this will make players' hands automatically react to all hints.\n" +
                         "For new players this may seem counterintuitive, however we still recommend trying it.\n" +
                         "*WARNING* this setting applies globally for all players!"
-        ));
+        );
+        tooltip.setShowDelay(new Duration(500));
+        tooltip.setShowDuration(Duration.INDEFINITE);
+        handManagement.setTooltip(tooltip);
     }
 
     public void handleReturn(ActionEvent actionEvent) {
@@ -286,9 +290,11 @@ public class GameCreationController implements Initializable {
                 }
 
                 Label labelX = new Label("x");
+                labelX.setMaxWidth(20);
+                labelX.setStyle("-fx-font-size: 32; -fx-font-weight: bold;");
                 hbox.getChildren().addAll(vbox, rec, labelX, label);
                 labels.add(label);
-                allLabels.add(labelX);
+                //allLabels.add(labelX); IT IS ALL SET HERE
                 allLabels.add(label);
                 grid.add(hbox, j+1, i+1);
                 smallButtons.add(buttPlus);
@@ -380,8 +386,8 @@ public class GameCreationController implements Initializable {
         //making things pretty
         for (Label label : allLabels) {
             label.setStyle("-fx-font-size: 32; -fx-font-weight: bold;");
-            label.setMinWidth(30);
-            label.setMaxWidth(30);
+            label.setMinWidth(50);
+            label.setMaxWidth(50);
         }
 
         for (Button button : bigButtons) {

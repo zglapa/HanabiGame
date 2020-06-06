@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import static com.sun.javafx.application.PlatformImpl.exit;
+//import static com.sun.javafx.application.PlatformImpl.exit;
 
 public class FixedHanabiControllerOnline implements Initializable {
     @FXML Label deckSize;
@@ -483,7 +483,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         for (int i = 0; i< board.getPlayerAmount(); i++) {
             for (int j = 0; j<board.getHandSize(); j++) {
                 if (j >= board.getPlayers().get(i).getHand().size()) {
-                    tooltipsCardInfo.get(i).get(j).setShowDelay(new Duration(378462836));
+                    tooltipsCardInfo.get(i).get(j).setShowDelay(Duration.INDEFINITE);
                 } else {
                     tooltipsCardInfo.get(i).get(j).setText(board.getPlayers().get(i).getHand().get(j).publicCardInfo.toString());
                 }
@@ -602,6 +602,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                 Tooltip tooltip = new Tooltip("emptyTooltip");
                 tooltip.setStyle("-fx-font-size: 20");
                 tooltip.setShowDelay(new Duration(500));
+                tooltip.setShowDuration(Duration.INDEFINITE);
                 tooltipsCardInfo.get(i).add(tooltip);
 
                 button.setTooltip(tooltip);
