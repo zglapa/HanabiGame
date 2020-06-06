@@ -1,8 +1,6 @@
 //Aleksander Katan
 package hanabi.Model;
 
-import hanabi.Controller.AlertBox;
-
 import java.io.Serializable;
 import java.util.*;
 

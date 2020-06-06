@@ -1,4 +1,5 @@
-package hanabi.Controller;
+//modified code from https://github.com/buckyroberts/Source-Code-from-Tutorials/blob/master/JavaFX/005_creatingAlertBoxes/AlertBox.java
+package hanabi.Controller.Boxes;
 
 import javafx.stage.*;
 import javafx.scene.*;
@@ -6,7 +7,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
-public class NoHints {
+public class AlertBox {
 
     public static void display(String title, String message) {
         Stage window = new Stage();
@@ -14,8 +15,7 @@ public class NoHints {
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(400);
-        window.setMinHeight(400);
+        window.setMinWidth(250);
 
         Label label = new Label();
         label.setText(message);

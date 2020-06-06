@@ -1,17 +1,12 @@
 package hanabi.Controller;
 
+import hanabi.Controller.Boxes.AlertBox;
 import hanabi.Model.Board;
-import hanabi.Model.Deck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
 
 
 public class GameJoiningController {

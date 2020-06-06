@@ -53,8 +53,4 @@ public class MultiplayerModeController implements Initializable {
         MultiplayerModeWindow.action=3;
         MultiplayerModeWindow.stage.close();
     }
-    public void handleReturn(ActionEvent actionEvent) {
-        MultiplayerModeWindow.action=4;
-        MultiplayerModeWindow.stage.close();
-    }
 }

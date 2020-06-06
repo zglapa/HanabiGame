@@ -1,8 +1,9 @@
 package hanabi.Controller;
 
+import hanabi.Controller.Boxes.AlertBox;
+import hanabi.Controller.Boxes.ConfirmationBox;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
-import hanabi.Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,16 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.LinearGradient;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class GameCreationController implements Initializable {

@@ -1,5 +1,5 @@
 //modified code from https://github.com/buckyroberts/Source-Code-from-Tutorials/blob/master/JavaFX/006_communicatingBetweenWindows/ConfirmBox.java
-package hanabi.Controller;
+package hanabi.Controller.Boxes;
 
 import javafx.stage.*;
 import javafx.scene.*;

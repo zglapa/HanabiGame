@@ -12,7 +12,8 @@ public class HanabiMain extends Application {
         launch(args);
     }
 
-    public boolean startMultiplayer(Stage stage) throws Exception {
+    @Override
+    public void start(Stage stage) throws Exception {
         boolean end;
         do {
             end=true;
@@ -40,36 +41,8 @@ public class HanabiMain extends Application {
                 case 3: // exit
                     exit();
 
-                case 4: //return
-                    return false;
-            }
-        }while(!end);
-        return true;
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        boolean end;
-        do {
-            end=true;
-            MainMenuWindow.run();
-            switch (MainMenuWindow.action) {
-                case 0: //forced exit
-                    break;
-
-                case 1: //hotseat
-                    SetUpWindow.run();
-                    StartGame.run(stage);
-                    break;
-
-                case 2: //multiplayer
-                    end=startMultiplayer(stage);
-                    break;
-
-                case 3: //exit
-                    exit();
-                    break;
             }
         }while(!end);
     }
+
 }

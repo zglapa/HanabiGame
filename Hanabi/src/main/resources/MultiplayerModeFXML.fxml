@@ -61,14 +61,6 @@
                </GridPane>
             </left>
          </BorderPane>
-         <Button mnemonicParsing="false" onAction="#handleReturn" styleClass="Button" text="Return">
-            <font>
-               <Font name="Purisa Bold" size="28.0" />
-            </font>
-            <StackPane.margin>
-               <Insets left="150.0" top="50.0" />
-            </StackPane.margin>
-         </Button>
       </children>
    </StackPane>
 </AnchorPane>
