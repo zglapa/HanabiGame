@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
+<StackPane fx:id="mainStackPane" prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
    <children>
       <BorderPane styleClass="root">
          <stylesheets>
@@ -251,7 +251,7 @@
                <children>
                   <Pane prefHeight="380.0" prefWidth="200.0" StackPane.alignment="CENTER">
                      <children>
-                        <Rectangle arcHeight="200.0" arcWidth="200.0" height="380.0" layoutX="25.0" stroke="#110000" strokeType="INSIDE" strokeWidth="4.0" width="750.0">
+                        <Rectangle fx:id="mainRectangle" arcHeight="200.0" arcWidth="200.0" height="380.0" layoutX="25.0" stroke="#110000" strokeType="INSIDE" strokeWidth="4.0" width="750.0">
                            <fill>
                               <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
                                  <stops>

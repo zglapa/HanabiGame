@@ -27,6 +27,7 @@ public class Board implements Serializable {
     static int worthlessImps;
     static Random random;
     boolean smartHandManagement;
+    int[][] initialDeck;
 
     static {
         random = new Random();
@@ -104,6 +105,7 @@ public class Board implements Serializable {
     public int getTurnsUntilEnd() { return (turnsUntilEnd < 0) ? -1 : turnsUntilEnd; }
     public int getRewardedForPlaying() { return rewardedForPlaying; }
     public int getRemainingCardsAmount() { return deck.getSize(); }
+    public int[][] getInitialDeck() { return initialDeck; }
 
 
     public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, boolean smartHandManagement, String... names) {
@@ -117,6 +119,19 @@ public class Board implements Serializable {
             deck = new Deck();
         } else {
             deck = replacement;
+        }
+
+        //initial deck
+        initialDeck = new int[5][];
+        for (int i = 0; i< 5; i++) {
+            int[] arr = new int[6];
+            initialDeck[i] = arr;
+        }
+        for (Card card : deck.getCards()) {
+            int i = card.getValue()-1;
+            int j = card.getColor().ordinal();
+
+            initialDeck[i][j]++;
         }
 
         inGameColors = deck.getColors();
@@ -142,7 +157,7 @@ public class Board implements Serializable {
             this.handSize = handSize;
         }
 
-        turnsUntilEnd = -2137;
+        turnsUntilEnd = -2137;  //negative so basically game never ends, later modified
         rewardedForPlaying = 0;
         for (Card card : deck.getCards())
             if (card.getValue() > rewardedForPlaying)

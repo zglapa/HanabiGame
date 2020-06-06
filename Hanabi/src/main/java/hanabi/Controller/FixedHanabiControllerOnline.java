@@ -86,6 +86,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     Boolean forceExit;
     ArrayList<ArrayList<RotateTransition>> cardRotateTransitions;
     int hintedPlayerIndex;
+    @FXML StackPane mainStackPane;
+
     //Client connections
     private ClientSideConnection csc;
     private class ClientSideConnection{
@@ -275,6 +277,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             updateHands();
             updateCardInfoTooltips();
             updateRotateTransitions();
+            initialDeckSetup();
             updateMoveHistory();
             showYourTrueColors();
             cardIx = 0;
@@ -556,6 +559,109 @@ public class FixedHanabiControllerOnline implements Initializable {
             });
         }
 
+    }
+
+    public void initialDeckSetup() {
+        ArrayList<Rectangle> cards = new ArrayList<>();
+        ArrayList<Label> allLabels = new ArrayList<>();
+        ArrayList<HBox> rainbowHBoxes = new ArrayList<>();
+
+        int height = 500;
+        int width = 900;
+        StackPane initialDeck = new StackPane();
+        initialDeck.setMaxHeight(height);
+        initialDeck.setMinHeight(height);
+        initialDeck.setMaxWidth(width);
+        initialDeck.setMinWidth(width);
+        initialDeck.setAlignment(Pos.CENTER_RIGHT);
+        Rectangle background = new Rectangle(width, height);
+        background.arcHeightProperty().setValue(50);
+        background.arcWidthProperty().setValue(50);
+        background.setFill(javafx.scene.paint.Color.CORNFLOWERBLUE);
+        background.setStyle("-fx-border-style: solid; -fx-border-width: 5; -fx-border-color: black");
+        GridPane grid = new GridPane();
+        grid.setMaxWidth(width);
+        grid.setMinWidth(width);
+        grid.setMaxHeight(height-100);
+        grid.setMinHeight(height-100);
+        grid.setHgap(10);
+        grid.setVgap(15);
+        grid.setAlignment(Pos.CENTER);
+
+        for (int i = 1; i<= 5; i++) {
+            for (int j = 0; j< 6; j++) {
+                HBox hbox = new HBox();
+                hbox.setAlignment(Pos.CENTER);
+                hbox.setSpacing(10);
+                Label label = new Label();
+                label.setText(String.valueOf(board.getInitialDeck()[i-1][j]));
+
+                Rectangle rec = new Rectangle(50, 50);
+
+                hanabi.Model.Color color = hanabi.Model.Color.getReverseOrdinal(j);
+                StringBuilder address = new StringBuilder("/Colors/");
+                if (color == hanabi.Model.Color.RAINBOW) {
+                    address.append("RB");
+                    address.append(i);
+                    address.append(".jpg");
+                } else {
+                    assert color != null;
+                    address.append(color.toString());
+                    for (int k = 9; k < address.length(); k++)
+                        address.setCharAt(k, (char)(address.charAt(k) + 32));
+                    address.append(i);
+                    address.append(".jpg");
+                }
+
+                try {
+                    ImagePattern pattern = new ImagePattern(new Image(getClass().getResource(new String(address)).toURI().toString()), 0, 0, 1, 1, true);
+                    rec.setFill(pattern);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Label labelX = new Label("x");
+                labelX.setMaxWidth(20);
+                labelX.setStyle("-fx-font-size: 32; -fx-font-weight: bold;");
+                hbox.getChildren().addAll(rec, labelX, label);
+                allLabels.add(label);
+                grid.add(hbox, j+1, i+1);
+                cards.add(rec);
+                if (j==5)
+                    rainbowHBoxes.add(hbox);
+            }
+        }
+
+
+        //making things pretty
+        for (Label label : allLabels) {
+            label.setStyle("-fx-font-size: 32; -fx-font-weight: bold;");
+            label.setMinWidth(50);
+            label.setMaxWidth(50);
+        }
+
+        for (Rectangle rec : cards) {
+            rec.setArcHeight(12);
+            rec.setArcWidth(12);
+        }
+
+        VBox vbox = new VBox();
+        Label title = new Label("Initial state of the deck");
+        title.setStyle("-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: Purisa Bold;");
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(20);
+        vbox.setMaxHeight(height);
+        vbox.setMinHeight(height);
+        vbox.setMaxWidth(width);
+        vbox.setMinWidth(width);
+        vbox.getChildren().addAll(title, grid);
+
+        initialDeck.getChildren().addAll(background, vbox);
+        mainStackPane.getChildren().addAll(initialDeck);
+
+        initialDeck.setVisible(false);
+        deckPicture.setOnMouseEntered(event -> initialDeck.setVisible(true));
+        deckPicture.setOnMouseExited(event -> initialDeck.setVisible(false));
     }
 
     public void addHands(int numberOfPlayers, int handSize){
