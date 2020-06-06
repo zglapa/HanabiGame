@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameJoiningWindow {
+    public static boolean end;
     public static void run() throws IOException {
         Parent setUpRoot;
         setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameJoiningFXML.fxml"));
@@ -16,6 +17,7 @@ public class GameJoiningWindow {
         stage.setOnCloseRequest(e->HanabiMain.gameInformation.exit=true);
         stage.setTitle("Set Up");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
+        end=true;
         stage.showAndWait();
     }
 }

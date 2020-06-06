@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class GameCreationWindow {
     public Board board;
-    public boolean hasRainbows;
+    public static boolean end;
     public static void run() throws IOException {
         Parent setUpRoot;
         setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameCreationFXML.fxml"));
@@ -20,6 +20,7 @@ public class GameCreationWindow {
         stage.setOnCloseRequest(e->HanabiMain.gameInformation.exit=true);
         stage.setTitle("Create Game");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
+        end=true;
         stage.showAndWait();
     }
 }

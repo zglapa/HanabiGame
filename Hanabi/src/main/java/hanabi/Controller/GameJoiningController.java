@@ -22,6 +22,11 @@ public class GameJoiningController {
         name1.setText( Board.randomNames(1)[0] );
     }
 
+    public void handleReturn(ActionEvent actionEvent) {
+        GameJoiningWindow.end=false;
+        HanabiMain.gameInformation.settingsStage.close();
+    }
+
     public void startGame(ActionEvent actionEvent) {
         String finalName = ( name1.getText().equals(""))? Board.randomNames(1)[0] :name1.getText();
 

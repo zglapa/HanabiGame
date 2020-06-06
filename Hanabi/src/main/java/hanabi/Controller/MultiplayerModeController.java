@@ -27,8 +27,8 @@ public class MultiplayerModeController implements Initializable {
     @FXML Button createButton;
     @FXML Button joinButton;
     @FXML Button exitButton;
-    @FXML
-    Rectangle background;
+    @FXML Rectangle background;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -37,21 +37,24 @@ public class MultiplayerModeController implements Initializable {
             e.printStackTrace();
         }
 
-        //image.setVisible(false);
     }
 
     public void handleCreate(ActionEvent actionEvent) {
         MultiplayerModeWindow.action=1;
-        HanabiMain.multiplayerModeWindow.stage.close();
+        MultiplayerModeWindow.stage.close();
     }
 
     public void handleJoin(ActionEvent actionEvent) {
         MultiplayerModeWindow.action=2;
-        HanabiMain.multiplayerModeWindow.stage.close();
+        MultiplayerModeWindow.stage.close();
     }
 
     public void handleExit(ActionEvent actionEvent) {
         MultiplayerModeWindow.action=3;
-        HanabiMain.multiplayerModeWindow.stage.close();
+        MultiplayerModeWindow.stage.close();
+    }
+    public void handleReturn(ActionEvent actionEvent) {
+        MultiplayerModeWindow.action=4;
+        MultiplayerModeWindow.stage.close();
     }
 }

@@ -24,7 +24,7 @@
         <URL value="@hanabi.css" />
     </stylesheets>
     <items>
-      <StackPane fx:id="mainStackPane" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="mainStackPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
          <children>
               <VBox alignment="TOP_CENTER">
                   <children>
@@ -153,7 +153,7 @@
                                       </VBox>
                                   </children>
                                   <padding>
-                                      <Insets bottom="10.0" left="200.0" right="10.0" top="20.0" />
+                                      <Insets bottom="10.0" left="150.0" right="10.0" top="20.0" />
                                   </padding>
                               </VBox>
                               <VBox minWidth="520.0">
@@ -228,6 +228,14 @@
                       </HBox>
                   </children>
               </VBox>
+            <Button mnemonicParsing="false" onAction="#handleReturn" styleClass="Button" text="Return">
+               <font>
+                  <Font name="Purisa Bold" size="28.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="150.0" top="50.0" />
+               </StackPane.margin>
+            </Button>
          </children>
       </StackPane>
     </items>

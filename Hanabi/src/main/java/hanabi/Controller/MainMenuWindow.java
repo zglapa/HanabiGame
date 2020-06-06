@@ -10,15 +10,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuWindow {
-
     public static int action;
     public static Stage stage;
-    public void setUp() throws IOException {
+    public static void run() throws IOException {
         stage=new Stage();
-        Parent setUpRoot = FXMLLoader.load(getClass().getResource("/MainMenuFXML.fxml"));
+        Parent setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/MainMenuFXML.fxml"));
         stage.setTitle("Hanabi");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
         System.out.println(stage);
+        action=0;
         stage.showAndWait();
     }
 }

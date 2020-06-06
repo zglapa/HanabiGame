@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -14,51 +15,63 @@
     <stylesheets>
         <URL value="@hanabi.css" />
     </stylesheets>
-    <VBox alignment="CENTER" fillWidth="false" layoutX="44.0" prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Label styleClass="Label" text="Your nick:">
-            <font>
-                <Font name="Purisa Bold" size="28.0" />
-            </font>
-        </Label>
-      <HBox prefHeight="57.0" prefWidth="400.0" spacing="10.0">
-         <children>
-              <TextField fx:id="name1" minWidth="325.0" prefHeight="53.0" prefWidth="366.0" promptText="Name" styleClass="Button">
+   <StackPane alignment="TOP_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+          <VBox alignment="CENTER" fillWidth="false" prefHeight="900.0" prefWidth="1600.0">
+              <Label styleClass="Label" text="Your nick:">
+                  <font>
+                      <Font name="Purisa Bold" size="28.0" />
+                  </font>
+              </Label>
+            <HBox prefHeight="57.0" prefWidth="400.0" spacing="10.0">
+               <children>
+                    <TextField fx:id="name1" minWidth="325.0" prefHeight="53.0" prefWidth="366.0" promptText="Name" styleClass="Button">
+                        <font>
+                            <Font size="30.0" />
+                        </font>
+                    </TextField>
+                    <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" prefHeight="51.0" prefWidth="46.0" styleClass="Button" text="?">
+                        <font>
+                            <Font size="30.0" />
+                        </font>
+                    </Button>
+               </children>
+            </HBox>
+              <Label styleClass="Label" text="Adress IP of a server:">
+                  <VBox.margin>
+                      <Insets top="20.0" />
+                  </VBox.margin>
+                  <font>
+                      <Font name="Purisa Bold" size="28.0" />
+                  </font>
+              </Label>
+              <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" minWidth="400" promptText="Serwer IP adress" styleClass="Button">
+                  <VBox.margin>
+                      <Insets top="20.0" />
+                  </VBox.margin>
                   <font>
                       <Font size="30.0" />
                   </font>
               </TextField>
-              <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" prefHeight="51.0" prefWidth="46.0" styleClass="Button" text="?">
+              <Button mnemonicParsing="false" onAction="#startGame" styleClass="Button" text="PLAY">
                   <font>
-                      <Font size="30.0" />
+                      <Font size="40.0" />
                   </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
               </Button>
-         </children>
-      </HBox>
-        <Label styleClass="Label" text="Adress IP of a server:">
-            <VBox.margin>
-                <Insets top="20.0" />
-            </VBox.margin>
+          </VBox>
+         <Button mnemonicParsing="false" onAction="#handleReturn" styleClass="Button" text="Return">
             <font>
-                <Font name="Purisa Bold" size="28.0" />
+               <Font name="Purisa Bold" size="28.0" />
             </font>
-        </Label>
-        <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" minWidth="400" promptText="Serwer IP adress" styleClass="Button">
-            <VBox.margin>
-                <Insets top="20.0" />
-            </VBox.margin>
-            <font>
-                <Font size="30.0" />
-            </font>
-        </TextField>
-        <Button mnemonicParsing="false" onAction="#startGame" styleClass="Button" text="PLAY">
-            <font>
-                <Font size="40.0" />
-            </font>
-         <VBox.margin>
-            <Insets top="50.0" />
-         </VBox.margin>
-        </Button>
-    </VBox>
+            <StackPane.margin>
+               <Insets left="150.0" top="50.0" />
+            </StackPane.margin>
+         </Button>
+      </children>
+   </StackPane>
 
 
 </AnchorPane>

@@ -11,14 +11,15 @@ import java.io.IOException;
 
 public class MultiplayerModeWindow {
 
-    public static int action = 0;
+    public static int action;
     public static Stage stage;
-    public void setUp() throws IOException {
+    public static void run() throws IOException {
         stage=new Stage();
-        Parent setUpRoot = FXMLLoader.load(getClass().getResource("/MultiplayerModeFXML.fxml"));
+        Parent setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/MultiplayerModeFXML.fxml"));
         stage.setTitle("Hanabi");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
         System.out.println(stage);
+        action=0;
         stage.showAndWait();
     }
 }

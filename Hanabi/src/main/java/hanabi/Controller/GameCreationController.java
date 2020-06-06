@@ -62,6 +62,10 @@ public class GameCreationController implements Initializable {
         ));
     }
 
+    public void handleReturn(ActionEvent actionEvent) {
+        GameCreationWindow.end=false;
+        HanabiMain.gameInformation.settingsStage.close();
+    }
 
     public void adjustCards(MouseEvent mouseEvent) {
         double players=numOfPlayers.getValue();
