@@ -1,524 +1,454 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.HanabiController">
-   <bottom>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+<StackPane prefWidth="1600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanabi.Controller.FixedHanabiControllerOnline">
+   <children>
+      <BorderPane styleClass="root">
+         <stylesheets>
+            <URL value="@hanabi.css" />
+         </stylesheets>
+         <bottom>
+            <StackPane prefWidth="800.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+               <children>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Circle fx:id="playCircle" radius="50.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0">
+                           <fill>
+                              <RadialGradient centerX="0.50561797752809" centerY="0.5" focusDistance="-0.023809523809523725" radius="1.0">
+                                 <stops>
+                                    <Stop color="#8d0505" />
+                                    <Stop color="#8d0505" offset="0.007407407407407408" />
+                                    <Stop color="#8a0d0d" offset="0.3111111111111111" />
+                                    <Stop color="#0a0a0a5c" offset="0.6937037037037037" />
+                                    <Stop color="#140505" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Circle>
+                        <Label alignment="TOP_CENTER" text="x" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa" size="68.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="numberLivesLabel" alignment="TOP_LEFT" prefWidth="80.0" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa" size="68.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="444.0" StackPane.alignment="CENTER_LEFT">
+                     <StackPane.margin>
+                        <Insets left="10.0" />
+                     </StackPane.margin>
+                     <children>
+                        <Circle fx:id="hintCircle" layoutX="117.0" layoutY="100.0" radius="50.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0">
+                           <fill>
+                              <RadialGradient centerX="0.50561797752809" centerY="0.5" focusDistance="-0.023809523809523725" radius="1.0">
+                                 <stops>
+                                    <Stop color="#f2eded" />
+                                    <Stop color="#f2eded" offset="0.007407407407407408" />
+                                    <Stop color="#e8dddbb0" offset="0.3111111111111111" />
+                                    <Stop color="#1413135c" offset="0.6974074074074075" />
+                                    <Stop color="#0a0a0a" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Circle>
+                        <Label alignment="TOP_CENTER" layoutX="169.0" layoutY="21.0" text="x" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa" size="68.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="numberHintsLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="21.0" prefHeight="131.0" prefWidth="215.0" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa" size="68.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane maxWidth="-Infinity" prefHeight="250.0" prefWidth="800.0" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <Pane layoutX="200.0" prefHeight="40.0" prefWidth="400.0">
+                           <children>
+                              <HBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="40.0" prefWidth="400.0" spacing="20.0">
+                                 <children>
+                                    <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="80.0" text="PLAY" />
+                                    <Button fx:id="hintButton" alignment="CENTER" mnemonicParsing="false" onAction="#hintButtonClicked" prefWidth="80.0" text="HINT" />
+                                    <Button fx:id="discardButton" alignment="CENTER" mnemonicParsing="false" onAction="#discardButtonClicked" prefWidth="80.0" text="DISCARD" textAlignment="CENTER" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </Pane>
+                        <StackPane layoutX="165.0" layoutY="57.0" prefHeight="70.0" prefWidth="470.0">
+                           <children>
+                              <Pane fx:id="playPane" maxWidth="-Infinity" prefHeight="70.0" prefWidth="450.0" visible="false">
+                                 <children>
+                                    <Label layoutY="6.0" text="Select card" textFill="WHITE">
+                                       <font>
+                                          <Font name="Serif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER" layoutX="120.0" layoutY="-11.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                       <children>
+                                          <Button fx:id="n1Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                          <Button fx:id="n2Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                          <Button fx:id="n3Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                          <Button fx:id="n4Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                          <Button fx:id="n5Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                                          <Button fx:id="n6Play" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cardPlayButtonClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets top="21.0" />
+                                 </StackPane.margin>
+                              </Pane>
+                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="450.0">
+                                 <children>
+                                    <Pane fx:id="hintPlayerPane" prefHeight="54.0" prefWidth="450.0" visible="false">
+                                       <children>
+                                          <Label layoutY="27.0" text="Select player" textFill="WHITE">
+                                             <font>
+                                                <Font name="Serif Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                             <children>
+                                                <Button fx:id="p1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                                <Button fx:id="p2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                                <Button fx:id="p3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                                <Button fx:id="p4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                                <Button fx:id="p5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                                                <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
+                                                <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="7.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane fx:id="hintTypePane" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="38.0" prefWidth="450.0" visible="false">
+                                       <children>
+                                          <Label layoutY="7.0" prefHeight="24.0" prefWidth="115.0" text="Select hint type" textFill="WHITE">
+                                             <font>
+                                                <Font name="Serif Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" layoutX="136.0" layoutY="4.0" prefHeight="30.0" prefWidth="178.0" spacing="20.0">
+                                             <Button fx:id="colorButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="COLOR" />
+                                             <Button fx:id="numberButtonHint" mnemonicParsing="false" onAction="#hintTypeButtonClicked" prefWidth="80.0" text="NUMBER" />
+                                          </HBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="175.0" layoutY="157.0" prefHeight="50.0" prefWidth="450.0">
+                           <Pane fx:id="numberHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
+                              <Label layoutY="17.0" text="Select number" textFill="WHITE">
+                                 <font>
+                                    <Font name="Serif Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" layoutX="136.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                 <Button fx:id="n1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
+                                 <Button fx:id="n2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
+                                 <Button fx:id="n3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
+                                 <Button fx:id="n4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
+                                 <Button fx:id="n5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#numberHintButtonClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
+                              </HBox>
+                           </Pane>
+                           <Pane fx:id="colorHintPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" visible="false">
+                              <Label layoutY="17.0" text="Select color" textFill="WHITE">
+                                 <font>
+                                    <Font name="Serif Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" layoutX="120.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                 <Button fx:id="c1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                                 <Button fx:id="c5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#colorHintButtonClicked" prefHeight="30.0" prefWidth="30.0" />
+                              </HBox>
+                           </Pane>
+                        </StackPane>
+                     </children>
+                     <StackPane.margin>
+                        <Insets top="10.0" />
+                     </StackPane.margin>
+                  </Pane>
+               </children>
+            </StackPane>
+         </bottom>
+         <right>
+            <StackPane maxHeight="250.0" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+                  <Insets left="20.0" right="10.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="385.0">
+                     <children>
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="385.0" />
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" height="64.0" stroke="BLACK" strokeType="INSIDE" width="385.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="12.0" prefHeight="33.0" prefWidth="251.0" text="Move history" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="3.0" layoutY="84.0" maxHeight="-Infinity" maxWidth="380.0" minHeight="250.0" minWidth="380.0" prefHeight="250.0" prefWidth="380.0" vbarPolicy="ALWAYS">
+                           <content>
+                              <Label fx:id="moveHistory" alignment="CENTER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" textAlignment="CENTER" wrapText="true" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </right>
+         <center>
+            <StackPane maxHeight="380.0" maxWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane prefHeight="380.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Rectangle arcHeight="200.0" arcWidth="200.0" height="380.0" layoutX="25.0" stroke="#110000" strokeType="INSIDE" strokeWidth="4.0" width="750.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                     </children>
+                  </Pane>
+                  <FlowPane fx:id="resultPane" alignment="CENTER" columnHalignment="CENTER" hgap="25.0" maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="700.0" prefHeight="300.0" prefWidth="800.0" prefWrapLength="800.0" visible="true" StackPane.alignment="CENTER" />
+                  <StackPane fx:id="endGamePane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="700.0">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefWidth="700.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Purisa Bold" size="63.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="199.0" layoutY="210.0" maxHeight="315.0" maxWidth="550.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="400.0" text="[connection lost]" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="noHintsPane" onMouseEntered="#hideNoHintsAlert" prefHeight="150.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="No hints left" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="63.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="lastPlayPane" onMouseClicked="#hideLastHintPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                           <children>
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <StackPane prefHeight="383.0" prefWidth="805.0">
+                                 <children>
+                                    <Label fx:id="lastPlayLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" maxHeight="315.0" maxWidth="802.0" minHeight="200.0" minWidth="500.0" prefHeight="289.0" prefWidth="802.0" text="no last play" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutY="179.0" prefHeight="203.0" prefWidth="798.0">
+                                 <children>
+                                    <Label fx:id="lastPlayDismiss" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" maxHeight="346.0" maxWidth="805.0" minHeight="70.0" minWidth="500.0" prefHeight="70.0" prefWidth="798.0" text="click to dismiss" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </center>
+         <left>
+            <StackPane maxHeight="-Infinity" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="350.0" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+                  <Insets left="10.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="360.0" layoutX="14.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="325.0" />
+                        <Rectangle arcHeight="50.0" arcWidth="50.0" height="69.0" layoutX="13.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="325.0">
+                           <fill>
+                              <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#7489e8" />
+                                    <Stop color="#7489e8" offset="0.007407407407407408" />
+                                    <Stop color="#240d5e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Rectangle>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="13.0" prefHeight="33.0" prefWidth="250.0" text="Discard pile" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Purisa Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="15.0" layoutY="84.0" maxHeight="250.0" maxWidth="320.0" minHeight="250.0" minWidth="320.0" prefHeight="250.0" prefWidth="320.0">
+                           <content>
+                              <FlowPane fx:id="discardPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" prefWrapLength="320.0" vgap="10.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </left>
+         <top>
+            <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" top="10.0" />
+               </BorderPane.margin>
+               <children>
+                  <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets left="230.0" />
+                     </HBox.margin>
+                  </FlowPane>
+                  <Rectangle fx:id="deckPicture" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Label text="x" textFill="white">
+                     <font>
+                        <Font name="Purisa" size="68.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="deckSize" prefHeight="129.0" prefWidth="80.0" text="50" textFill="white">
+                     <font>
+                        <Font name="Purisa" size="68.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+      <Pane fx:id="nextPlayerPane" visible="false">
          <children>
-            <Button fx:id="hintButton" onAction="#hintButtonClicked" text="HINT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="playButton" onAction="#playButtonClicked" text="PLAY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Button fx:id="discardButton" onAction="#discardButtonClicked" text="DISCARD" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label text="select card number" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cardChoice" onAction="#cardChosen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="select player to hint" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <ComboBox fx:id="playerChoice" onAction="#playerChosen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="select hint type" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <ComboBox fx:id="hintTypeChoice" onAction="#hintTypeChosen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="select color to hint" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <ComboBox fx:id="colorChoice" onAction="#colorChosen" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="select number to hint" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <ComboBox fx:id="numberChoice" onAction="#numberChosen" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         </children>
-         <padding>
-            <Insets bottom="20.0" />
-         </padding>
-      </GridPane>
-   </bottom>
-   <top>
-      <GridPane alignment="CENTER" cacheShape="false" hgap="30.0" BorderPane.alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-            <ColumnConstraints hgrow="NEVER" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" />
-            <ColumnConstraints hgrow="NEVER" />
-            <ColumnConstraints hgrow="NEVER" />
-            <ColumnConstraints hgrow="NEVER" />
-            <ColumnConstraints hgrow="NEVER" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-         <children>
-            <Label fx:id="player1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="player2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="player3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="player4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label fx:id="player5" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Label fx:id="player6" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="player7" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="210.0" layoutY="26.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card1_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card1_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card1_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card1_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card1_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card1_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-            <GridPane alignment="TOP_CENTER" hgap="10.0" layoutX="110.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="11.0" minHeight="10.0" prefHeight="11.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card2_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card2_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card2_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card2_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card2_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card2_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" />
-               </children>
-            </GridPane>
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="290.0" layoutY="66.0" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card3_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card3_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card3_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card3_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card3_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card3_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card4_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card4_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card4_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card4_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card4_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card4_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="5" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card5_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card5_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card5_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card5_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card5_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card5_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="6">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card6_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card6_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card6_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card6_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card6_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card6_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-            <GridPane alignment="CENTER" hgap="10.0" layoutX="100.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="6">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-                  <ColumnConstraints hgrow="NEVER" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Rectangle id="card1" fx:id="card7_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                  <Rectangle id="card1" fx:id="card7_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card7_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card7_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card7_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                  <Rectangle id="card1" fx:id="card7_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-               </children>
-            </GridPane>
-         </children>
-         <BorderPane.margin>
-            <Insets top="30.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </top>
-   <right>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="300.0" maxWidth="350.0" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </BorderPane.margin>
-         <content>
-            <Label fx:id="moveHistory" wrapText="true" />
-         </content>
-      </ScrollPane>
-   </right>
-   <center>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <children>
-            <Label fx:id="endGameLabel" alignment="CENTER" textAlignment="CENTER">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="900.0" stroke="BLACK" strokeType="INSIDE" width="1600.0">
+               <fill>
+                  <RadialGradient centerX="0.48876404494382014" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#7489e8" />
+                        <Stop color="#7489e8" offset="0.007407407407407408" />
+                        <Stop color="#240d5e" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Button alignment="CENTER" layoutX="693.0" layoutY="441.0" mnemonicParsing="false" onAction="#nextPlayerButtonClicked" prefHeight="53.0" prefWidth="232.0" text="CONTINUE">
                <font>
-                  <Font name="Monospaced Bold" size="51.0" />
+                  <Font name="Purisa Bold" size="20.0" />
                </font>
+            </Button>
+            <Label fx:id="nextPlayerName" alignment="CENTER" layoutX="618.0" layoutY="287.0" prefHeight="125.0" prefWidth="379.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Purisa Bold" size="35.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
             </Label>
-            <FlowPane alignment="CENTER" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0">
-               <children>
-                  <Rectangle fx:id="resultCardW" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                  <Rectangle fx:id="resultCardY" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                  <Rectangle fx:id="resultCardR" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                  <Rectangle fx:id="resultCardG" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                  <Rectangle fx:id="resultCardB" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                  <Rectangle fx:id="resultCardRB" arcHeight="40.0" arcWidth="40.0" fill="GRAY" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-               </children>
-            </FlowPane>
          </children>
-      </VBox>
-   </center>
-   <left>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="300.0" maxWidth="320.0" minHeight="300.0" minWidth="320.0" prefHeight="300.0" prefWidth="320.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" top="50.0" />
-         </BorderPane.margin>
-         <content>
-            <GridPane maxHeight="500.0" maxWidth="290.0" minHeight="500.0" minWidth="290.0" prefHeight="500.0" prefWidth="290.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-               <children>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard1_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard1_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard1_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard1_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard1_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard1_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard2_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard2_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard2_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard2_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard2_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard2_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard3_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard3_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard3_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard3_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard3_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard3_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard4_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard4_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard4_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard4_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard4_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard4_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard5_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard5_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard5_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard5_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard5_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard5_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard6_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard6_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard6_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard6_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard6_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard6_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard7_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard7_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard7_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard7_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard7_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard7_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard8_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard8_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard8_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard8_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard8_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard8_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="8">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard9_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard9_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard9_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard9_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard9_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard9_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-                  <GridPane alignment="CENTER" hgap="10.0" GridPane.columnIndex="0" GridPane.rowIndex="9">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                        <ColumnConstraints hgrow="NEVER" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Rectangle id="card1" fx:id="dCard10_1" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
-                        <Rectangle id="card1" fx:id="dCard10_2" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard10_3" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard10_4" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard10_5" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="4" GridPane.halignment="LEFT" />
-                        <Rectangle id="card1" fx:id="dCard10_6" arcHeight="10.0" arcWidth="10.0" fill="DARKSLATEGRAY" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
-                     </children>
-                  </GridPane>
-               </children>
-            </GridPane>
-         </content>
-      </ScrollPane>
-   </left>
-</BorderPane>
+      </Pane>
+   </children>
+</StackPane>
