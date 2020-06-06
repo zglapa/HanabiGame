@@ -195,8 +195,8 @@ public class GameCreationController implements Initializable {
         grid.setMinWidth(1300);
         grid.setMaxHeight(600);
         grid.setMinHeight(600);
-        grid.setHgap(30);
-        grid.setVgap(20);
+        grid.setHgap(15);
+        grid.setVgap(15);
 
         Button defaultButt = new Button("Reset");
         Button confirmButt = new Button("Save");
@@ -214,7 +214,7 @@ public class GameCreationController implements Initializable {
             StackPane sp = new StackPane();
             sp.getChildren().addAll(butt);
             grid.add(sp, controlIndex--, 8);
-            butt.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-font-family: 'Purisa Bold';");
+            butt.setStyle("-fx-font-size: 18; -fx-font-weight: bold; -fx-font-family: Purisa Bold;");
         }
 
         confirmButt.setOnAction(event -> deckCreation.setVisible(false));
@@ -379,7 +379,7 @@ public class GameCreationController implements Initializable {
 
         //making things pretty
         for (Label label : allLabels) {
-            label.setStyle("-fx-font-size: 32; -fx-font-weight: bold; -fx-font-family: 'Purisa Bold';");
+            label.setStyle("-fx-font-size: 32; -fx-font-weight: bold;");
             label.setMinWidth(30);
             label.setMaxWidth(30);
         }
@@ -389,7 +389,7 @@ public class GameCreationController implements Initializable {
             button.setMaxWidth(bigButtonSize);
             button.setMinHeight(bigButtonSize);
             button.setMaxHeight(bigButtonSize);
-            button.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-font-family: 'Purisa Bold';");
+            button.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
         }
 
         for (Button button : smallButtons) {
@@ -397,7 +397,7 @@ public class GameCreationController implements Initializable {
             button.setMaxWidth(smallButtonSize);
             button.setMinHeight(smallButtonSize);
             button.setMaxHeight(smallButtonSize);
-            button.setStyle("-fx-font-size: 12; -fx-font-weight: bold; -fx-font-family: 'Purisa Bold';");
+            button.setStyle("-fx-font-size: 10; -fx-font-weight: bold;");
         }
 
         for (Rectangle rec : cards) {
@@ -407,7 +407,7 @@ public class GameCreationController implements Initializable {
 
         VBox vbox = new VBox();
         Label title = new Label("Forge your own deck!");
-        title.setStyle("-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: 'Purisa Bold';");
+        title.setStyle("-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: Purisa Bold;");
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
         vbox.getChildren().addAll(title, grid);
