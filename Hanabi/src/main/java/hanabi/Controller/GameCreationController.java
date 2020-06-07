@@ -2,12 +2,12 @@ package hanabi.Controller;
 
 import hanabi.Controller.Boxes.AlertBox;
 import hanabi.Controller.Boxes.ConfirmationBox;
+import hanabi.Controller.Boxes.ConnectionBox;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
 import hanabi.Server.ClientSideConnection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -18,7 +18,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -26,6 +25,7 @@ import java.io.OptionalDataException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
 
@@ -177,7 +177,6 @@ public class GameCreationController implements Initializable {
             AlertBox.display("Wrong input", "Not enough cards in the deck!");
             return;
         }
-        waitingPane.setVisible(true);
         System.out.println(waitingPane.isVisible());
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, deck,
                 random, handMan, smallPen, finalNames);
@@ -185,17 +184,36 @@ public class GameCreationController implements Initializable {
         System.out.println(finalNames[0]);
         if(Server.isSelected()){
 
-            HanabiMain.serverThread= new StartServer();
-            HanabiMain.serverThread.start();
-            while (!HanabiMain.gameInformation.serverReady) {
-                sleep(10);
-                System.out.println("waited");
+            try {
+                HanabiMain.serverThread= new StartServer();
+                HanabiMain.serverThread.start();
+                HanabiMain.serverThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                    @Override
+                    public void uncaughtException(Thread t, Throwable e) {
+                        t.interrupt();
+                        HanabiMain.serverThread=null;
+                    }
+                });
+                while (!HanabiMain.gameInformation.serverReady) {
+                    sleep(10);
+                    if(HanabiMain.serverThread==null){
+                        ConnectionBox.display("Alert", "This IP address is already running a server");
+                        return;
+                    }
+                    System.out.println("waited");
+                }
+                HanabiMain.gameInformation.serverID="";
+            }catch (RuntimeException runtimeException){
+                HanabiMain.serverThread.interrupt();
+                ConnectionBox.display("Alert", "This IP address is already running a server");
+                return;
             }
-            HanabiMain.gameInformation.serverID="";
+
         }
         else{
             HanabiMain.gameInformation.serverID = ID.getText();
         }
+        waitingPane.setVisible(true);
         GameCreationWindow.setUpBoard = HanabiMain.gameInformation.board;
         HanabiMain.csc = new ClientSideConnection();
         HanabiMain.gameInformation.receivedBoard = null;

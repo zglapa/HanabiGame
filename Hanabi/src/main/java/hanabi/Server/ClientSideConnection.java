@@ -9,6 +9,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -82,8 +83,12 @@ public class ClientSideConnection{
             playerName = HanabiMain.gameInformation.playerName;
             out.writeObject(playerName);
             out.flush();
-        } catch(UnknownHostException u){
+        }catch (ConnectException e){
+            throw new RuntimeException(e.getCause());
+        }
+        catch(UnknownHostException u){
             System.out.println("[error connecting to " + HanabiMain.gameInformation.serverID + " : Unknown host]" );
+            throw new RuntimeException(u.getCause());
             //forceExit = true;
         }catch (IOException ex){
             ex.printStackTrace();

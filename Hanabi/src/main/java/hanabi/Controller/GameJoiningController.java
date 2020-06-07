@@ -1,6 +1,7 @@
 package hanabi.Controller;
 
 import hanabi.Controller.Boxes.AlertBox;
+import hanabi.Controller.Boxes.ConnectionBox;
 import hanabi.Model.Board;
 import hanabi.Server.ClientSideConnection;
 import javafx.application.Platform;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Pane;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.OptionalDataException;
+import java.net.ConnectException;
 
 
 public class GameJoiningController {
@@ -37,11 +39,18 @@ public class GameJoiningController {
             AlertBox.display("Wrong input", "Name must not exceed 20 characters!");
             return;
         }
-        waitingPane.setVisible(true);
-        System.out.println(waitingPane.isVisible());
+
         HanabiMain.gameInformation.playerName = finalName;
         HanabiMain.gameInformation.serverID = ID.getText();
-        HanabiMain.csc = new ClientSideConnection();
+
+        try{
+            HanabiMain.csc = new ClientSideConnection();
+        }catch (RuntimeException e){
+            ConnectionBox.display("Alert", "Server does not exist! \n\n");
+            return;
+        }
+        waitingPane.setVisible(true);
+        System.out.println(waitingPane.isVisible());
         Object o = null;
         HanabiMain.gameInformation.receivedBoard = null;
         Thread t = new Thread(new Runnable() {
@@ -61,8 +70,7 @@ public class GameJoiningController {
                         }
                         catch (IOException ioException) {
                             ioException.printStackTrace();
-
-                        }
+                        }catch (NullPointerException ignored){}
                         GameJoiningWindow.end=false;
                         break;
                     }

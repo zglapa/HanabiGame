@@ -9,6 +9,7 @@ import hanabi.Model.MoveType;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -31,6 +32,8 @@ public class GameServer {
         numOfPlayers= new AtomicInteger(0);
         try{
             serverSocket = new ServerSocket(PORT);
+        }catch (BindException bindException){
+            throw new RuntimeException(bindException.getCause());
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -135,7 +138,12 @@ public class GameServer {
         }
     }
     public static void main(String[] args){
-        GameServer gs = new GameServer();
-        gs.acceptConnections();
+        try{
+            GameServer gs = new GameServer();
+            gs.acceptConnections();
+        }catch (RuntimeException runtimeException){
+            throw new RuntimeException(runtimeException.getCause());
+        }
+
     }
 }
