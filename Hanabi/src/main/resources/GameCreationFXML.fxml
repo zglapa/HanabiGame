@@ -45,7 +45,7 @@
                                                     <Font name="Purisa Bold" size="28.0" />
                                                 </font>
                                             </Label>
-                                            <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="61.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
+                                            <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="61.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
                                                 <padding>
                                                     <Insets top="5.0" />
                                                 </padding>
