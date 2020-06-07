@@ -56,17 +56,29 @@
                                               <Insets />
                                           </opaqueInsets>
                                       </Slider>
-                                      <CheckBox fx:id="hasRainbows" mnemonicParsing="false" styleClass="CheckBox" text="Rainbows">
-                                          <VBox.margin>
-                                              <Insets bottom="20.0" />
-                                          </VBox.margin>
-                                          <padding>
-                                              <Insets top="5.0" />
-                                          </padding>
-                                          <font>
-                                              <Font name="Purisa" size="28.0" />
-                                          </font>
-                                      </CheckBox>
+                              <HBox spacing="40.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                            <CheckBox fx:id="hasRainbows" mnemonicParsing="false" styleClass="CheckBox" text="Rainbows">
+                                                <padding>
+                                                    <Insets top="5.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Purisa" size="28.0" />
+                                                </font>
+                                            </CheckBox>
+                                    <CheckBox fx:id="smallPenalty" mnemonicParsing="false" styleClass="CheckBox" text="Small penalty">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Purisa" size="28.0" />
+                                       </font>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
                                       <VBox prefHeight="489.0" prefWidth="497.0">
                                           <children>
                                               <HBox prefHeight="46.0" prefWidth="497.0">
@@ -178,7 +190,7 @@
                                                       <Font size="30.0" />
                                                   </font>
                                               </Button>
-                                    <CheckBox fx:id="Server" mnemonicParsing="false" selected="true" styleClass="CheckBox" text="Use local server" onAction="#IPClicked">
+                                    <CheckBox fx:id="Server" mnemonicParsing="false" onAction="#IPClicked" selected="true" styleClass="CheckBox" text="Use local server">
                                        <padding>
                                           <Insets top="10.0" />
                                        </padding>
@@ -186,7 +198,7 @@
                                           <Font name="Purisa" size="28.0" />
                                        </font>
                                     </CheckBox>
-                                    <VBox visible="false" fx:id="IPBox">
+                                    <VBox fx:id="IPBox" visible="false">
                                        <children>
                                                     <Label styleClass="Label" text="IP of a external server:">
                                                         <font>

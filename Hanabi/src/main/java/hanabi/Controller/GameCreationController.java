@@ -25,7 +25,7 @@ import static java.lang.Thread.sleep;
 public class GameCreationController implements Initializable {
     @FXML Slider numOfPlayers;
     @FXML Slider numOfCards;
-    @FXML CheckBox hasRainbows;
+    @FXML CheckBox hasRainbows,smallPenalty;
     @FXML Button randomNames;
     @FXML VBox advancedSettings;
     @FXML TextField ID;
