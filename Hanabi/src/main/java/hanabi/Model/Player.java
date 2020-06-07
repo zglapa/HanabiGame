@@ -51,7 +51,8 @@ public class Player implements Serializable {
 
         rest.addAll(rotated);
         rest.addAll(nonRotated);
-        cards = rest;
+        cards.clear();
+        cards.addAll(rest);
     }
 
     public void manageAround (Color color) {
