@@ -3,6 +3,7 @@ module hanabi {
     requires javafx.fxml;
     exports hanabi.Model;
     exports hanabi.Controller;
+    exports hanabi.Server;
     opens hanabi.Controller;
 }
 

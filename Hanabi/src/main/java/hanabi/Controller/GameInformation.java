@@ -10,4 +10,5 @@ public class GameInformation {
     public boolean exit=false;
     public boolean serverReady=false;
     public Stage settingsStage;
+    public Board receivedBoard;
 }

@@ -4,6 +4,7 @@ import hanabi.Controller.Boxes.AlertBox;
 import hanabi.Controller.Boxes.ConfirmationBox;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
+import hanabi.Server.ClientSideConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.io.IOException;
+import java.io.OptionalDataException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,6 +26,7 @@ import java.util.ResourceBundle;
 import static java.lang.Thread.sleep;
 
 public class GameCreationController implements Initializable {
+    @FXML Pane waitingPane;
     @FXML Slider numOfPlayers;
     @FXML Slider numOfCards;
     @FXML CheckBox hasRainbows;
@@ -171,6 +175,7 @@ public class GameCreationController implements Initializable {
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, deck,
                 random, handMan, smallPen, finalNames);
         HanabiMain.gameInformation.playerName = finalNames[0];
+        waitingPane.setVisible(true);
         System.out.println(finalNames[0]);
         if(Server.isSelected()){
             new StartServer().start();
@@ -182,6 +187,30 @@ public class GameCreationController implements Initializable {
         }
         else{
             HanabiMain.gameInformation.serverID = ID.getText();
+        }
+        GameCreationWindow.setUpBoard = HanabiMain.gameInformation.board;
+        HanabiMain.csc = new ClientSideConnection();
+        Object o = null;
+        HanabiMain.gameInformation.receivedBoard = null;
+        while(HanabiMain.gameInformation.receivedBoard == null){
+            try{
+                o = HanabiMain.csc.in.readObject();
+                HanabiMain.gameInformation.receivedBoard = (Board)o;
+                System.out.println("[received board]");
+            }catch (ClassCastException | OptionalDataException e){
+                System.out.println(o);
+            }catch (IOException | ClassNotFoundException ex){
+                ex.printStackTrace();
+
+            }catch (Exception e){
+                try {
+                    HanabiMain.csc.socket.close();
+                }
+                catch (IOException ioException) {
+                    ioException.printStackTrace();
+                    //endGame();
+                }
+            }
         }
         HanabiMain.gameInformation.settingsStage.close();
     }

@@ -12,6 +12,7 @@ import java.io.IOException;
 public class GameCreationWindow {
     public Board board;
     public static boolean end;
+    public static Board setUpBoard;
     public static void run() throws IOException {
         Parent setUpRoot;
         setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameCreationFXML.fxml"));

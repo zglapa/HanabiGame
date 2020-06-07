@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import static hanabi.Controller.HanabiMain.csc;
+
 //import static com.sun.javafx.application.PlatformImpl.exit;
 
 public class FixedHanabiControllerOnline implements Initializable {
@@ -91,82 +93,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     @FXML StackPane properGameEndPane;
     @FXML Label gameEndScore, gameEndBig, gameEndSmall;
 
-    //Client connections
-    private ClientSideConnection csc;
-    private class ClientSideConnection{
-        private Socket socket;
-        private ObjectOutputStream out;
-        private ObjectInputStream in;
-        public int playerID;
-        public boolean isAHost;
-        public void sendBoard(){
-            try{
-                out.writeObject(board);
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-                endGame(true);
-            }
-        }
-        public void sendMoveType(MoveType moveType){
-            try{
-                out.writeObject(moveType);
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-                endGame(true);
-            }
-        }
-        public MoveType receiveMoveType(){
-            MoveType moveType = null;
-            try{
-                moveType = (MoveType)in.readObject();
-            } catch (IOException | ClassNotFoundException  | ClassCastException e) {
-                e.printStackTrace();
-                endGame(true);
 
-            }
-            return moveType;
-        }
-        public Board receiveBoard(){
-            Board b = null;
-            try{
-                b = (Board) in.readObject();
-                System.out.println("[received board]");
-            } catch (IOException | ClassNotFoundException | ClassCastException e) {
-                e.printStackTrace();
-                endGame(true);
-            }
-            return b;
-        }
-        public ClientSideConnection(){
-            try {
-                socket = new Socket(SERVERIP, 9999);
-
-                System.out.println("[connected to server]");
-                out = new ObjectOutputStream(socket.getOutputStream());
-                out.flush();
-                in = new ObjectInputStream(socket.getInputStream());
-                playerID = in.readInt();
-                if (playerID == 1) {
-                    out.writeObject(setUpBoard);
-                    out.flush();
-                }
-                PlayerName = HanabiMain.gameInformation.playerName;
-                out.writeObject(PlayerName);
-                out.flush();
-            } catch(UnknownHostException u){
-                    System.out.println("[error connecting to " + SERVERIP + " : Unknown host]" );
-                    forceExit = true;
-            }catch (IOException ex){
-                ex.printStackTrace();
-                endGame(true);
-            }
-        }
-    }
-    public void connectToServer(){
-        csc = new ClientSideConnection();
-    }
     public void endGame(boolean disconnected) {
         if (!endGame) {
             gameEndPane.setVisible(true);
@@ -196,6 +123,8 @@ public class FixedHanabiControllerOnline implements Initializable {
             public void run() {
                 while(!endGame){
                     board = csc.receiveBoard();
+                    HanabiMain.gameInformation.receivedBoard = board;
+                    System.out.println(board.getDeck().getSize());
                     MoveType moveType = csc.receiveMoveType();
                     Platform.runLater(() ->{
                         boolean updateDiscard = false;
@@ -221,32 +150,7 @@ public class FixedHanabiControllerOnline implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
         forceExit = false;
-        setUpBoard = HanabiMain.gameInformation.board;
-        SERVERIP = HanabiMain.gameInformation.serverID;
-        this.connectToServer();
-        Object o = null;
-        board = null;
         if(!forceExit){
-            while(board == null){
-                try{
-                    o = csc.in.readObject();
-                    board = (Board)o;
-                    System.out.println("[received board]");
-                }catch (ClassCastException | OptionalDataException e){
-                    System.out.println(o);
-                }catch (IOException | ClassNotFoundException ex){
-                    ex.printStackTrace();
-
-                }catch (Exception e){
-                    try {
-                        csc.socket.close();
-                    }
-                    catch (IOException ioException) {
-                        ioException.printStackTrace();
-                        endGame(true);
-                    }
-                }
-            }
             try {
                 addColors();
             } catch (URISyntaxException e) {
@@ -265,6 +169,8 @@ public class FixedHanabiControllerOnline implements Initializable {
             cards = new ArrayList<>();
             tooltipsCardInfo = new ArrayList<>();
             playerBackgrounds = new ArrayList<>();
+
+            board = HanabiMain.gameInformation.receivedBoard;
             //board= HanabiMain.setUpWindow.board;
             int PLAYERAMOUNT = board.getPlayerAmount();
             int HANDSIZE = board.getHandSize();

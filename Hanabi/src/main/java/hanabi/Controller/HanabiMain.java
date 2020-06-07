@@ -1,5 +1,6 @@
 package hanabi.Controller;
 
+import hanabi.Server.ClientSideConnection;
 import hanabi.Server.GameServer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -8,7 +9,7 @@ import static javafx.application.Platform.exit;
 
 public class HanabiMain extends Application {
     public static GameInformation gameInformation = new GameInformation();
-
+    public static ClientSideConnection csc;
     public static void main(String[] args){
         launch(args);
     }
