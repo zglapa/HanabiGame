@@ -302,14 +302,14 @@
                                           <Font name="System Bold" size="72.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="gameEndBig" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="693.0" text="You angered the gods!">
+                                    <Label fx:id="gameEndBig" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="693.0" text="You angered the gods!">
                                        <font>
                                           <Font name="System Bold" size="48.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="gameEndSmall" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="693.0" text="People wish you were never born and want their money back">
+                                    <Label fx:id="gameEndSmall" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="693.0" text="People wish you were never born and want their money back">
                                        <font>
-                                          <Font name="System Bold" size="20.0" />
+                                          <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
                                  </children>
