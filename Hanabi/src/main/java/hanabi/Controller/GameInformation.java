@@ -12,5 +12,7 @@ public class GameInformation {
     public Stage settingsStage;
     public Board receivedBoard;
     public Stage gameStage;
+    public Stage setUpStage;
     public boolean returnToMM;
+    public Thread joinThread;
 }

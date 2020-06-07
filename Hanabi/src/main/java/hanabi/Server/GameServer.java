@@ -11,12 +11,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 
 public class GameServer {
+    public static boolean end;
     private static Board BOARD;
     private int NUMBEROFPLAYERS = 7;
     private ServerSocket serverSocket;
@@ -24,6 +26,7 @@ public class GameServer {
     private static int PORT = 9999;
     private static ArrayList<ServerSideConnection> players;
     public GameServer(){
+        end = false;
         System.out.println("[server started]");
         numOfPlayers= new AtomicInteger(0);
         try{
@@ -37,7 +40,7 @@ public class GameServer {
         try{
             System.out.println("[waiting for connections]");
             HanabiMain.gameInformation.serverReady=true;
-            while(numOfPlayers.get() < NUMBEROFPLAYERS){
+            while(numOfPlayers.get() < NUMBEROFPLAYERS && !end){
                 Socket client = serverSocket.accept();
                 ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.incrementAndGet());
                 players.add(ssc);
@@ -86,7 +89,7 @@ public class GameServer {
         @Override
         public void run() {
             try {
-                 while (numOfPlayers.get() < NUMBEROFPLAYERS) {
+                 while (numOfPlayers.get() < NUMBEROFPLAYERS && !end ) {
                     Thread.onSpinWait();
                 }
                 outer :while(true){
@@ -114,15 +117,21 @@ public class GameServer {
                 }
                 Thread.currentThread().interrupt();
                 System.out.println("enddddddd");
+                if(end)System.exit(0);
             }
 
         }
 
     }
+
     public void sendToAll(Object o) throws IOException {
         for(ServerSideConnection ssc : players){
-            ssc.out.writeObject(o);
-            ssc.out.flush();
+            try{
+                ssc.out.writeObject(o);
+                ssc.out.flush();
+            }catch (SocketException socketException){
+                Thread.currentThread().interrupt();
+            }
         }
     }
     public static void main(String[] args){

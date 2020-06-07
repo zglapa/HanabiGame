@@ -16,6 +16,23 @@ public class HanabiMain extends Application {
     }
 
     @Override
+    public void stop() throws Exception {
+        GameServer.end=true;
+        if(!csc.socket.isClosed()){
+            csc.out.writeObject(null);
+            csc.out.flush();
+            csc.socket.close();
+        }
+
+        if(serverThread!=null)
+        serverThread.interrupt();
+        System.out.println("blabla");
+        if(gameInformation.joinThread!=null)
+            gameInformation.joinThread.interrupt();
+        super.stop();
+    }
+
+    @Override
     public void start(Stage stage) throws Exception {
         //new StartServer().start();
         boolean end;
@@ -30,7 +47,6 @@ public class HanabiMain extends Application {
                     GameCreationWindow.run();
                     if(GameCreationWindow.end) {
                         StartGame.run(stage);
-
                     }
                     else
                         end=false;
@@ -51,7 +67,6 @@ public class HanabiMain extends Application {
             }
 
         }while(!end);
-        System.out.println("wyszło z while");
 
     }
 

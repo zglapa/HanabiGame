@@ -7,6 +7,7 @@ import hanabi.Model.Deck;
 import hanabi.Server.ClientSideConnection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -16,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -52,9 +55,10 @@ public class GameCreationController implements Initializable {
     public final int smallButtonSize = 25;
     public final int bigButtonSize = 50;
     ArrayList<ArrayList<Label>> cardsAmount;
-
+    Stage stage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        stage = HanabiMain.gameInformation.settingsStage;
         deckCreation();
         //for(int i=0;i<7;++i)
         //names.get(i).setText("Player"+(i+1));
@@ -195,7 +199,7 @@ public class GameCreationController implements Initializable {
         GameCreationWindow.setUpBoard = HanabiMain.gameInformation.board;
         HanabiMain.csc = new ClientSideConnection();
         HanabiMain.gameInformation.receivedBoard = null;
-        Thread t = new Thread(new Runnable() {
+        HanabiMain.gameInformation.joinThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 Object o = null;
@@ -234,7 +238,7 @@ public class GameCreationController implements Initializable {
                 Thread.currentThread().interrupt();
             }
         });
-        t.start();
+        HanabiMain.gameInformation.joinThread.start();
 
     }
 
