@@ -1,6 +1,8 @@
 //Aleksander Katan
 package hanabi.Model;
 
+import javafx.util.Pair;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -26,6 +28,7 @@ public class Board implements Serializable {
     static Random random;
     boolean smartHandManagement;
     int[][] initialDeck;
+    boolean smallPenalty;
 
     static {
         random = new Random();
@@ -106,7 +109,7 @@ public class Board implements Serializable {
     public int[][] getInitialDeck() { return initialDeck; }
 
 
-    public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, boolean smartHandManagement, String... names) {
+    public Board(int playerAmount, int lives, int hints, int maxHints, int handSize, Deck replacement, boolean shufflePlayers, boolean smartHandManagement, boolean smallPenalty, String... names) {
         //if replacement is null then the deck is ordinary 50 cards, if handsize is 0, it's automatically calculated
         result = new HashMap<>();
         for (Color name : Color.values()) {
@@ -145,6 +148,7 @@ public class Board implements Serializable {
         this.maxHints = maxHints;
         currentPlayerIndex = 0;
         this.smartHandManagement = smartHandManagement;
+        this.smallPenalty = smallPenalty;
 
         if (handSize <= 0) {
             if (playerAmount < 4)
@@ -181,7 +185,7 @@ public class Board implements Serializable {
     }
 
     public Board(int playerAmount, String... names) {
-        this(playerAmount, 3, 8, 8, 0, null, true, false, names);
+        this(playerAmount, 3, 8, 8, 0, null, true, false, true, names);
     }
 
 
@@ -292,9 +296,75 @@ public class Board implements Serializable {
             }
 
             endMove(playerMove);
-            return;
         }
 
+    }
+
+
+    public Pair<Pair<String, String>, Integer> getRating() {
+        int score = 0;
+        for (Integer sc : result.values()) {
+            score+=sc;
+        }
+
+        if (!smallPenalty && currentLives == 0) {
+            return new Pair<>(new Pair<>("You angered the gods!", "Pray for your souls"), score);
+        }
+
+        if (currentLives == 0 && smallPenalty) {
+            score-=2;
+        }
+
+        String big = "";
+        String small = "";
+        if (score == 30) {
+            big = "Absolutely legendary!";
+            small = "The show dimmed all the stars in the sky";
+        } else
+        if (score >= 25) {
+            switch (score) {
+                case 29:
+                    big = "Godly!";
+                    break;
+                case 28:
+                    big = "Mythical!";
+                    break;
+                case 27:
+                    big = "Unreal!";
+                    break;
+                case 26:
+                    big = "Epic!";
+                    break;
+                case 25:
+                    big = "Fabulous!";
+                    break;
+            }
+            small = "You left everybody speechless";
+        } else
+        if (score >= 20) {
+            big = "Staggering!";
+            small = "The show will go down in history";
+        } else
+        if (score >= 15) {
+            big = "Good";
+            small = "People will remember this show... for some time";
+        } else
+        if (score >= 10) {
+            big = "Meh";
+            small = "This was just... Meh.";
+        } else
+        if (score >= 5) {
+            big = "Bad";
+            small = "Nobody even clapped!";
+        } else
+        if (score >=0) {
+            big = "Terrible";
+            small = "You walked away quickly, ashamed of yourselves";
+        } else {
+            big = "Absolute failure!";
+            small = "People wish you were never born and want their money back";
+        }
+        return new Pair<>(new Pair<>(big, small), score);
     }
 
     private void endMove(PlayerMove playerMove) throws GameEndException {
@@ -306,7 +376,7 @@ public class Board implements Serializable {
             throw new GameEndException();
     }
 
-    //Roch Wojtowicz
+
     private boolean blocked(Card x) {
         int temp=0;
         for(Card i:discardPile.getDiscardPile())

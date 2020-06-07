@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
@@ -265,14 +266,14 @@
                      </children>
                   </Pane>
                   <FlowPane fx:id="resultPane" alignment="CENTER" columnHalignment="CENTER" hgap="25.0" maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="700.0" prefHeight="300.0" prefWidth="800.0" prefWrapLength="800.0" visible="true" StackPane.alignment="CENTER" />
-                  <StackPane fx:id="endGamePane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
+                  <StackPane fx:id="gameEndPane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
                      <children>
                         <Pane prefHeight="200.0" prefWidth="700.0">
                            <children>
                               <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
                            </children>
                         </Pane>
-                        <Pane prefWidth="700.0">
+                        <Pane fx:id="connectionLostPane" prefWidth="700.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
                                  <font>
@@ -292,6 +293,29 @@
                               </Label>
                            </children>
                         </Pane>
+                        <StackPane fx:id="properGameEndPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="gameEndScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="693.0" text="Score: 30">
+                                       <font>
+                                          <Font name="System Bold" size="72.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="gameEndBig" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="693.0" text="You angered the gods!">
+                                       <font>
+                                          <Font name="System Bold" size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="gameEndSmall" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="693.0" text="People wish you were never born and want their money back">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                   <StackPane fx:id="noHintsPane" onMouseEntered="#hideNoHintsAlert" prefHeight="150.0" prefWidth="200.0" visible="false">

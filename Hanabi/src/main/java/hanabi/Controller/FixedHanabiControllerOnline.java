@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.io.*;
 import java.net.Socket;
@@ -39,8 +40,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     @FXML Label numberLivesLabel, numberHintsLabel;
     @FXML Pane playPane, hintTypePane, hintPlayerPane, hintPane, nextPlayerPane;
     @FXML Pane numberHintPane, colorHintPane;
-    @FXML Pane endGamePane;
-    @FXML Label connectionLost;
+    @FXML Pane gameEndPane;
+    @FXML Pane connectionLostPane;
     @FXML FlowPane playerHands, discardPane, resultPane;
     @FXML Label moveHistory, nextPlayerName;
     @FXML Button hintButton, playButton, discardButton;
@@ -87,6 +88,8 @@ public class FixedHanabiControllerOnline implements Initializable {
     ArrayList<ArrayList<RotateTransition>> cardRotateTransitions;
     int hintedPlayerIndex;
     @FXML StackPane mainStackPane;
+    @FXML StackPane properGameEndPane;
+    @FXML Label gameEndScore, gameEndBig, gameEndSmall;
 
     //Client connections
     private ClientSideConnection csc;
@@ -102,8 +105,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
-                endGame();
-                connectionLost.setVisible(true);
+                endGame(true);
             }
         }
         public void sendMoveType(MoveType moveType){
@@ -112,8 +114,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
-                endGame();
-                connectionLost.setVisible(true);
+                endGame(true);
             }
         }
         public MoveType receiveMoveType(){
@@ -122,8 +123,8 @@ public class FixedHanabiControllerOnline implements Initializable {
                 moveType = (MoveType)in.readObject();
             } catch (IOException | ClassNotFoundException  | ClassCastException e) {
                 e.printStackTrace();
-                endGame();
-                connectionLost.setVisible(true);
+                endGame(true);
+
             }
             return moveType;
         }
@@ -134,8 +135,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                 System.out.println("[received board]");
             } catch (IOException | ClassNotFoundException | ClassCastException e) {
                 e.printStackTrace();
-                endGame();
-                connectionLost.setVisible(true);
+                endGame(true);
             }
             return b;
         }
@@ -160,23 +160,34 @@ public class FixedHanabiControllerOnline implements Initializable {
                     forceExit = true;
             }catch (IOException ex){
                 ex.printStackTrace();
-                endGame();
-                connectionLost.setVisible(true);
+                endGame(true);
             }
         }
     }
     public void connectToServer(){
         csc = new ClientSideConnection();
     }
-    public void endGame() {
+    public void endGame(boolean disconnected) {
         if (!endGame) {
-            endGamePane.setVisible(true);
+            gameEndPane.setVisible(true);
             disableButtons();
             hideHintButtons();
             playPane.setVisible(false);
             revealAllHands();
             endGame = true;
             System.out.println("[game has ended]");
+            if (disconnected) {
+                connectionLostPane.setVisible(true);
+            } else {
+                Pair<Pair<String,String>, Integer> ratings = board.getRating();
+                gameEndScore.setStyle("-fx-font-family: Purisa Bold;");
+                gameEndBig.setStyle("-fx-font-family: Purisa Bold;");
+                gameEndSmall.setStyle("-fx-font-family: Purisa Bold;");
+                gameEndScore.setText("Score: " + ratings.getValue());
+                gameEndBig.setText(ratings.getKey().getKey());
+                gameEndSmall.setText(ratings.getKey().getValue());
+                properGameEndPane.setVisible(true);
+            }
         }
     }
     public void startReceivingBoards(){
@@ -193,7 +204,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                         int playerIndex = (board.getCurrentPlayerIndex() > 0) ? board.getCurrentPlayerIndex()-1:board.getPlayerAmount()-1;
                         updateGUI(playerIndex,moveType,updateDiscard);
                         if(board.hasGameEnded()){
-                            endGame();
+                            endGame(false);
                         }
                         else {
                             blurMe();
@@ -232,7 +243,7 @@ public class FixedHanabiControllerOnline implements Initializable {
                     }
                     catch (IOException ioException) {
                         ioException.printStackTrace();
-                        endGame();
+                        endGame(true);
                     }
                 }
             }
@@ -246,7 +257,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            connectionLost.setVisible(false);
+            connectionLostPane.setVisible(false);
             endGame = false;
             players = new ArrayList<>();
             resultCards = new ArrayList<>();
@@ -314,7 +325,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException e) {
-            endGame();
+            endGame(false);
         }catch (NoHintsLeftException e){
             //NoHints.display("Alert","No hints left");
             noHintsPane.setVisible(true);
@@ -333,7 +344,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            endGame();
+            endGame(false);
         }
         nextPlayer(movetype);
         //System.out.println(board.getCurrentPlayerIndex());
@@ -346,7 +357,7 @@ public class FixedHanabiControllerOnline implements Initializable {
         try{
             board.action(playerMove);
         } catch (GameEndException | NoHintsLeftException e) {
-            endGame();
+            endGame(false);
         }
         nextPlayer(movetype);
         //System.out.println(board.getCurrentPlayerIndex());
@@ -546,7 +557,6 @@ public class FixedHanabiControllerOnline implements Initializable {
                     if (board.getPlayers().get(hintedPlayerIndex).getHand().get(j).getColor() == color
                             || board.getPlayers().get(hintedPlayerIndex).getHand().get(j).getColor() == Color.RAINBOW)
                         cardRotateTransitions.get(hintedPlayerIndex).get(j).play();
-                    System.out.println("BYLEM TU");
                 }
             });
             cHintButtons.get(i).setOnMouseExited(event -> {

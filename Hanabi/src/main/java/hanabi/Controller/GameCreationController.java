@@ -25,7 +25,7 @@ import static java.lang.Thread.sleep;
 public class GameCreationController implements Initializable {
     @FXML Slider numOfPlayers;
     @FXML Slider numOfCards;
-    @FXML CheckBox hasRainbows,smallPenalty;
+    @FXML CheckBox hasRainbows;
     @FXML Button randomNames;
     @FXML VBox advancedSettings;
     @FXML TextField ID;
@@ -35,7 +35,7 @@ public class GameCreationController implements Initializable {
     @FXML TextField initialHints;
     @FXML TextField initialLives;
     @FXML TextField limitHints;
-    @FXML CheckBox handManagement;
+    @FXML CheckBox handManagement,smallPenalty;
     @FXML VBox IPBox;
     @FXML CheckBox Server;
 
@@ -47,7 +47,6 @@ public class GameCreationController implements Initializable {
     public final int smallButtonSize = 25;
     public final int bigButtonSize = 50;
     ArrayList<ArrayList<Label>> cardsAmount;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +64,14 @@ public class GameCreationController implements Initializable {
         tooltip.setShowDelay(new Duration(500));
         tooltip.setShowDuration(Duration.INDEFINITE);
         handManagement.setTooltip(tooltip);
+        Tooltip tooltip2 = new Tooltip(
+                "Selecting this will make you lose only 2 points if you somehow manage to lose all lives\n" +
+                        "Other option is going down to 0 points"
+        );
+        tooltip2.setShowDelay(new Duration(500));
+        tooltip2.setShowDuration(Duration.INDEFINITE);
+        smallPenalty.setTooltip(tooltip2);
+        smallPenalty.selectedProperty().setValue(true);
     }
 
     public void handleReturn(ActionEvent actionEvent) {
@@ -113,6 +120,7 @@ public class GameCreationController implements Initializable {
         boolean rainbow= hasRainbows.isSelected();
         boolean random= false;
         boolean handMan = handManagement.isSelected();
+        boolean smallPen = smallPenalty.isSelected();
         String[] finalNames=new String[players];
         finalNames[0] = ( name1.getText().equals(""))?Board.randomNames(1)[0]:name1.getText();
         for(int i=1;i<players;++i) {
@@ -161,7 +169,7 @@ public class GameCreationController implements Initializable {
         }
 
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, deck,
-                random, handMan, finalNames);
+                random, handMan, smallPen, finalNames);
         HanabiMain.gameInformation.playerName = finalNames[0];
         System.out.println(finalNames[0]);
         if(Server.isSelected()){
