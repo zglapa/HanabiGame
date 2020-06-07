@@ -13,9 +13,10 @@ public class GameJoiningWindow {
         Parent setUpRoot;
         setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameJoiningFXML.fxml"));
         Stage stage=new Stage();
+        stage.setResizable(false);
         HanabiMain.gameInformation.settingsStage = stage;
         stage.setOnCloseRequest(e->HanabiMain.gameInformation.exit=true);
-        stage.setTitle("Set Up");
+        stage.setTitle("Join Game");
         stage.setScene(new Scene(setUpRoot, 1600, 900));
         end=true;
         stage.showAndWait();

@@ -21,6 +21,7 @@ public class GameCreationWindow {
     public static void run() throws IOException {
         Parent setUpRoot;
         Stage stage=new Stage();
+        stage.setResizable(false);
         HanabiMain.gameInformation.settingsStage = stage;
         setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/GameCreationFXML.fxml"));
 

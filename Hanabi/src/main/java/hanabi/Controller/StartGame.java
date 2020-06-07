@@ -15,6 +15,7 @@ public class StartGame {
         HanabiMain.gameInformation.gameStage=stage;
         stage.setTitle("Hanabi");
         stage.setScene(new Scene(root, 1600, 900));
+        stage.setResizable(false);
         stage.show();
     }
 }

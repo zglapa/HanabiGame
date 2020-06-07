@@ -15,6 +15,7 @@ public class MultiplayerModeWindow {
     public static Stage stage;
     public static void run() throws IOException {
         stage=new Stage();
+        stage.setResizable(false);
         Parent setUpRoot = FXMLLoader.load(HanabiMain.class.getResource("/MultiplayerModeFXML.fxml"));
         stage.setTitle("Hanabi");
         stage.setScene(new Scene(setUpRoot, 1600, 900));

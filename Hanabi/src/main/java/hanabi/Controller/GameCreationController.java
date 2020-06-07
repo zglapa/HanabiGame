@@ -59,6 +59,7 @@ public class GameCreationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stage = HanabiMain.gameInformation.settingsStage;
+        stage.setResizable(false);
         deckCreation();
         //for(int i=0;i<7;++i)
         //names.get(i).setText("Player"+(i+1));
