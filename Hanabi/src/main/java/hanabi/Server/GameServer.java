@@ -86,10 +86,18 @@ public class GameServer {
         @Override
         public void run() {
             try {
-                while (numOfPlayers.get() < NUMBEROFPLAYERS) {
+                 while (numOfPlayers.get() < NUMBEROFPLAYERS) {
                     Thread.onSpinWait();
                 }
-                while(true){
+                outer :while(true){
+                    for(ServerSideConnection s : connections){
+                        if(s.socket.isClosed()){
+                            sendToAll(null);
+                            Thread.currentThread().interrupt();
+                            System.out.println("enddddddd");
+                            break outer;
+                        }
+                    }
                     BOARD = (Board) in.readObject();
                     System.out.println("[received board from " + playerName + "]");
                     sendToAll(BOARD);
@@ -99,6 +107,13 @@ public class GameServer {
 
             } catch (IOException | ClassNotFoundException ignored) {
                 System.out.println("[connection terminated : " + playerName + "]");
+                try {
+                    sendToAll(null);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                Thread.currentThread().interrupt();
+                System.out.println("enddddddd");
             }
 
         }

@@ -36,6 +36,7 @@ import static hanabi.Controller.HanabiMain.csc;
 //import static com.sun.javafx.application.PlatformImpl.exit;
 
 public class FixedHanabiControllerOnline implements Initializable {
+    @FXML Button returnMMButton;
     @FXML Label deckSize;
     @FXML Rectangle deckPicture;
     @FXML StackPane noHintsPane;
@@ -122,16 +123,60 @@ public class FixedHanabiControllerOnline implements Initializable {
             @Override
             public void run() {
                 while(!endGame){
-                    board = csc.receiveBoard();
+                    try {
+                        board = csc.receiveBoard();
+                        if(board==null){
+                            board=HanabiMain.gameInformation.receivedBoard;
+                            csc.socket.close();
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    endGame(true);
+                                }
+                            });
+                            break;
+                        }
+                    } catch (Exception e) {
+                        try {
+                            csc.socket.close();
+                        } catch (IOException ioException) {
+                            //e.printStackTrace();
+                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                endGame(true);
+                            }
+                        });
+                        break;
+                    }
                     HanabiMain.gameInformation.receivedBoard = board;
                     System.out.println(board.getDeck().getSize());
-                    MoveType moveType = csc.receiveMoveType();
+                    MoveType moveType = null;
+                    try {
+                        moveType = csc.receiveMoveType();
+                    } catch (Exception e ) {
+                        //eofException.printStackTrace();
+                        try {
+                            csc.socket.close();
+                        } catch (IOException ioException) {
+                            e.printStackTrace();
+                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                endGame(true);
+                            }
+                        });
+                        break;
+                    }
+                    MoveType finalMoveType = moveType;
                     Platform.runLater(() ->{
                         boolean updateDiscard = false;
                         if(board.getDiscardPile().getDiscardPile().size() != discardCards.size()) updateDiscard = true;
                         boolean finalUpdateDiscard = updateDiscard;
                         int playerIndex = (board.getCurrentPlayerIndex() > 0) ? board.getCurrentPlayerIndex()-1:board.getPlayerAmount()-1;
-                        updateGUI(playerIndex,moveType,updateDiscard);
+                        updateGUI(playerIndex, finalMoveType,updateDiscard);
                         if(board.hasGameEnded()){
                             endGame(false);
                         }
@@ -143,13 +188,16 @@ public class FixedHanabiControllerOnline implements Initializable {
                         }
                     });
                 }
+                Thread.currentThread().interrupt();
             }
         });
+        if(!endGame)
         t.start();
     }
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
         forceExit = false;
+        HanabiMain.gameInformation.returnToMM=false;
         if(!forceExit){
             try {
                 addColors();
@@ -902,4 +950,5 @@ public class FixedHanabiControllerOnline implements Initializable {
                 lastPlayLabel.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
         }
     }
+
 }

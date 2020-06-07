@@ -11,4 +11,6 @@ public class GameInformation {
     public boolean serverReady=false;
     public Stage settingsStage;
     public Board receivedBoard;
+    public Stage gameStage;
+    public boolean returnToMM;
 }

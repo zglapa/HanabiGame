@@ -5,6 +5,7 @@ import hanabi.Controller.HanabiMain;
 import hanabi.Model.Board;
 import hanabi.Model.MoveType;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -41,24 +42,25 @@ public class ClientSideConnection{
             //connectionLost.setVisible(true);
         }
     }
-    public MoveType receiveMoveType(){
+    public MoveType receiveMoveType() throws RuntimeException {
         MoveType moveType = null;
         try{
             moveType = (MoveType)in.readObject();
         } catch (IOException | ClassNotFoundException  | ClassCastException e) {
-            e.printStackTrace();
-            //endGame();
+            //e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
             //connectionLost.setVisible(true);
         }
         return moveType;
     }
-    public Board receiveBoard(){
+    public Board receiveBoard() throws RuntimeException {
         Board b = null;
         try{
             b = (Board) in.readObject();
             System.out.println("[received board]");
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
             //endGame();
             //connectionLost.setVisible(true);
         }

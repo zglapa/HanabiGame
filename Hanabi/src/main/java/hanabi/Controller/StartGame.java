@@ -12,6 +12,7 @@ public class StartGame {
         if(HanabiMain.gameInformation.exit)
             return;
         Parent root = FXMLLoader.load(HanabiMain.class.getResource("/GameFXML.fxml"));
+        HanabiMain.gameInformation.gameStage=stage;
         stage.setTitle("Hanabi");
         stage.setScene(new Scene(root, 1600, 900));
         stage.show();

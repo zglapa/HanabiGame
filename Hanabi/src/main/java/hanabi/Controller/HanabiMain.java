@@ -9,6 +9,7 @@ import static javafx.application.Platform.exit;
 
 public class HanabiMain extends Application {
     public static GameInformation gameInformation = new GameInformation();
+    public static StartServer serverThread;
     public static ClientSideConnection csc;
     public static void main(String[] args){
         launch(args);
@@ -27,16 +28,19 @@ public class HanabiMain extends Application {
 
                 case 1: //create a game
                     GameCreationWindow.run();
-                    if(GameCreationWindow.end)
+                    if(GameCreationWindow.end) {
                         StartGame.run(stage);
+
+                    }
                     else
                         end=false;
                     break;
 
                 case 2: //join game
                     GameJoiningWindow.run();
-                    if(GameJoiningWindow.end)
+                    if(GameJoiningWindow.end) {
                         StartGame.run(stage);
+                    }
                     else
                         end=false;
                     break;
@@ -45,7 +49,10 @@ public class HanabiMain extends Application {
                     exit();
 
             }
+
         }while(!end);
+        System.out.println("wyszło z while");
+
     }
 
 }

@@ -3,6 +3,7 @@ package hanabi.Controller;
 import hanabi.Controller.Boxes.AlertBox;
 import hanabi.Model.Board;
 import hanabi.Server.ClientSideConnection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.OptionalDataException;
 
@@ -35,33 +37,45 @@ public class GameJoiningController {
             AlertBox.display("Wrong input", "Name must not exceed 20 characters!");
             return;
         }
-
+        waitingPane.setVisible(true);
+        System.out.println(waitingPane.isVisible());
         HanabiMain.gameInformation.playerName = finalName;
         HanabiMain.gameInformation.serverID = ID.getText();
-        HanabiMain.gameInformation.settingsStage.close();
-        waitingPane.setVisible(true);
         HanabiMain.csc = new ClientSideConnection();
         Object o = null;
         HanabiMain.gameInformation.receivedBoard = null;
-        while(HanabiMain.gameInformation.receivedBoard == null){
-            try{
-                o = HanabiMain.csc.in.readObject();
-                HanabiMain.gameInformation.receivedBoard = (Board)o;
-                System.out.println("[received board]");
-            }catch (ClassCastException | OptionalDataException e){
-                System.out.println(o);
-            }catch (IOException | ClassNotFoundException ex){
-                ex.printStackTrace();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Object o = null;
+                while(HanabiMain.gameInformation.receivedBoard == null){
+                    try{
+                        o = HanabiMain.csc.in.readObject();
+                        HanabiMain.gameInformation.receivedBoard = (Board)o;
+                        System.out.println("[received board]");
+                    }catch (ClassCastException | OptionalDataException e){
+                        System.out.println(o);
+                    } catch (Exception e){
+                        try {
+                            HanabiMain.csc.socket.close();
+                        }
+                        catch (IOException ioException) {
+                            ioException.printStackTrace();
 
-            }catch (Exception e){
-                try {
-                    HanabiMain.csc.socket.close();
+                        }
+                        GameJoiningWindow.end=false;
+                        break;
+                    }
                 }
-                catch (IOException ioException) {
-                    ioException.printStackTrace();
-                    //endGame();
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        HanabiMain.gameInformation.settingsStage.close();
+                    }
+                });
+                Thread.currentThread().interrupt();
             }
-        }
+        });
+        t.start();
     }
 }

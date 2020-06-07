@@ -5,6 +5,7 @@ import hanabi.Controller.Boxes.ConfirmationBox;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
 import hanabi.Server.ClientSideConnection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +77,7 @@ public class GameCreationController implements Initializable {
         tooltip2.setShowDuration(Duration.INDEFINITE);
         smallPenalty.setTooltip(tooltip2);
         smallPenalty.selectedProperty().setValue(true);
+        waitingPane.setVisible(false);
     }
 
     public void handleReturn(ActionEvent actionEvent) {
@@ -117,8 +119,6 @@ public class GameCreationController implements Initializable {
     }
 
     public void startGame(ActionEvent actionEvent) throws InterruptedException {
-
-
         int players= ( (Double) numOfPlayers.getValue() ).intValue();
         int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= hasRainbows.isSelected();
@@ -171,14 +171,16 @@ public class GameCreationController implements Initializable {
             AlertBox.display("Wrong input", "Not enough cards in the deck!");
             return;
         }
-
+        waitingPane.setVisible(true);
+        System.out.println(waitingPane.isVisible());
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, deck,
                 random, handMan, smallPen, finalNames);
         HanabiMain.gameInformation.playerName = finalNames[0];
-        waitingPane.setVisible(true);
         System.out.println(finalNames[0]);
         if(Server.isSelected()){
-            new StartServer().start();
+
+            HanabiMain.serverThread= new StartServer();
+            HanabiMain.serverThread.start();
             while (!HanabiMain.gameInformation.serverReady) {
                 sleep(10);
                 System.out.println("waited");
@@ -190,29 +192,48 @@ public class GameCreationController implements Initializable {
         }
         GameCreationWindow.setUpBoard = HanabiMain.gameInformation.board;
         HanabiMain.csc = new ClientSideConnection();
-        Object o = null;
         HanabiMain.gameInformation.receivedBoard = null;
-        while(HanabiMain.gameInformation.receivedBoard == null){
-            try{
-                o = HanabiMain.csc.in.readObject();
-                HanabiMain.gameInformation.receivedBoard = (Board)o;
-                System.out.println("[received board]");
-            }catch (ClassCastException | OptionalDataException e){
-                System.out.println(o);
-            }catch (IOException | ClassNotFoundException ex){
-                ex.printStackTrace();
-
-            }catch (Exception e){
-                try {
-                    HanabiMain.csc.socket.close();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Object o = null;
+                while(HanabiMain.gameInformation.receivedBoard == null){
+                    try{
+                        o = HanabiMain.csc.in.readObject();
+                        HanabiMain.gameInformation.receivedBoard = (Board)o;
+                        System.out.println("[received board]");
+                    }catch (ClassCastException | OptionalDataException e){
+                        System.out.println(o);
+                    } catch (Exception e){
+                        try {
+                            HanabiMain.csc.socket.close();
+                        }
+                        catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+                        finally {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    GameJoiningWindow.end=false;
+                                    HanabiMain.gameInformation.settingsStage.close();
+                                }
+                            });
+                            Thread.currentThread().interrupt();
+                        }
+                    }
                 }
-                catch (IOException ioException) {
-                    ioException.printStackTrace();
-                    //endGame();
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        HanabiMain.gameInformation.settingsStage.close();
+                    }
+                });
+                Thread.currentThread().interrupt();
             }
-        }
-        HanabiMain.gameInformation.settingsStage.close();
+        });
+        t.start();
+
     }
 
 

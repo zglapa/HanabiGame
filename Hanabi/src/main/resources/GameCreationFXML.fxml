@@ -25,129 +25,54 @@
         <URL value="@hanabi.css" />
     </stylesheets>
     <items>
-      <StackPane fx:id="mainStackPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+      <StackPane prefHeight="900.0" prefWidth="1600.0">
          <children>
-              <VBox alignment="TOP_CENTER">
-                  <children>
-                      <Label alignment="TOP_LEFT" styleClass="Header" text="Game Setup">
-                          <VBox.margin>
-                              <Insets top="50.0" />
-                          </VBox.margin>
-                      </Label>
-                      <HBox>
-                          <children>
-                              <VBox fillWidth="false" HBox.hgrow="ALWAYS">
-                                  <children>
-                                      <Label styleClass="Label" text="Number of players:">
-                                          <font>
-                                              <Font name="Purisa Bold" size="28.0" />
-                                          </font>
-                                      </Label>
-                                      <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="61.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
-                                          <padding>
-                                              <Insets top="5.0" />
-                                          </padding>
-                                          <VBox.margin>
-                                              <Insets top="20.0" />
-                                          </VBox.margin>
-                                          <cursor>
-                                              <Cursor fx:constant="DEFAULT" />
-                                          </cursor>
-                                          <opaqueInsets>
-                                              <Insets />
-                                          </opaqueInsets>
-                                      </Slider>
-                              <HBox spacing="40.0">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </VBox.margin>
-                                 <children>
-                                            <CheckBox fx:id="hasRainbows" mnemonicParsing="false" styleClass="CheckBox" text="Rainbows">
+            <StackPane fx:id="mainStackPane" alignment="TOP_LEFT" prefHeight="900.0" prefWidth="1600.0">
+               <children>
+                    <VBox alignment="TOP_CENTER">
+                        <children>
+                            <Label alignment="TOP_LEFT" styleClass="Header" text="Game Setup">
+                                <VBox.margin>
+                                    <Insets top="50.0" />
+                                </VBox.margin>
+                            </Label>
+                            <HBox>
+                                <children>
+                                    <VBox fillWidth="false" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <Label styleClass="Label" text="Number of players:">
+                                                <font>
+                                                    <Font name="Purisa Bold" size="28.0" />
+                                                </font>
+                                            </Label>
+                                            <Slider fx:id="numOfPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="2.0" minorTickCount="0" onMouseClicked="#adjustCards" prefHeight="61.0" prefWidth="526.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0">
                                                 <padding>
                                                     <Insets top="5.0" />
                                                 </padding>
-                                                <font>
-                                                    <Font name="Purisa" size="28.0" />
-                                                </font>
-                                            </CheckBox>
-                                    <CheckBox fx:id="smallPenalty" mnemonicParsing="false" styleClass="CheckBox" text="Small penalty">
-                                       <padding>
-                                          <Insets top="5.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="Purisa" size="28.0" />
-                                       </font>
-                                    </CheckBox>
-                                 </children>
-                              </HBox>
-                                      <VBox prefHeight="489.0" prefWidth="497.0">
-                                          <children>
-                                              <HBox prefHeight="46.0" prefWidth="497.0">
-                                                  <children>
-                                                      <Label prefHeight="59.0" prefWidth="336.0" styleClass="Label" text="Advanced Settings: ">
-                                                </Label>
-                                                      <Button fx:id="showAdvanced" mnemonicParsing="false" onMouseClicked="#showAdvanced" prefHeight="56.0" prefWidth="153.0" styleClass="Button" text="Show">
-                                                          <font>
-                                                              <Font size="30.0" />
-                                                          </font>
-                                                      </Button>
-                                                  </children>
-                                              </HBox>
-                                              <VBox fx:id="advancedSettings" fillWidth="false" prefHeight="400.0" prefWidth="497.0" spacing="10.0" visible="false">
-                                                  <children>
-                                                      <Label styleClass="Label" text="Hand size:">
-                                                          <VBox.margin>
-                                                              <Insets top="10.0" />
-                                                          </VBox.margin>
-                                                          <font>
-                                                              <Font size="28.0" />
-                                                          </font>
-                                                      </Label>
-                                                      <Slider fx:id="numOfCards" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0" />
-                                                      <GridPane prefHeight="145.0" prefWidth="268.0">
-                                                          <columnConstraints>
-                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="201.0" />
-                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="53.0" />
-                                                          </columnConstraints>
-                                                          <rowConstraints>
-                                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          </rowConstraints>
-                                                          <children>
-                                                              <Label styleClass="Label" text="Initial hints:">
-                                                                  <font>
-                                                                      <Font name="Purisa" size="28.0" />
-                                                                  </font>
-                                                              </Label>
-                                                              <TextField fx:id="initialHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1">
-                                                                  <font>
-                                                                      <Font size="24.0" />
-                                                                  </font>
-                                                              </TextField>
-                                                              <Label styleClass="Label" text="Max hints:" GridPane.rowIndex="1">
-                                                                  <font>
-                                                                      <Font name="Purisa" size="28.0" />
-                                                                  </font>
-                                                              </Label>
-                                                              <Label styleClass="Label" text="Lives:" GridPane.rowIndex="2">
-                                                                  <font>
-                                                                      <Font name="Purisa" size="28.0" />
-                                                                  </font>
-                                                              </Label>
-                                                              <TextField fx:id="limitHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                                  <font>
-                                                                      <Font size="24.0" />
-                                                                  </font>
-                                                              </TextField>
-                                                              <TextField fx:id="initialLives" prefHeight="57.0" prefWidth="42.0" promptText="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                                  <font>
-                                                                      <Font size="24.0" />
-                                                                  </font>
-                                                              </TextField>
-                                                          </children>
-                                                      </GridPane>
-                                          <CheckBox fx:id="handManagement" mnemonicParsing="false" styleClass="CheckBox" text="Smart hand management">
+                                                <VBox.margin>
+                                                    <Insets top="20.0" />
+                                                </VBox.margin>
+                                                <cursor>
+                                                    <Cursor fx:constant="DEFAULT" />
+                                                </cursor>
+                                                <opaqueInsets>
+                                                    <Insets />
+                                                </opaqueInsets>
+                                            </Slider>
+                                    <HBox spacing="40.0">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <children>
+                                                  <CheckBox fx:id="hasRainbows" mnemonicParsing="false" styleClass="CheckBox" text="Rainbows">
+                                                      <padding>
+                                                          <Insets top="5.0" />
+                                                      </padding>
+                                                      <font>
+                                                          <Font name="Purisa" size="28.0" />
+                                                      </font>
+                                                  </CheckBox>
+                                          <CheckBox fx:id="smallPenalty" mnemonicParsing="false" styleClass="CheckBox" text="Small penalty">
                                              <padding>
                                                 <Insets top="5.0" />
                                              </padding>
@@ -155,113 +80,192 @@
                                                 <Font name="Purisa" size="28.0" />
                                              </font>
                                           </CheckBox>
-                                          <Button fx:id="editDeckButton" mnemonicParsing="false" prefHeight="6.0" prefWidth="194.0" styleClass="Button" text="Edit Deck">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Button>
-                                                  </children>
-                                              </VBox>
-                                          </children>
-                                      </VBox>
-                                  </children>
-                                  <padding>
-                                      <Insets bottom="10.0" left="150.0" right="10.0" />
-                                  </padding>
-                              </VBox>
-                              <VBox minWidth="520.0">
-                                  <children>
-                                      <Label styleClass="Label" text="Your nick:">
-                                          <font>
-                                              <Font name="Purisa Bold" size="28.0" />
-                                          </font>
-                                      </Label>
-                                      <VBox fx:id="namesBox">
-                                          <children>
-                                              <TextField fx:id="name1" promptText="Name" styleClass="Button">
-                                                  <VBox.margin>
-                                                      <Insets bottom="20.0" top="20.0" />
-                                                  </VBox.margin>
-                                                  <font>
-                                                      <Font size="30.0" />
-                                                  </font>
-                                              </TextField>
-                                              <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generate random name">
-                                                  <font>
-                                                      <Font size="30.0" />
-                                                  </font>
-                                              </Button>
-                                    <CheckBox fx:id="Server" mnemonicParsing="false" onAction="#IPClicked" selected="true" styleClass="CheckBox" text="Use local server">
-                                       <padding>
-                                          <Insets top="10.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="Purisa" size="28.0" />
-                                       </font>
-                                    </CheckBox>
-                                    <VBox fx:id="IPBox" visible="false">
-                                       <children>
-                                                    <Label styleClass="Label" text="IP of a external server:">
-                                                        <font>
-                                                            <Font name="Purisa Bold" size="28.0" />
-                                                        </font>
-                                             <padding>
-                                                <Insets bottom="10.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                                    </Label>
-                                                    <TextField fx:id="ID" promptText="Serwer IP adress" styleClass="Button">
+                                       </children>
+                                    </HBox>
+                                            <VBox prefHeight="489.0" prefWidth="497.0">
+                                                <children>
+                                                    <HBox prefHeight="46.0" prefWidth="497.0">
+                                                        <children>
+                                                            <Label prefHeight="59.0" prefWidth="336.0" styleClass="Label" text="Advanced Settings: ">
+                                                </Label>
+                                                            <Button fx:id="showAdvanced" mnemonicParsing="false" onMouseClicked="#showAdvanced" prefHeight="56.0" prefWidth="153.0" styleClass="Button" text="Show">
+                                                                <font>
+                                                                    <Font size="30.0" />
+                                                                </font>
+                                                            </Button>
+                                                        </children>
+                                                    </HBox>
+                                                    <VBox fx:id="advancedSettings" fillWidth="false" prefHeight="400.0" prefWidth="497.0" spacing="10.0" visible="false">
+                                                        <children>
+                                                            <Label styleClass="Label" text="Hand size:">
+                                                                <VBox.margin>
+                                                                    <Insets top="10.0" />
+                                                                </VBox.margin>
+                                                                <font>
+                                                                    <Font size="28.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Slider fx:id="numOfCards" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" min="3.0" minorTickCount="0" prefHeight="99.0" prefWidth="386.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="Slider" value="4.0" />
+                                                            <GridPane prefHeight="145.0" prefWidth="268.0">
+                                                                <columnConstraints>
+                                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="201.0" />
+                                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="53.0" />
+                                                                </columnConstraints>
+                                                                <rowConstraints>
+                                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                </rowConstraints>
+                                                                <children>
+                                                                    <Label styleClass="Label" text="Initial hints:">
+                                                                        <font>
+                                                                            <Font name="Purisa" size="28.0" />
+                                                                        </font>
+                                                                    </Label>
+                                                                    <TextField fx:id="initialHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1">
+                                                                        <font>
+                                                                            <Font size="24.0" />
+                                                                        </font>
+                                                                    </TextField>
+                                                                    <Label styleClass="Label" text="Max hints:" GridPane.rowIndex="1">
+                                                                        <font>
+                                                                            <Font name="Purisa" size="28.0" />
+                                                                        </font>
+                                                                    </Label>
+                                                                    <Label styleClass="Label" text="Lives:" GridPane.rowIndex="2">
+                                                                        <font>
+                                                                            <Font name="Purisa" size="28.0" />
+                                                                        </font>
+                                                                    </Label>
+                                                                    <TextField fx:id="limitHints" prefHeight="57.0" prefWidth="42.0" promptText="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                                        <font>
+                                                                            <Font size="24.0" />
+                                                                        </font>
+                                                                    </TextField>
+                                                                    <TextField fx:id="initialLives" prefHeight="57.0" prefWidth="42.0" promptText="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                                        <font>
+                                                                            <Font size="24.0" />
+                                                                        </font>
+                                                                    </TextField>
+                                                                </children>
+                                                            </GridPane>
+                                                <CheckBox fx:id="handManagement" mnemonicParsing="false" styleClass="CheckBox" text="Smart hand management">
+                                                   <padding>
+                                                      <Insets top="5.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="Purisa" size="28.0" />
+                                                   </font>
+                                                </CheckBox>
+                                                <Button fx:id="editDeckButton" mnemonicParsing="false" prefHeight="6.0" prefWidth="194.0" styleClass="Button" text="Edit Deck">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Button>
+                                                        </children>
+                                                    </VBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                        <padding>
+                                            <Insets bottom="10.0" left="150.0" right="10.0" />
+                                        </padding>
+                                    </VBox>
+                                    <VBox minWidth="520.0">
+                                        <children>
+                                            <Label styleClass="Label" text="Your nick:">
+                                                <font>
+                                                    <Font name="Purisa Bold" size="28.0" />
+                                                </font>
+                                            </Label>
+                                            <VBox fx:id="namesBox">
+                                                <children>
+                                                    <TextField fx:id="name1" promptText="Name" styleClass="Button">
+                                                        <VBox.margin>
+                                                            <Insets bottom="20.0" top="20.0" />
+                                                        </VBox.margin>
                                                         <font>
                                                             <Font size="30.0" />
                                                         </font>
                                                     </TextField>
-                                       </children>
+                                                    <Button fx:id="randomNames" mnemonicParsing="false" onMouseClicked="#changeNames" styleClass="Button" text="Generate random name">
+                                                        <font>
+                                                            <Font size="30.0" />
+                                                        </font>
+                                                    </Button>
+                                          <CheckBox fx:id="Server" mnemonicParsing="false" onAction="#IPClicked" selected="true" styleClass="CheckBox" text="Use local server">
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Purisa" size="28.0" />
+                                             </font>
+                                          </CheckBox>
+                                          <VBox fx:id="IPBox" visible="false">
+                                             <children>
+                                                          <Label styleClass="Label" text="IP of a external server:">
+                                                              <font>
+                                                                  <Font name="Purisa Bold" size="28.0" />
+                                                              </font>
+                                                   <padding>
+                                                      <Insets bottom="10.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                          </Label>
+                                                          <TextField fx:id="ID" promptText="Serwer IP adress" styleClass="Button">
+                                                              <font>
+                                                                  <Font size="30.0" />
+                                                              </font>
+                                                          </TextField>
+                                             </children>
+                                          </VBox>
+                                                </children>
+                                                <padding>
+                                                    <Insets right="10.0" />
+                                                </padding>
+                                            </VBox>
+                                        </children>
+                                        <padding>
+                                            <Insets right="100.0" />
+                                        </padding>
                                     </VBox>
-                                          </children>
-                                          <padding>
-                                              <Insets right="10.0" />
-                                          </padding>
-                                      </VBox>
-                                  </children>
-                                  <padding>
-                                      <Insets right="100.0" />
-                                  </padding>
-                              </VBox>
-                              <VBox>
-                                  <children>
-                                      <Region VBox.vgrow="ALWAYS" />
-                                      <Pane>
-                                          <children>
-                                              <Button mnemonicParsing="false" onAction="#startGame" styleClass="Button" text="PLAY">
-                                                  <font>
-                                                      <Font size="40.0" />
-                                                  </font>
-                                              </Button>
-                                          </children>
-                                          <VBox.margin>
-                                              <Insets />
-                                          </VBox.margin>
-                                          <padding>
-                                              <Insets bottom="70.0" left="10.0" right="120.0" top="10.0" />
-                                          </padding>
-                                      </Pane>
-                                  </children>
-                              </VBox>
-                          </children>
-                      </HBox>
-                  </children>
-              </VBox>
-            <Button mnemonicParsing="false" onAction="#handleReturn" styleClass="Button" text="Return">
-               <font>
-                  <Font name="Purisa Bold" size="28.0" />
-               </font>
-               <StackPane.margin>
-                  <Insets left="150.0" top="50.0" />
-               </StackPane.margin>
-            </Button>
-            <Pane fx:id="waitingPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                    <VBox>
+                                        <children>
+                                            <Region VBox.vgrow="ALWAYS" />
+                                            <Pane>
+                                                <children>
+                                                    <Button mnemonicParsing="false" onAction="#startGame" styleClass="Button" text="PLAY">
+                                                        <font>
+                                                            <Font size="40.0" />
+                                                        </font>
+                                                    </Button>
+                                                </children>
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                                <padding>
+                                                    <Insets bottom="70.0" left="10.0" right="120.0" top="10.0" />
+                                                </padding>
+                                            </Pane>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                  <Button mnemonicParsing="false" onAction="#handleReturn" styleClass="Button" text="Return">
+                     <font>
+                        <Font name="Purisa Bold" size="28.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="150.0" top="50.0" />
+                     </StackPane.margin>
+                  </Button>
+               </children>
+            </StackPane>
+            <Pane fx:id="waitingPane" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" visible="true">
                <children>
                   <StackPane>
                      <children>

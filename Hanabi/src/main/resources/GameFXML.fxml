@@ -270,12 +270,12 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="700.0">
                            <children>
-                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" layoutX="50.0" layoutY="49.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="383.0" layoutX="3.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="789.0" />
                            </children>
                         </Pane>
                         <Pane fx:id="connectionLostPane" prefWidth="700.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="55.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="22.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
                                  <font>
                                     <Font name="Purisa Bold" size="63.0" />
                                  </font>
@@ -283,9 +283,9 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="199.0" layoutY="210.0" maxHeight="315.0" maxWidth="550.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="400.0" text="[connection lost]" textAlignment="CENTER">
+                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="173.0" layoutY="157.0" maxHeight="315.0" maxWidth="550.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="454.0" text="[connection lost]" textAlignment="CENTER">
                                  <font>
-                                    <Font size="48.0" />
+                                    <Font name="Purisa" size="33.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
