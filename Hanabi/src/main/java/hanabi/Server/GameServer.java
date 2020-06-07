@@ -1,5 +1,7 @@
 package hanabi.Server;
 
+import hanabi.Controller.GameInformation;
+import hanabi.Controller.HanabiMain;
 import hanabi.Model.Board;
 import hanabi.Model.Deck;
 import hanabi.Model.MoveType;
@@ -34,6 +36,7 @@ public class GameServer {
     public void acceptConnections(){
         try{
             System.out.println("[waiting for connections]");
+            HanabiMain.gameInformation.serverReady=true;
             while(numOfPlayers.get() < NUMBEROFPLAYERS){
                 Socket client = serverSocket.accept();
                 ServerSideConnection ssc = new ServerSideConnection(client,players, numOfPlayers.incrementAndGet());

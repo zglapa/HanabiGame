@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static java.lang.Thread.sleep;
+
 public class GameCreationController implements Initializable {
     @FXML Slider numOfPlayers;
     @FXML Slider numOfCards;
@@ -34,6 +36,8 @@ public class GameCreationController implements Initializable {
     @FXML TextField initialLives;
     @FXML TextField limitHints;
     @FXML CheckBox handManagement;
+    @FXML VBox IPBox;
+    @FXML CheckBox Server;
 
     //deckCreation
     @FXML StackPane mainStackPane;
@@ -97,7 +101,13 @@ public class GameCreationController implements Initializable {
         name1.setText( Board.randomNames(1)[0] );
     }
 
-    public void startGame(ActionEvent actionEvent) {
+    public void IPClicked(ActionEvent actionEvent) {
+        IPBox.setVisible(!Server.isSelected());
+    }
+
+    public void startGame(ActionEvent actionEvent) throws InterruptedException {
+
+
         int players= ( (Double) numOfPlayers.getValue() ).intValue();
         int cards= ( (Double) numOfCards.getValue() ).intValue();
         boolean rainbow= hasRainbows.isSelected();
@@ -135,7 +145,7 @@ public class GameCreationController implements Initializable {
                     "Max hint amount is smaller than initial hint amount\n" +
                             "While your hint amount is bigger than max hint amount\n" +
                             "you won't get any hints for the discard action.\n" +
-                            "This may or may not be intended\n" +
+                        "This may or may not be intended\n" +
                             "Do you wish to proceed?"
             );
             if (!result)
@@ -153,8 +163,18 @@ public class GameCreationController implements Initializable {
         HanabiMain.gameInformation.board = new Board(players, lives, hints, maxHints, cards, deck,
                 random, handMan, finalNames);
         HanabiMain.gameInformation.playerName = finalNames[0];
-        HanabiMain.gameInformation.serverID = ID.getText();
-        HanabiMain.gameInformation.hasRainbows = rainbow;
+        System.out.println(finalNames[0]);
+        if(Server.isSelected()){
+            new StartServer().start();
+            while (!HanabiMain.gameInformation.serverReady) {
+                sleep(10);
+                System.out.println("waited");
+            }
+            HanabiMain.gameInformation.serverID="";
+        }
+        else{
+            HanabiMain.gameInformation.serverID = ID.getText();
+        }
         HanabiMain.gameInformation.settingsStage.close();
     }
 

@@ -178,22 +178,34 @@
                                                       <Font size="30.0" />
                                                   </font>
                                               </Button>
-                                              <Label styleClass="Label" text="Adress IP of a server:">
-                                                  <VBox.margin>
-                                                      <Insets top="20.0" />
-                                                  </VBox.margin>
-                                                  <font>
-                                                      <Font name="Purisa Bold" size="28.0" />
-                                                  </font>
-                                              </Label>
-                                              <TextField fx:id="ID" layoutX="10.0" layoutY="36.0" promptText="Serwer IP adress" styleClass="Button">
-                                                  <VBox.margin>
-                                                      <Insets top="20.0" />
-                                                  </VBox.margin>
-                                                  <font>
-                                                      <Font size="30.0" />
-                                                  </font>
-                                              </TextField>
+                                    <CheckBox fx:id="Server" mnemonicParsing="false" selected="true" styleClass="CheckBox" text="Use local server" onAction="#IPClicked">
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Purisa" size="28.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <VBox visible="false" fx:id="IPBox">
+                                       <children>
+                                                    <Label styleClass="Label" text="IP of a external server:">
+                                                        <font>
+                                                            <Font name="Purisa Bold" size="28.0" />
+                                                        </font>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                                    </Label>
+                                                    <TextField fx:id="ID" promptText="Serwer IP adress" styleClass="Button">
+                                                        <font>
+                                                            <Font size="30.0" />
+                                                        </font>
+                                                    </TextField>
+                                       </children>
+                                    </VBox>
                                           </children>
                                           <padding>
                                               <Insets right="10.0" />

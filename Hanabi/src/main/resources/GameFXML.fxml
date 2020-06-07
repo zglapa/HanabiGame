@@ -51,12 +51,12 @@
                               <Insets bottom="25.0" right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="numberLivesLabel" alignment="TOP_LEFT" prefWidth="80.0" textFill="WHITE">
+                        <Label fx:id="numberLivesLabel" alignment="TOP_LEFT" prefWidth="100.0" textFill="WHITE">
                            <font>
                               <Font name="Purisa" size="68.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="25.0" right="20.0" />
+                              <Insets bottom="25.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -398,7 +398,7 @@
                <children>
                   <FlowPane fx:id="playerHands" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWrapLength="1300.0" stylesheets="@hanabi.css" vgap="10.0" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
-                        <Insets left="230.0" />
+                        <Insets left="210.0" />
                      </HBox.margin>
                   </FlowPane>
                   <Rectangle fx:id="deckPicture" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
@@ -410,12 +410,12 @@
                         <Insets bottom="20.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="deckSize" prefHeight="129.0" prefWidth="80.0" text="50" textFill="white">
+                  <Label fx:id="deckSize" minWidth="100.0" prefHeight="129.0" text="50" textFill="white">
                      <font>
                         <Font name="Purisa" size="68.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="20.0" right="20.0" />
+                        <Insets bottom="20.0" />
                      </HBox.margin>
                   </Label>
                </children>

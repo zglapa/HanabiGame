@@ -1,5 +1,6 @@
 package hanabi.Controller;
 
+import hanabi.Server.GameServer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,13 +15,14 @@ public class HanabiMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //new StartServer().start();
         boolean end;
         do {
             end=true;
             MultiplayerModeWindow.run();
             switch (MultiplayerModeWindow.action) {
                 case 0: //forced exit
-                    break;
+                    exit();
 
                 case 1: //create a game
                     GameCreationWindow.run();
