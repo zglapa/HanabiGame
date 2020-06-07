@@ -78,6 +78,8 @@ public class GameCreationController implements Initializable {
         smallPenalty.setTooltip(tooltip2);
         smallPenalty.selectedProperty().setValue(true);
         waitingPane.setVisible(false);
+        hasRainbows.selectedProperty().setValue(true);
+        handManagement.selectedProperty().setValue(true);
     }
 
     public void handleReturn(ActionEvent actionEvent) {
@@ -355,7 +357,7 @@ public class GameCreationController implements Initializable {
                     address.append(i);
                     address.append(".jpg");
                 }
-                System.out.println(address);
+                //System.out.println(address);
 
                 try {
                      ImagePattern pattern = new ImagePattern(new Image(getClass().getResource(new String(address)).toURI().toString()), 0, 0, 1, 1, true);
@@ -452,8 +454,8 @@ public class GameCreationController implements Initializable {
                 }
             });
 
-            grid.add(plus, 0, i+2);
-            grid.add(minus, 7, i+2);
+            grid.add(plus, 7, i+2);
+            grid.add(minus, 0, i+2);
             bigButtons.add(plus);
             bigButtons.add(minus);
         }

@@ -392,7 +392,7 @@ public class FixedHanabiControllerOnline implements Initializable {
             else if(color==Color.values()[4])colorPattern = blues.get(cardValue-1);
             else if(color==Color.values()[5]) colorPattern = rainbows.get(cardValue-1);
             cards.get(index).get(i).setFill(colorPattern);
-            cards.get(index).get(i).setRotate(board.getPlayers().get(index).getHand().get(i).getRotated() ? -15 : 0);
+            cards.get(index).get(i).setRotate(board.getPlayers().get(index).getHand().get(i).getRotated() ? 15 : 0);
         }
     }
     public void updatePlayerBackgrounds() {
@@ -466,8 +466,8 @@ public class FixedHanabiControllerOnline implements Initializable {
             for (int j = 0; j< board.getHandSize(); j++) {
                 RotateTransition cardRotateTransition = new RotateTransition(Duration.seconds(2), cards.get(i).get(j));
                 cardRotateTransition.setCycleCount(9999);
-                cardRotateTransition.setFromAngle(15);
-                cardRotateTransition.setToAngle(-15);
+                cardRotateTransition.setFromAngle(-15);
+                cardRotateTransition.setToAngle(15);
                 cardRotateTransition.setAutoReverse(true);
                 al.add(cardRotateTransition);
             }
