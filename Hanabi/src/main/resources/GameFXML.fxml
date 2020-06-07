@@ -268,12 +268,8 @@
                   <FlowPane fx:id="resultPane" alignment="CENTER" columnHalignment="CENTER" hgap="25.0" maxHeight="300.0" maxWidth="800.0" minHeight="300.0" minWidth="700.0" prefHeight="300.0" prefWidth="800.0" prefWrapLength="800.0" visible="true" StackPane.alignment="CENTER" />
                   <StackPane fx:id="gameEndPane" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" visible="false" StackPane.alignment="CENTER">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="700.0">
-                           <children>
-                              <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="383.0" layoutX="3.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="789.0" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="connectionLostPane" prefWidth="700.0">
+                        <Rectangle arcHeight="150.0" arcWidth="150.0" fill="#979797" height="283.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+                        <Pane fx:id="connectionLostPane" prefWidth="700.0" visible="false">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="125.0" layoutY="22.0" maxHeight="315.0" maxWidth="550.0" minHeight="200.0" minWidth="500.0" prefHeight="270.0" prefWidth="550.0" text="Game over" textAlignment="CENTER">
                                  <font>
@@ -283,7 +279,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="173.0" layoutY="157.0" maxHeight="315.0" maxWidth="550.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="454.0" text="[connection lost]" textAlignment="CENTER">
+                              <Label fx:id="connectionLost" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="28.0" layoutY="157.0" maxHeight="315.0" maxWidth="747.0" minHeight="125.0" minWidth="207.0" prefHeight="125.0" prefWidth="747.0" text="[connection lost]" textAlignment="CENTER">
                                  <font>
                                     <Font name="Purisa" size="33.0" />
                                  </font>
