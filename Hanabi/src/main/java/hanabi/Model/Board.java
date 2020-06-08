@@ -376,7 +376,7 @@ public class Board implements Serializable {
             throw new GameEndException();
     }
 
-
+    /*
     private boolean blocked(Card x) {
         int temp=0;
         for(Card i:discardPile.getDiscardPile())
@@ -388,6 +388,7 @@ public class Board implements Serializable {
             return temp==1;
         return temp==2;
     }
+    */
 
     public boolean hasGameEnded() {
         if (turnsUntilEnd == 0) {
@@ -399,10 +400,10 @@ public class Board implements Serializable {
             //System.out.println("lives");
             return true;
         }
-        for(Color color:Color.values())
-            if(!blocked(new Card(color,result.get(color)+1)))
-                return false;
-        return true;
+        //for(Color color:Color.values())
+        //    if(!blocked(new Card(color,result.get(color)+1)))
+        //        return false;
+        return false;
     }
 
     @Override

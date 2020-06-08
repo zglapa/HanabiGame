@@ -21,13 +21,14 @@ public class Player implements Serializable {
     public void changeName(String name){this.name = name;}
     public void playOrDiscard(Card played, Card drawn) {
         cards.remove(played); // it may not work
-        if (!handMan) {
-            if (drawn != null)
+        if (drawn != null) {
+            if (!handMan) {
                 cards.addLast(drawn);
-        } else {
-            int index = cards.size()-1;
-            while (index>=0 && cards.get(index).getRotated()) index--;
-            cards.add(index+1, drawn);
+            } else {
+                int index = cards.size() - 1;
+                while (index >= 0 && cards.get(index).getRotated()) index--;
+                cards.add(index + 1, drawn);
+            }
         }
     }
 
