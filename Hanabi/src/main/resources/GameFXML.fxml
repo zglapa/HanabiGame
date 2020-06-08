@@ -129,7 +129,7 @@
                                     <Insets top="21.0" />
                                  </StackPane.margin>
                               </Pane>
-                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="450.0">
+                              <Pane fx:id="hintPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0">
                                  <children>
                                     <Pane fx:id="hintPlayerPane" prefHeight="54.0" prefWidth="450.0" visible="false">
                                        <children>
@@ -138,15 +138,15 @@
                                                 <Font name="Serif Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="50.0" prefWidth="250.0" spacing="20.0">
+                                          <HBox alignment="CENTER" layoutX="113.0" layoutY="10.0" prefHeight="50.0" spacing="20.0">
                                              <children>
-                                                <Button fx:id="p1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="1" />
-                                                <Button fx:id="p2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="2" />
-                                                <Button fx:id="p3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="3" />
-                                                <Button fx:id="p4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="4" />
-                                                <Button fx:id="p5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="5" />
-                                                <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="6" />
-                                                <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" prefWidth="30.0" text="7" />
+                                                <Button fx:id="p1Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="1" />
+                                                <Button fx:id="p2Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="2" />
+                                                <Button fx:id="p3Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="3" />
+                                                <Button fx:id="p4Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="4" />
+                                                <Button fx:id="p5Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="5" />
+                                                <Button fx:id="p6Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" prefHeight="30.0" text="6" />
+                                                <Button fx:id="p7Hint" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerHintClicked" text="7" />
                                              </children>
                                              <padding>
                                                 <Insets left="7.0" />

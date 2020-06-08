@@ -225,9 +225,10 @@ public class FixedHanabiControllerOnline implements Initializable {
             boolean WITHRAINBOWS = board.getInGameColors().contains(Color.RAINBOW);
             addHands(PLAYERAMOUNT,HANDSIZE);
             addButtonsToArrayLists();
-            for(int i = PLAYERAMOUNT; i < 7;++i){
+            for(int i = PLAYERAMOUNT; i < 7;++i)
                 pHintButtons.get(i).setVisible(false);
-            }
+            for(int i =0; i < PLAYERAMOUNT;++i)
+                pHintButtons.get(i).setText(board.getPlayers().get(i).getName());
             for(int i = HANDSIZE; i < 6; ++i){
                 nPlayButtons.get(i).setVisible(false);
             }
@@ -843,10 +844,9 @@ public class FixedHanabiControllerOnline implements Initializable {
         hintPane.setVisible(false);
     }
     public void playerHintClicked(ActionEvent actionEvent) {
-        int length = actionEvent.getSource().toString().length();
-        char playerID = actionEvent.getSource().toString().charAt(length - 2);
+        System.out.println(actionEvent.getTarget().equals(p1Hint));
+        char playerID = actionEvent.getSource().toString().charAt(11);
         int playerIDInt = Character.getNumericValue(playerID);
-        //System.out.println(playerIDInt);
         playerHint = board.getPlayers().get(playerIDInt-1);
         hintedPlayerIndex = playerIDInt-1;
         hintTypePane.setVisible(true);

@@ -18,14 +18,13 @@ public class HanabiMain extends Application {
     @Override
     public void stop() throws Exception {
         GameServer.end=true;
-        if(!csc.socket.isClosed()){
+        if(csc!=null &&csc.socket!=null && !csc.socket.isClosed()){
             csc.out.writeObject(null);
             csc.out.flush();
             csc.socket.close();
         }
-
         if(serverThread!=null)
-        serverThread.interrupt();
+            serverThread.interrupt();
         System.out.println("blabla");
         if(gameInformation.joinThread!=null)
             gameInformation.joinThread.interrupt();
@@ -41,7 +40,7 @@ public class HanabiMain extends Application {
             MultiplayerModeWindow.run();
             switch (MultiplayerModeWindow.action) {
                 case 0: //forced exit
-                    exit();
+                    break;
 
                 case 1: //create a game
                     GameCreationWindow.run();
@@ -54,15 +53,14 @@ public class HanabiMain extends Application {
 
                 case 2: //join game
                     GameJoiningWindow.run();
-                    if(GameJoiningWindow.end) {
+                    if(GameJoiningWindow.end)
                         StartGame.run(stage);
-                    }
                     else
                         end=false;
                     break;
 
                 case 3: // exit
-                    exit();
+                    break;
 
             }
 
